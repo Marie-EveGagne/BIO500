@@ -1,13 +1,15 @@
 install.packages('RSQLite', dependencies=TRUE)
+install.packages('stringr', dependencies=TRUE)
+install.packages('dplyr', dependencies=TRUE)
+install.packages('data.table', dependencies=TRUE)
+install.packages('stringdist', dependencies=TRUE)
 library(RSQLite)
-
-install.packages('stringr','dplyr')
-install.packages("data.table")
-library(stringr, dplyr)
+library(stringr)
+library(dplyr)
 library(data.table)
+library(stringdist)
 
 setwd('C:/Users/Marie-Eve/OneDrive - USherbrooke/Bureau/UdeS/methode_comp/travail_collab')
-
 
 #importer les données
 
@@ -77,6 +79,7 @@ cours <- rbind(cours_1, cours_2, cours_3, cours_4, cours_5, cours_6, cours_7, co
 etudiant <- rbind(etudiant_1, etudiant_2, etudiant_3, etudiant_4, etudiant_5, etudiant_6, etudiant_7, etudiant_8, etudiant_9, etudiant_10)
 collaboration <- rbind(collaboration_1, collaboration_2, collaboration_3, collaboration_4, collaboration_5, collaboration_6, collaboration_7, collaboration_8, collaboration_9, collaboration_10)
 
+rm(etudiant_1,etudiant_10,etudiant_2,etudiant_3,etudiant_4,etudiant_5,etudiant_6,etudiant_7,etudiant_8,etudiant_9)
 
 for (i in 1:nrow(etudiant)) {
   etudiant[i,2] <- str_replace(etudiant[i,2],'_','-')
@@ -98,6 +101,10 @@ for (i in 1:nrow(etudiant_noms)) {
   etudiant_noms[i,1] <- str_replace(etudiant_noms[i,1],'cassandra_gobin','cassandra_godin')
   etudiant_noms[i,3] <- str_replace(etudiant_noms[i,3],'gobin','godin')
   }
+  else if (etudiant_noms[i,1]=='cassandre_godin'){
+    etudiant_noms[i,1] <- str_replace(etudiant_noms[i,1],'cassandre_godin','cassandra_godin')
+    etudiant_noms[i,3] <- str_replace(etudiant_noms[i,2],'cassandre','cassandra')
+  }
   else if (etudiant_noms[i,1]=='edouard_nadon-baumier'){
   etudiant_noms[i,1] <- str_replace(etudiant_noms[i,1],'edouard_nadon-baumier','edouard_nadon-beaumier')
   etudiant_noms[i,3] <- str_replace(etudiant_noms[i,3],'nadon-baumier','nadon-beaumier')
@@ -112,7 +119,11 @@ for (i in 1:nrow(etudiant_noms)) {
   }
   else if (etudiant_noms[i,1]=='louis-philippe_therrien'){
    etudiant_noms[i,1] <- str_replace(etudiant_noms[i,1],'louis-philippe_therrien','louis-philippe_theriault')
-   etudiant_noms[i,3] <- str_replace(etudiant_noms[i,3],'therrien','theriault')  
+   etudiant_noms[i,3] <- str_replace(etudiant_noms[i,3],'therrien ','theriault')  
+  }
+  else if (etudiant_noms[i,1]=='louis-phillippe_theriault'){
+    etudiant_noms[i,1] <- str_replace(etudiant_noms[i,1],'louis-phillippe_theriault','louis-philippe_theriault')
+    etudiant_noms[i,2] <- str_replace(etudiant_noms[i,2],'louis-phillippe','louis-philippe')
   }
   else if (etudiant_noms[i,1]=='mael_guerin'){
     etudiant_noms[i,1] <- str_replace(etudiant_noms[i,1],'mael_guerin','mael_gerin')
@@ -152,7 +163,39 @@ for (i in 1:nrow(etudiant_noms)) {
   }
 }
 
-for (i in 1:nrow(collaboration)) {
+cours <- cours[!duplicated(cours), ]
+etudiant_noms <- etudiant_noms[!duplicated(etudiant_noms), ]
+collaboration <- collaboration[!duplicated(collaboration), ]
+
+etudiant <- etudiant_noms
+
+Collab_bitch <- collaboration
+
+
+for (i in 1:nrow(etudiant)) {
+  #for (i in 1:nrow(Collab_bitch)) {
+  differences1 <- agrep(etudiant[i,1], Collab_bitch$etudiant1, max.distance = 5, value = FALSE)
+  differences2 <- agrep(etudiant[i,1], Collab_bitch$etudiant2, max.distance = 5, value = FALSE)
+    for (j in 1:length(differences1)) {
+      Collab_bitch[differences1[j],1] <- paste0(etudiant[i,1])
+  }
+    for (k in 1:length(differences2)) {
+      Collab_bitch[differences2[k],2] <- paste0(etudiant[i,1])
+  }
+}
+
+#for (i in 1:nrow(Collab_bitch)) {
+#  for (j in 1:nrow(etudiant)) {
+#    differences <- agrep(etudiant[j,1], Collab_bitch$etudiant2, max.distance = 5, value = FALSE)
+#    for (k in 1:length(differences)) {
+#     Collab_bitch[i,2] <- paste0(etudiant[j,1])
+#    }    
+#  }
+#}
+
+Collab_bitch <- Collab_bitch[!duplicated(Collab_bitch), ]
+
+'for (i in 1:nrow(collaboration)) {
     collaboration[i,1] <- str_replace(collaboration[i,1],'arianne_barette','ariane_barrette')
     collaboration[i,2] <- str_replace(collaboration[i,2],'arianne_barette','ariane_barrette')
     collaboration[i,1] <- str_replace(collaboration[i,1],'cassandra_gobin','cassandra_godin')
@@ -183,11 +226,8 @@ for (i in 1:nrow(collaboration)) {
     collaboration[i,2] <- str_replace(collaboration[i,2],'yannick_sageau','yanick_sageau')
     collaboration[i,1] <- str_replace(collaboration[i,1],'yanick_sagneau','yanick_sageau')
     collaboration[i,2] <- str_replace(collaboration[i,2],'yanick_sagneau','yanick_sageau')
-}
+}'
 
-cours <- cours[!duplicated(cours), ]
-etudiant_noms <- etudiant_noms[!duplicated(etudiant_noms), ]
-collaboration <- collaboration[!duplicated(collaboration), ]
 
 etudiant <- etudiant_noms
 
