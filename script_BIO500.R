@@ -114,16 +114,16 @@ for (i in 1:nrow(etudiant_noms)) {
   etudiant_noms[i,3] <- str_replace(etudiant_noms[i,3],'bolly','boily')
   }
   else if (etudiant_noms[i,1]=='louis-philipe_theriault'){
-  etudiant_noms[i,1] <- str_replace(etudiant_noms[i,1],'louis-philipe_theriault','louis-philippe_theriault')
-  etudiant_noms[i,2] <- str_replace(etudiant_noms[i,2],'louis-philipe','louis-philippe')
+    etudiant_noms[i,1] <- str_replace(etudiant_noms[i,1],'louis-philipe_theriault','louis-philippe_theriault')
+    etudiant_noms[i,2] <- str_replace(etudiant_noms[i,2],'louis-philipe','louis-philippe')
   }
   else if (etudiant_noms[i,1]=='louis-philippe_therrien'){
-   etudiant_noms[i,1] <- str_replace(etudiant_noms[i,1],'louis-philippe_therrien','louis-philippe_theriault')
-   etudiant_noms[i,3] <- str_replace(etudiant_noms[i,3],'therrien ','theriault')  
+    etudiant_noms[i,1] <- str_replace(etudiant_noms[i,1],'louis-philippe_therrien','louis-philippe_theriault')
+    etudiant_noms[i,3] <- str_replace(etudiant_noms[i,3],'therrien','theriault')  
   }
-  else if (etudiant_noms[i,1]=='louis-phillippe_theriault'){
-    etudiant_noms[i,1] <- str_replace(etudiant_noms[i,1],'louis-phillippe_theriault','louis-philippe_theriault')
-    etudiant_noms[i,2] <- str_replace(etudiant_noms[i,2],'louis-phillippe','louis-philippe')
+  else if (etudiant_noms[i,1]=='louis-phillipe_theriault'){
+    etudiant_noms[i,1] <- str_replace(etudiant_noms[i,1],'louis-phillipe_theriault','louis-philippe_theriault')
+    etudiant_noms[i,2] <- str_replace(etudiant_noms[i,2],'louis-phillipe','louis-philippe')
   }
   else if (etudiant_noms[i,1]=='mael_guerin'){
     etudiant_noms[i,1] <- str_replace(etudiant_noms[i,1],'mael_guerin','mael_gerin')
@@ -169,67 +169,20 @@ collaboration <- collaboration[!duplicated(collaboration), ]
 
 etudiant <- etudiant_noms
 
-Collab_bitch <- collaboration
-
+Collab_corr <- collaboration
 
 for (i in 1:nrow(etudiant)) {
-  #for (i in 1:nrow(Collab_bitch)) {
-  differences1 <- agrep(etudiant[i,1], Collab_bitch$etudiant1, max.distance = 5, value = FALSE)
-  differences2 <- agrep(etudiant[i,1], Collab_bitch$etudiant2, max.distance = 5, value = FALSE)
-    for (j in 1:length(differences1)) {
-      Collab_bitch[differences1[j],1] <- paste0(etudiant[i,1])
+  differences1 <- agrep(etudiant[i,1], Collab_corr$etudiant1, max.distance = 5, value = FALSE)
+  differences2 <- agrep(etudiant[i,1], Collab_corr$etudiant2, max.distance = 5, value = FALSE)
+  for (j in 1:length(differences1)) {
+    Collab_corr[differences1[j],1] <- paste0(etudiant[i,1])
   }
-    for (k in 1:length(differences2)) {
-      Collab_bitch[differences2[k],2] <- paste0(etudiant[i,1])
+  for (k in 1:length(differences2)) {
+    Collab_corr[differences2[k],2] <- paste0(etudiant[i,1])
   }
 }
 
-#for (i in 1:nrow(Collab_bitch)) {
-#  for (j in 1:nrow(etudiant)) {
-#    differences <- agrep(etudiant[j,1], Collab_bitch$etudiant2, max.distance = 5, value = FALSE)
-#    for (k in 1:length(differences)) {
-#     Collab_bitch[i,2] <- paste0(etudiant[j,1])
-#    }    
-#  }
-#}
-
-Collab_bitch <- Collab_bitch[!duplicated(Collab_bitch), ]
-
-'for (i in 1:nrow(collaboration)) {
-    collaboration[i,1] <- str_replace(collaboration[i,1],'arianne_barette','ariane_barrette')
-    collaboration[i,2] <- str_replace(collaboration[i,2],'arianne_barette','ariane_barrette')
-    collaboration[i,1] <- str_replace(collaboration[i,1],'cassandra_gobin','cassandra_godin')
-    collaboration[i,2] <- str_replace(collaboration[i,2],'cassandra_gobin','cassandra_godin')
-    collaboration[i,1] <- str_replace(collaboration[i,1],'edouard_nadon-baumier','edouard_nadon-beaumier')
-    collaboration[i,2] <- str_replace(collaboration[i,2],'edouard_nadon-baumier','edouard_nadon-beaumier')
-    collaboration[i,1] <- str_replace(collaboration[i,1],'francis_bolly','francis_boily')
-    collaboration[i,2] <- str_replace(collaboration[i,2],'francis_bolly','francis_boily')
-    collaboration[i,1] <- str_replace(collaboration[i,1],'louis-philipe_theriault','louis-philippe_theriault')
-    collaboration[i,2] <- str_replace(collaboration[i,2],'louis-philipe_theriault','louis-philippe_theriault')
-    collaboration[i,1] <- str_replace(collaboration[i,1],'louis-philippe_therrien','louis-philippe_theriault')
-    collaboration[i,2] <- str_replace(collaboration[i,2],'louis-philippe_therrien','louis-philippe_theriault')  
-    collaboration[i,1] <- str_replace(collaboration[i,1],'mael_guerin','mael_gerin')
-    collaboration[i,3] <- str_replace(collaboration[i,3],'mael_guerin','mael_gerin')  
-    collaboration[i,1] <- str_replace(collaboration[i,1],'marie_burghin','marie_bughin')
-    collaboration[i,2] <- str_replace(collaboration[i,2],'marie_burghin','marie_bughin')
-    collaboration[i,1] <- str_replace(collaboration[i,1],'peneloppe_robert','penelope_robert')
-    collaboration[i,2] <- str_replace(collaboration[i,2],'peneloppe_robert','penelope_robert')
-    collaboration[i,1] <- str_replace(collaboration[i,1],'sabrina_leclerc','sabrina_leclercq')
-    collaboration[i,2] <- str_replace(collaboration[i,2],'sabrina_leclerc','sabrina_leclercq')
-    collaboration[i,1] <- str_replace(collaboration[i,1],'sabrina_leclerc','sabrina_leclercq')
-    collaboration[i,2] <- str_replace(collaboration[i,2],'sabrina_leclerc','sabrina_leclercq')
-    collaboration[i,1] <- str_replace(collaboration[i,1],'simon_guilemette','simon_guillemette')
-    collaboration[i,2] <- str_replace(collaboration[i,2],'simon_guilemette','simon_guillemette')
-    collaboration[i,1] <- str_replace(collaboration[i,1],'thomas_ramond','thomas_raymond')
-    collaboration[i,2] <- str_replace(collaboration[i,2],'thomas_ramond','thomas_raymond')
-    collaboration[i,1] <- str_replace(collaboration[i,1],'yannick_sageau','yanick_sageau')
-    collaboration[i,2] <- str_replace(collaboration[i,2],'yannick_sageau','yanick_sageau')
-    collaboration[i,1] <- str_replace(collaboration[i,1],'yanick_sagneau','yanick_sageau')
-    collaboration[i,2] <- str_replace(collaboration[i,2],'yanick_sagneau','yanick_sageau')
-}'
-
-
-etudiant <- etudiant_noms
+Collab_corr <- Collab_corr[!duplicated(Collab_corr), ]
 
 write.csv(cours, 'C:/Users/Marie-Eve/OneDrive - USherbrooke/Bureau/UdeS/methode_comp/travail_collab/merge_cours.csv', row.names=FALSE)
 write.csv(etudiant, 'C:/Users/Marie-Eve/OneDrive - USherbrooke/Bureau/UdeS/methode_comp/travail_collab/merge_etudiant.csv', row.names=FALSE)
