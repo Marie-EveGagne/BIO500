@@ -260,6 +260,3 @@ write.csv(resultats_collab2, 'C:/Users/Marie-Eve/OneDrive - USherbrooke/Bureau/U
 
 #Deconnexion du SQL
 dbDisconnect(con)
-
-recherche <- sum(collaboration[1]=='amelie_pelletier')
-recherche
