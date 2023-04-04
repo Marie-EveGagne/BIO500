@@ -75,13 +75,18 @@ etudiant_7 <- etudiant_7[c('prenom_nom', 'prenom', 'nom', 'region_administrative
 etudiant_9 <- etudiant_9[c('prenom_nom', 'prenom', 'nom', 'region_administrative', 'regime_coop', 'formation_prealable', 'annee_debut', 'programme')]
 
 #Merger les differentes matrices dans 3 fichiers et sauvegarder
-#Correction des noms mal ecrits
 
 cours <- rbind(cours_1, cours_2, cours_3, cours_4, cours_5, cours_6, cours_7, cours_8, cours_9, cours_10)
 etudiant <- rbind(etudiant_1, etudiant_2, etudiant_3, etudiant_4, etudiant_5, etudiant_6, etudiant_7, etudiant_8, etudiant_9, etudiant_10)
 collaboration <- rbind(collaboration_1, collaboration_2, collaboration_3, collaboration_4, collaboration_5, collaboration_6, collaboration_7, collaboration_8, collaboration_9, collaboration_10)
 
+#retrait des objets qui ne sont plus utililises
+
 rm(etudiant_1,etudiant_10,etudiant_2,etudiant_3,etudiant_4,etudiant_5,etudiant_6,etudiant_7,etudiant_8,etudiant_9)
+rm(collaboration_1,collaboration_10,collaboration_2,collaboration_3,collaboration_4,collaboration_5,collaboration_6,collaboration_7,collaboration_8,collaboration_9)
+rm(cours_1,cours_10,cours_2,cours_3,cours_4,cours_5,cours_6,cours_7,cours_8,cours_9)
+
+#Correction des noms mal ecrits dans etudiant
 
 for (i in 1:nrow(etudiant)) {
   etudiant[i,2] <- str_replace(etudiant[i,2],'_','-')
@@ -165,11 +170,28 @@ for (i in 1:nrow(etudiant_noms)) {
   }
 }
 
+#Retrait des etudiants en double avec des NAs
+
+sommeNAs <- rowSums(is.na(etudiant))
+
+etudiant <- cbind(etudiant,sommeNAs)
+
+for (i in 1:nrow(etudiant)) {
+  differences <- agrep(etudiant[i,1], etudiant$prenom_nom, max.distance = 1, value = FALSE)
+  'subset' <- etudiant[differences[1:length(differences)],c(1:9)]
+  max <- max(subset$sommeNAs, na.rm = F)
+  
+}
+
+differences
+
 cours <- cours[!duplicated(cours), ]
 etudiant_noms <- etudiant_noms[!duplicated(etudiant_noms), ]
 collaboration <- collaboration[!duplicated(collaboration), ]
 
 etudiant <- etudiant_noms
+
+#Correction des noms mal ecrits dans collaboration
 
 Collab_corr <- collaboration
 
@@ -186,7 +208,7 @@ for (i in 1:nrow(etudiant)) {
 
 Collab_corr <- Collab_corr[!duplicated(Collab_corr), ]
 
-setdif()
+setdiff()
 
 write.csv(cours, 'C:/Users/Marie-Eve/OneDrive - USherbrooke/Bureau/UdeS/methode_comp/travail_collab/merge_cours.csv', row.names=FALSE)
 write.csv(etudiant, 'C:/Users/Marie-Eve/OneDrive - USherbrooke/Bureau/UdeS/methode_comp/travail_collab/merge_etudiant.csv', row.names=FALSE)
