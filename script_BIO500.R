@@ -184,6 +184,8 @@ for (i in 1:nrow(etudiant)) {
 
 Collab_corr <- Collab_corr[!duplicated(Collab_corr), ]
 
+setdif()
+
 write.csv(cours, 'C:/Users/Marie-Eve/OneDrive - USherbrooke/Bureau/UdeS/methode_comp/travail_collab/merge_cours.csv', row.names=FALSE)
 write.csv(etudiant, 'C:/Users/Marie-Eve/OneDrive - USherbrooke/Bureau/UdeS/methode_comp/travail_collab/merge_etudiant.csv', row.names=FALSE)
 write.csv(collaboration, 'C:/Users/Marie-Eve/OneDrive - USherbrooke/Bureau/UdeS/methode_comp/travail_collab/merge_collaboration.csv', row.names=FALSE)
