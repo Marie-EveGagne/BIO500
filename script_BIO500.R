@@ -3,11 +3,13 @@ install.packages('stringr', dependencies=TRUE)
 install.packages('dplyr', dependencies=TRUE)
 install.packages('data.table', dependencies=TRUE)
 install.packages('stringdist', dependencies=TRUE)
+install.packages('igraph')
 library(RSQLite)
 library(stringr)
 library(dplyr)
 library(data.table)
 library(stringdist)
+library(igraph)
 
 setwd('C:/Users/Marie-Eve/OneDrive - USherbrooke/Bureau/UdeS/methode_comp/travail_collab')
 
