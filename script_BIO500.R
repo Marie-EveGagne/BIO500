@@ -230,7 +230,7 @@ setdiff()
 
 write.csv(cours, 'C:/Users/Marie-Eve/OneDrive - USherbrooke/Bureau/UdeS/methode_comp/travail_collab/merge_cours.csv', row.names=FALSE)
 write.csv(etudiant, 'C:/Users/Marie-Eve/OneDrive - USherbrooke/Bureau/UdeS/methode_comp/travail_collab/merge_etudiant.csv', row.names=FALSE)
-write.csv(collaboration, 'C:/Users/Marie-Eve/OneDrive - USherbrooke/Bureau/UdeS/methode_comp/travail_collab/merge_collaboration.csv', row.names=FALSE)
+write.csv(Collab_corr, 'C:/Users/Marie-Eve/OneDrive - USherbrooke/Bureau/UdeS/methode_comp/travail_collab/merge_collaboration.csv', row.names=FALSE)
 
 #Connection au SQL, creations des matrices SQL et injection des donnees 
 
