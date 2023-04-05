@@ -304,3 +304,8 @@ write.csv(resultats_collab2, 'C:/Users/Marie-Eve/OneDrive - USherbrooke/Bureau/U
 
 #Deconnexion du SQL
 dbDisconnect(con)
+
+#igraph
+interaction <- matrix(nrow = 395, ncol = 395) 
+colnames(interaction) <- as.character(etudiant[,1])
+rownames(interaction) <- as.character(etudiant[,1])
