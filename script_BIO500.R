@@ -170,26 +170,44 @@ for (i in 1:nrow(etudiant_noms)) {
   }
 }
 
+etudiant_noms <- etudiant_noms[!duplicated(etudiant_noms), ]
+
 #Retrait des etudiants en double avec des NAs
 
+etudiant <- etudiant_noms
 sommeNAs <- rowSums(is.na(etudiant))
-
 etudiant <- cbind(etudiant,sommeNAs)
 
 for (i in 1:nrow(etudiant)) {
-  differences <- agrep(etudiant[i,1], etudiant$prenom_nom, max.distance = 1, value = FALSE)
-  'subset' <- etudiant[differences[1:length(differences)],c(1:9)]
-  max <- max(subset$sommeNAs, na.rm = F)
-  
+  for (j in 2:nrow(etudiant)) {
+    if(etudiant[i,1]==etudiant[j,1] && etudiant[i,9]<etudiant[j,9]){
+      etudiant <- etudiant[-c(j), ]
+    }
+    i=i+1
+  }
 }
 
-differences
+for (i in 1:nrow(etudiant)) {
+  for (j in 2:nrow(etudiant)) {
+    if(etudiant[i,1]==etudiant[j,1] && etudiant[i,9]>etudiant[j,9]){
+      etudiant <- etudiant[-c(i), ]
+    }
+    i=i+1
+  }
+}
+
+  #Trouver l'indexation des noms en double non corrigés par la boucle
+
+agrep('cassandra_godin', etudiant$prenom_nom, max.distance = 1, value = FALSE)
+agrep('juliette_meilleur', etudiant$prenom_nom, max.distance = 1, value = FALSE)
+agrep('mia_carriere ', etudiant$prenom_nom, max.distance = 1, value = FALSE)
+agrep('rosalie_gagnon', etudiant$prenom_nom, max.distance = 1, value = FALSE)
+
+
+etudiant <- etudiant[-c(30,84,118,134),]
 
 cours <- cours[!duplicated(cours), ]
-etudiant_noms <- etudiant_noms[!duplicated(etudiant_noms), ]
 collaboration <- collaboration[!duplicated(collaboration), ]
-
-etudiant <- etudiant_noms
 
 #Correction des noms mal ecrits dans collaboration
 
