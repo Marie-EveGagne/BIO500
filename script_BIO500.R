@@ -196,7 +196,7 @@ for (i in 1:nrow(etudiant)) {
   }
 }
 
-  #Trouver l'indexation des noms en double non corrigés par la boucle
+#Trouver l'indexation des noms en double non corrigés par la boucle
 
 agrep('cassandra_godin', etudiant$prenom_nom, max.distance = 1, value = FALSE)
 agrep('juliette_meilleur', etudiant$prenom_nom, max.distance = 1, value = FALSE)
@@ -205,6 +205,7 @@ agrep('rosalie_gagnon', etudiant$prenom_nom, max.distance = 1, value = FALSE)
 
 
 etudiant <- etudiant[-c(30,84,118,134),]
+etudiant <- etudiant[,-c(9)]
 
 cours <- cours[!duplicated(cours), ]
 collaboration <- collaboration[!duplicated(collaboration), ]
@@ -226,7 +227,6 @@ for (i in 1:nrow(etudiant)) {
 
 Collab_corr <- Collab_corr[!duplicated(Collab_corr), ]
 
-setdiff()
 
 write.csv(cours, 'C:/Users/Marie-Eve/OneDrive - USherbrooke/Bureau/UdeS/methode_comp/travail_collab/merge_cours.csv', row.names=FALSE)
 write.csv(etudiant, 'C:/Users/Marie-Eve/OneDrive - USherbrooke/Bureau/UdeS/methode_comp/travail_collab/merge_etudiant.csv', row.names=FALSE)
