@@ -1,8 +1,6 @@
 ---
-author:
-  - name: Yuriko Archambault, Marie-Ève Gagné, Juliette Larrivée et Daphnée Longworth
-    affiliation: Université de Sherbrooke
-title: "Réseau écologie d'étudiants de l'Université de Sherbrooke"
+author:: Yuriko Archambault, Marie-Ève Gagné, Juliette Larrivée et Daphnée Longworth
+title: "Réseau écologique d'étudiants de l'Université de Sherbrooke"
 shorttitle: "Projet de session"
 output: 
   html_document: 
@@ -15,7 +13,6 @@ output:
 # Introduction
 
 Insérer introduction ici
-
 
 # Développement
 
@@ -49,7 +46,6 @@ Insérer introduction ici
 [citation](https://econumuds.github.io/BIO500/bloc3/#43)
 
 # Conclusion
-
 Conclusion ici
 
 ```{r}
