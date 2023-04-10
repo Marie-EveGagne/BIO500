@@ -1,13 +1,17 @@
 install.packages('RSQLite', dependencies=TRUE)
+install.packages('stringr', dependencies=TRUE)
+install.packages('dplyr', dependencies=TRUE)
+install.packages('data.table', dependencies=TRUE)
+install.packages('stringdist', dependencies=TRUE)
+install.packages('igraph')
 library(RSQLite)
-
-install.packages('stringr','dplyr')
-install.packages("data.table")
-library(stringr, dplyr)
+library(stringr)
+library(dplyr)
 library(data.table)
+library(stringdist)
+library(igraph)
 
 setwd('C:/Users/Marie-Eve/OneDrive - USherbrooke/Bureau/UdeS/methode_comp/travail_collab')
-
 
 #importer les données
 
@@ -71,12 +75,18 @@ etudiant_7 <- etudiant_7[c('prenom_nom', 'prenom', 'nom', 'region_administrative
 etudiant_9 <- etudiant_9[c('prenom_nom', 'prenom', 'nom', 'region_administrative', 'regime_coop', 'formation_prealable', 'annee_debut', 'programme')]
 
 #Merger les differentes matrices dans 3 fichiers et sauvegarder
-#Correction des noms mal ecrits
 
 cours <- rbind(cours_1, cours_2, cours_3, cours_4, cours_5, cours_6, cours_7, cours_8, cours_9, cours_10)
 etudiant <- rbind(etudiant_1, etudiant_2, etudiant_3, etudiant_4, etudiant_5, etudiant_6, etudiant_7, etudiant_8, etudiant_9, etudiant_10)
 collaboration <- rbind(collaboration_1, collaboration_2, collaboration_3, collaboration_4, collaboration_5, collaboration_6, collaboration_7, collaboration_8, collaboration_9, collaboration_10)
 
+#retrait des objets qui ne sont plus utililises
+
+rm(etudiant_1,etudiant_10,etudiant_2,etudiant_3,etudiant_4,etudiant_5,etudiant_6,etudiant_7,etudiant_8,etudiant_9)
+rm(collaboration_1,collaboration_10,collaboration_2,collaboration_3,collaboration_4,collaboration_5,collaboration_6,collaboration_7,collaboration_8,collaboration_9)
+rm(cours_1,cours_10,cours_2,cours_3,cours_4,cours_5,cours_6,cours_7,cours_8,cours_9)
+
+#Correction des noms mal ecrits dans etudiant
 
 for (i in 1:nrow(etudiant)) {
   etudiant[i,2] <- str_replace(etudiant[i,2],'_','-')
@@ -98,6 +108,10 @@ for (i in 1:nrow(etudiant_noms)) {
   etudiant_noms[i,1] <- str_replace(etudiant_noms[i,1],'cassandra_gobin','cassandra_godin')
   etudiant_noms[i,3] <- str_replace(etudiant_noms[i,3],'gobin','godin')
   }
+  else if (etudiant_noms[i,1]=='cassandre_godin'){
+    etudiant_noms[i,1] <- str_replace(etudiant_noms[i,1],'cassandre_godin','cassandra_godin')
+    etudiant_noms[i,3] <- str_replace(etudiant_noms[i,2],'cassandre','cassandra')
+  }
   else if (etudiant_noms[i,1]=='edouard_nadon-baumier'){
   etudiant_noms[i,1] <- str_replace(etudiant_noms[i,1],'edouard_nadon-baumier','edouard_nadon-beaumier')
   etudiant_noms[i,3] <- str_replace(etudiant_noms[i,3],'nadon-baumier','nadon-beaumier')
@@ -107,12 +121,16 @@ for (i in 1:nrow(etudiant_noms)) {
   etudiant_noms[i,3] <- str_replace(etudiant_noms[i,3],'bolly','boily')
   }
   else if (etudiant_noms[i,1]=='louis-philipe_theriault'){
-  etudiant_noms[i,1] <- str_replace(etudiant_noms[i,1],'louis-philipe_theriault','louis-philippe_theriault')
-  etudiant_noms[i,2] <- str_replace(etudiant_noms[i,2],'louis-philipe','louis-philippe')
+    etudiant_noms[i,1] <- str_replace(etudiant_noms[i,1],'louis-philipe_theriault','louis-philippe_theriault')
+    etudiant_noms[i,2] <- str_replace(etudiant_noms[i,2],'louis-philipe','louis-philippe')
   }
   else if (etudiant_noms[i,1]=='louis-philippe_therrien'){
-   etudiant_noms[i,1] <- str_replace(etudiant_noms[i,1],'louis-philippe_therrien','louis-philippe_theriault')
-   etudiant_noms[i,3] <- str_replace(etudiant_noms[i,3],'therrien','theriault')  
+    etudiant_noms[i,1] <- str_replace(etudiant_noms[i,1],'louis-philippe_therrien','louis-philippe_theriault')
+    etudiant_noms[i,3] <- str_replace(etudiant_noms[i,3],'therrien','theriault')  
+  }
+  else if (etudiant_noms[i,1]=='louis-phillipe_theriault'){
+    etudiant_noms[i,1] <- str_replace(etudiant_noms[i,1],'louis-phillipe_theriault','louis-philippe_theriault')
+    etudiant_noms[i,2] <- str_replace(etudiant_noms[i,2],'louis-phillipe','louis-philippe')
   }
   else if (etudiant_noms[i,1]=='mael_guerin'){
     etudiant_noms[i,1] <- str_replace(etudiant_noms[i,1],'mael_guerin','mael_gerin')
@@ -152,48 +170,72 @@ for (i in 1:nrow(etudiant_noms)) {
   }
 }
 
-for (i in 1:nrow(collaboration)) {
-    collaboration[i,1] <- str_replace(collaboration[i,1],'arianne_barette','ariane_barrette')
-    collaboration[i,2] <- str_replace(collaboration[i,2],'arianne_barette','ariane_barrette')
-    collaboration[i,1] <- str_replace(collaboration[i,1],'cassandra_gobin','cassandra_godin')
-    collaboration[i,2] <- str_replace(collaboration[i,2],'cassandra_gobin','cassandra_godin')
-    collaboration[i,1] <- str_replace(collaboration[i,1],'edouard_nadon-baumier','edouard_nadon-beaumier')
-    collaboration[i,2] <- str_replace(collaboration[i,2],'edouard_nadon-baumier','edouard_nadon-beaumier')
-    collaboration[i,1] <- str_replace(collaboration[i,1],'francis_bolly','francis_boily')
-    collaboration[i,2] <- str_replace(collaboration[i,2],'francis_bolly','francis_boily')
-    collaboration[i,1] <- str_replace(collaboration[i,1],'louis-philipe_theriault','louis-philippe_theriault')
-    collaboration[i,2] <- str_replace(collaboration[i,2],'louis-philipe_theriault','louis-philippe_theriault')
-    collaboration[i,1] <- str_replace(collaboration[i,1],'louis-philippe_therrien','louis-philippe_theriault')
-    collaboration[i,2] <- str_replace(collaboration[i,2],'louis-philippe_therrien','louis-philippe_theriault')  
-    collaboration[i,1] <- str_replace(collaboration[i,1],'mael_guerin','mael_gerin')
-    collaboration[i,3] <- str_replace(collaboration[i,3],'mael_guerin','mael_gerin')  
-    collaboration[i,1] <- str_replace(collaboration[i,1],'marie_burghin','marie_bughin')
-    collaboration[i,2] <- str_replace(collaboration[i,2],'marie_burghin','marie_bughin')
-    collaboration[i,1] <- str_replace(collaboration[i,1],'peneloppe_robert','penelope_robert')
-    collaboration[i,2] <- str_replace(collaboration[i,2],'peneloppe_robert','penelope_robert')
-    collaboration[i,1] <- str_replace(collaboration[i,1],'sabrina_leclerc','sabrina_leclercq')
-    collaboration[i,2] <- str_replace(collaboration[i,2],'sabrina_leclerc','sabrina_leclercq')
-    collaboration[i,1] <- str_replace(collaboration[i,1],'sabrina_leclerc','sabrina_leclercq')
-    collaboration[i,2] <- str_replace(collaboration[i,2],'sabrina_leclerc','sabrina_leclercq')
-    collaboration[i,1] <- str_replace(collaboration[i,1],'simon_guilemette','simon_guillemette')
-    collaboration[i,2] <- str_replace(collaboration[i,2],'simon_guilemette','simon_guillemette')
-    collaboration[i,1] <- str_replace(collaboration[i,1],'thomas_ramond','thomas_raymond')
-    collaboration[i,2] <- str_replace(collaboration[i,2],'thomas_ramond','thomas_raymond')
-    collaboration[i,1] <- str_replace(collaboration[i,1],'yannick_sageau','yanick_sageau')
-    collaboration[i,2] <- str_replace(collaboration[i,2],'yannick_sageau','yanick_sageau')
-    collaboration[i,1] <- str_replace(collaboration[i,1],'yanick_sagneau','yanick_sageau')
-    collaboration[i,2] <- str_replace(collaboration[i,2],'yanick_sagneau','yanick_sageau')
-}
-
-cours <- cours[!duplicated(cours), ]
 etudiant_noms <- etudiant_noms[!duplicated(etudiant_noms), ]
-collaboration <- collaboration[!duplicated(collaboration), ]
+
+#Retrait des etudiants en double avec des NAs
 
 etudiant <- etudiant_noms
+sommeNAs <- rowSums(is.na(etudiant))
+etudiant <- cbind(etudiant,sommeNAs)
 
-write.csv(cours, 'C:/Users/Marie-Eve/OneDrive - USherbrooke/Bureau/UdeS/methode_comp/travail_collab/merge_cours.csv', row.names=FALSE)
-write.csv(etudiant, 'C:/Users/Marie-Eve/OneDrive - USherbrooke/Bureau/UdeS/methode_comp/travail_collab/merge_etudiant.csv', row.names=FALSE)
-write.csv(collaboration, 'C:/Users/Marie-Eve/OneDrive - USherbrooke/Bureau/UdeS/methode_comp/travail_collab/merge_collaboration.csv', row.names=FALSE)
+for (i in 1:nrow(etudiant)) {
+  for (j in 2:nrow(etudiant)) {
+    if(etudiant[i,1]==etudiant[j,1] && etudiant[i,9]<etudiant[j,9]){
+      etudiant <- etudiant[-c(j), ]
+    }
+    i=i+1
+  }
+}
+
+for (i in 1:nrow(etudiant)) {
+  for (j in 2:nrow(etudiant)) {
+    if(etudiant[i,1]==etudiant[j,1] && etudiant[i,9]>etudiant[j,9]){
+      etudiant <- etudiant[-c(i), ]
+    }
+    i=i+1
+  }
+}
+
+#Trouver l'indexation des noms en double non corrigés par la boucle
+
+agrep('cassandra_godin', etudiant$prenom_nom, max.distance = 1, value = FALSE)
+agrep('juliette_meilleur', etudiant$prenom_nom, max.distance = 1, value = FALSE)
+agrep('mia_carriere ', etudiant$prenom_nom, max.distance = 1, value = FALSE)
+agrep('rosalie_gagnon', etudiant$prenom_nom, max.distance = 1, value = FALSE)
+
+
+etudiant <- etudiant[-c(30,84,118,134),]
+etudiant <- etudiant[,-c(9)]
+
+cours <- cours[!duplicated(cours), ]
+collaboration <- collaboration[!duplicated(collaboration), ]
+
+#Correction des noms mal ecrits dans collaboration
+
+Collab_corr <- collaboration
+
+for (i in 1:nrow(etudiant)) {
+  differences1 <- agrep(etudiant[i,1], Collab_corr$etudiant1, max.distance = 5, value = FALSE)
+  differences2 <- agrep(etudiant[i,1], Collab_corr$etudiant2, max.distance = 5, value = FALSE)
+  for (j in 1:length(differences1)) {
+    Collab_corr[differences1[j],1] <- paste0(etudiant[i,1])
+  }
+  for (k in 1:length(differences2)) {
+    Collab_corr[differences2[k],2] <- paste0(etudiant[i,1])
+  }
+}
+
+Collab_corr <- Collab_corr[!duplicated(Collab_corr), ]
+
+
+write.csv(cours, 'C:/Users/Marie-Eve/OneDrive - USherbrooke/Bureau/UdeS/methode_comp/travail_collab/BIO500/merge_cours.csv', row.names=FALSE)
+write.csv(etudiant, 'C:/Users/Marie-Eve/OneDrive - USherbrooke/Bureau/UdeS/methode_comp/travail_collab/BIO500/merge_etudiant.csv', row.names=FALSE)
+write.csv(Collab_corr, 'C:/Users/Marie-Eve/OneDrive - USherbrooke/Bureau/UdeS/methode_comp/travail_collab/BIO500/merge_collaboration.csv', row.names=FALSE)
+
+#daphnee
+write.csv(cours, 'C:/Users/Daphnee/Documents/BIO500/merge_cours.csv', row.names=FALSE)
+write.csv(etudiant, 'C:/Users/Daphnee/Documents/BIO500/merge_etudiant.csv', row.names=FALSE)
+write.csv(Collab_corr, 'C:/Users/Daphnee/Documents/BIO500/merge_collaboration.csv', row.names=FALSE)
 
 #Connection au SQL, creations des matrices SQL et injection des donnees 
 
@@ -233,11 +275,9 @@ dbSendQuery(con, tbl_cours)
 dbSendQuery(con, tbl_etudiant)
 dbSendQuery(con, tbl_collaboration)
 
-
 dbWriteTable(con, append = TRUE, name = "tbl_cours", value = cours, row.names = FALSE)
 dbWriteTable(con, append = TRUE, name = "tbl_etudiant", value = etudiant, row.names = FALSE)
 dbWriteTable(con, append = TRUE, name = "tbl_collaboration", value = collaboration, row.names = FALSE)
-
 
 #Répondre aux questions pour le cours de BIO500 et enregistrer les reponses dans un csv
 
@@ -262,11 +302,39 @@ sql_requete2 <-"SELECT etudiant1, etudiant2, sigle, count(tbl_collaboration.sigl
 #LEFT JOIN tbl_cours ON tbl_collaboration.sigle=tbl_cours.sigle;"
 resultats_collab2 <- dbGetQuery(con, sql_requete2)
 resultats_collab2
-write.csv(resultats_collab2, 'C:/Users/Marie-Eve/OneDrive - USherbrooke/Bureau/UdeS/methode_comp/travail_collab/resultats.csv', row.names=FALSE)
+write.csv(resultats_collab2, 'C:/Users/Daphnee/Documents/BIO500/resultats.csv', row.names=FALSE)
 
 
 #Deconnexion du SQL
 dbDisconnect(con)
 
-recherche <- sum(collaboration[1]=='amelie_pelletier')
-recherche
+<<<<<<< HEAD
+#igraph
+interaction_df <- data.frame(etudiantA = collaboration$etudiant1, etudiantB = collaboration$etudiant2, stringsAsFactors = TRUE)
+interaction_matrice <- as.matrix(interaction_df)
+interaction_ig <- graph.edgelist(interaction_matrice , directed=TRUE)
+kamada_layout <- layout.kamada.kawai(interaction_ig)
+plot(interaction_ig, 
+     layout = kamada_layout, 
+     vertex.size = 14,
+     vertex.color = "red",
+     vertex.frame.color = NA,
+     vertex.label.cex = 1.2,
+     edge.curved = .2,
+     edge.arrow.size = .3,
+     edge.width = 1)
+
+interaction <- matrix(nrow = 395, ncol = 395) 
+colnames(interaction) <- as.character(etudiant[,1])
+rownames(interaction) <- as.character(etudiant[,1])
+=======
+#Figure 3
+collab_etudiant <- read.csv2("arbres.csv")
+paires <- table(collab_etudiant[,c(3,5)])
+frequence <- as.numeric(row.names(paires))
+plot(frequence, paires[,1], axes =TRUE,
+     xlab = "Fréquence", ylab = "Nb paires différentes qui ont collaboré ensemble")
+title(main = "Fréquence de collaboration des étudiants en fonction du nombre de paires différentes qui ont collaboré ensemble")
+usethis::git_sitrep()
+
+>>>>>>> f4be1693111c93028638750189bbaa8f080b1f77
