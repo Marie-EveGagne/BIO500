@@ -304,10 +304,44 @@ resultats_collab2 <- dbGetQuery(con, sql_requete2)
 resultats_collab2
 write.csv(resultats_collab2, 'C:/Users/Daphnee/Documents/BIO500/resultats.csv', row.names=FALSE)
 
+##selection requete2_test3
+sql_requete2 <- "
+SELECT (etudiant1 + etudiant2) AS Links
+FROM collaboration;"
+Links_etudiants <- dbGetQuery(con, sql_requete2)
+head(Links_etudiants)
+
+sql_requete3 <- "
+SELECT Links, sigle
+FROM collaboration
+count(sigle), Links
+GROUP BY Links;"
+Links_etudiants2 <- dbGetQuery(con, sql_requete3)
+head(Links_etudiants2)
 
 #Deconnexion du SQL
 dbDisconnect(con)
 
+<<<<<<< HEAD
+#igraph
+interaction_df <- data.frame(etudiantA = collaboration$etudiant1, etudiantB = collaboration$etudiant2, stringsAsFactors = TRUE)
+interaction_matrice <- as.matrix(interaction_df)
+interaction_ig <- graph.edgelist(interaction_matrice , directed=TRUE)
+kamada_layout <- layout.kamada.kawai(interaction_ig)
+plot(interaction_ig, 
+     layout = kamada_layout, 
+     vertex.size = 14,
+     vertex.color = "red",
+     vertex.frame.color = NA,
+     vertex.label.cex = 1.2,
+     edge.curved = .2,
+     edge.arrow.size = .3,
+     edge.width = 1)
+
+interaction <- matrix(nrow = 395, ncol = 395) 
+colnames(interaction) <- as.character(etudiant[,1])
+rownames(interaction) <- as.character(etudiant[,1])
+=======
 #Figure 3
 collab_etudiant <- read.csv2("arbres.csv")
 paires <- table(collab_etudiant[,c(3,5)])
@@ -316,3 +350,8 @@ plot(frequence, paires[,1], axes =TRUE,
      xlab = "Fréquence", ylab = "Nb paires différentes qui ont collaboré ensemble")
 title(main = "Fréquence de collaboration des étudiants en fonction du nombre de paires différentes qui ont collaboré ensemble")
 usethis::git_sitrep()
+<<<<<<< HEAD
+=======
+
+>>>>>>> f4be1693111c93028638750189bbaa8f080b1f77
+>>>>>>> b72587e18732fae8f2177d2c62ad1786f287e23d
