@@ -270,11 +270,9 @@ dbSendQuery(con, tbl_cours)
 dbSendQuery(con, tbl_etudiant)
 dbSendQuery(con, tbl_collaboration)
 
-
 dbWriteTable(con, append = TRUE, name = "tbl_cours", value = cours, row.names = FALSE)
 dbWriteTable(con, append = TRUE, name = "tbl_etudiant", value = etudiant, row.names = FALSE)
 dbWriteTable(con, append = TRUE, name = "tbl_collaboration", value = collaboration, row.names = FALSE)
-
 
 #Répondre aux questions pour le cours de BIO500 et enregistrer les reponses dans un csv
 
