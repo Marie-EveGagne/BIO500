@@ -4,6 +4,12 @@ author:
     affiliation: Université de Sherbrooke
 title: "Réseau écologie d'étudiants de l'Université de Sherbrooke"
 shorttitle: "Projet de session"
+output: 
+  html_document: 
+    toc: yes
+    highlight: tango
+    theme: cerulean
+    number_sections: yes
 ---
 
 # Introduction
@@ -45,5 +51,10 @@ Insérer introduction ici
 # Conclusion
 
 Conclusion ici
+
+```{r}
+sessionInfo()
+```
+
 
 # References {-}
