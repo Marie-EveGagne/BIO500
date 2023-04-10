@@ -1,7 +1,7 @@
 ---
-author:
-  - name: Yihui Xie
-    affiliation: RStudio
+auteurs:
+  - name: Yuriko Archambault, Marie-Eve Gagne, Juliette Larrivee et Daphnee Longworth
+    affiliation: Université de Sherbrooke
     address: |
       First line  
       Second line
