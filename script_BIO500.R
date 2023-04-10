@@ -196,7 +196,7 @@ for (i in 1:nrow(etudiant)) {
   }
 }
 
-  #Trouver l'indexation des noms en double non corrigés par la boucle
+#Trouver l'indexation des noms en double non corrigés par la boucle
 
 agrep('cassandra_godin', etudiant$prenom_nom, max.distance = 1, value = FALSE)
 agrep('juliette_meilleur', etudiant$prenom_nom, max.distance = 1, value = FALSE)
@@ -205,6 +205,7 @@ agrep('rosalie_gagnon', etudiant$prenom_nom, max.distance = 1, value = FALSE)
 
 
 etudiant <- etudiant[-c(30,84,118,134),]
+etudiant <- etudiant[,-c(9)]
 
 cours <- cours[!duplicated(cours), ]
 collaboration <- collaboration[!duplicated(collaboration), ]
@@ -226,11 +227,10 @@ for (i in 1:nrow(etudiant)) {
 
 Collab_corr <- Collab_corr[!duplicated(Collab_corr), ]
 
-setdiff()
 
-write.csv(cours, 'C:/Users/Marie-Eve/OneDrive - USherbrooke/Bureau/UdeS/methode_comp/travail_collab/merge_cours.csv', row.names=FALSE)
-write.csv(etudiant, 'C:/Users/Marie-Eve/OneDrive - USherbrooke/Bureau/UdeS/methode_comp/travail_collab/merge_etudiant.csv', row.names=FALSE)
-write.csv(Collab_corr, 'C:/Users/Marie-Eve/OneDrive - USherbrooke/Bureau/UdeS/methode_comp/travail_collab/merge_collaboration.csv', row.names=FALSE)
+write.csv(cours, 'C:/Users/Marie-Eve/OneDrive - USherbrooke/Bureau/UdeS/methode_comp/travail_collab/BIO500/merge_cours.csv', row.names=FALSE)
+write.csv(etudiant, 'C:/Users/Marie-Eve/OneDrive - USherbrooke/Bureau/UdeS/methode_comp/travail_collab/BIO500/merge_etudiant.csv', row.names=FALSE)
+write.csv(Collab_corr, 'C:/Users/Marie-Eve/OneDrive - USherbrooke/Bureau/UdeS/methode_comp/travail_collab/BIO500/merge_collaboration.csv', row.names=FALSE)
 
 #Connection au SQL, creations des matrices SQL et injection des donnees 
 
@@ -270,11 +270,9 @@ dbSendQuery(con, tbl_cours)
 dbSendQuery(con, tbl_etudiant)
 dbSendQuery(con, tbl_collaboration)
 
-
 dbWriteTable(con, append = TRUE, name = "tbl_cours", value = cours, row.names = FALSE)
 dbWriteTable(con, append = TRUE, name = "tbl_etudiant", value = etudiant, row.names = FALSE)
 dbWriteTable(con, append = TRUE, name = "tbl_collaboration", value = collaboration, row.names = FALSE)
-
 
 #Répondre aux questions pour le cours de BIO500 et enregistrer les reponses dans un csv
 
@@ -305,7 +303,19 @@ write.csv(resultats_collab2, 'C:/Users/Marie-Eve/OneDrive - USherbrooke/Bureau/U
 #Deconnexion du SQL
 dbDisconnect(con)
 
+<<<<<<< HEAD
 #igraph
 interaction <- matrix(nrow = 395, ncol = 395) 
 colnames(interaction) <- as.character(etudiant[,1])
 rownames(interaction) <- as.character(etudiant[,1])
+=======
+#Figure 3
+collab_etudiant <- read.csv2("arbres.csv")
+paires <- table(collab_etudiant[,c(3,5)])
+frequence <- as.numeric(row.names(paires))
+plot(frequence, paires[,1], axes =TRUE,
+     xlab = "Fréquence", ylab = "Nb paires différentes qui ont collaboré ensemble")
+title(main = "Fréquence de collaboration des étudiants en fonction du nombre de paires différentes qui ont collaboré ensemble")
+usethis::git_sitrep()
+
+>>>>>>> f4be1693111c93028638750189bbaa8f080b1f77
