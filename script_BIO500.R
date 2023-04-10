@@ -302,3 +302,13 @@ write.csv(resultats_collab2, 'C:/Users/Marie-Eve/OneDrive - USherbrooke/Bureau/U
 
 #Deconnexion du SQL
 dbDisconnect(con)
+
+#Figure 3
+collab_etudiant <- read.csv2("arbres.csv")
+paires <- table(collab_etudiant[,c(3,5)])
+frequence <- as.numeric(row.names(paires))
+plot(frequence, paires[,1], axes =TRUE,
+     xlab = "Fréquence", ylab = "Nb paires différentes qui ont collaboré ensemble")
+title(main = "Fréquence de collaboration des étudiants en fonction du nombre de paires différentes qui ont collaboré ensemble")
+usethis::git_sitrep()
+
