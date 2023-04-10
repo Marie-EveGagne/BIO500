@@ -2,23 +2,8 @@
 author:
   - name: Yuriko Archambault, Marie-Ève Gagné, Juliette Larrivée et Daphnée Longworth
     affiliation: Université de Sherbrooke
-title: "A Capitalized Title: Something about a Package **foo**"
-shorttitle: "**foo**:  A Capitalized Title"
-abstract: |
-  Resume ici
-  
-  
-  
-# at least one keyword must be supplied
-keywords: [keywords, not capitalized, "[Java]{.proglang}"]
-links-to-footnotes: true
-paged-footnotes: true
-bibliography: index.bib
-output: 
-  pagedown::jss_paged:
-    self_contained: false
-# uncomment this line to produce HTML and PDF in RStudio:
-#knit: pagedown::chrome_print
+title: "Réseau écologie d'étudiants de l'Université de Sherbrooke"
+shorttitle: "Projet de session"
 ---
 
 # Introduction
@@ -31,23 +16,29 @@ Insérer introduction ici
 ## Est-ce que les étudiants interagit davantage avec ceux de leur programme?
 1ere section 
 
-## Est-ce que les étudiants interagit davantage avec ceux de leur cohorte?
-2eme section
-
-
-Un tableau propre
- 
-```{Markdown}
-| Colonne 1           | Colonne 2 |          Colonne 3 |
-| ------------------- |:---------:| ------------------:|
-| Alignement à gauche |   Centré  | Alignement à droit |
-| *1*                 |     `2`   |              **3** |
-| *italique*          |   `code`  |           **gras** |
+```{r}
+# Scrip r ici
 ```
 
 
+## Est-ce que les étudiants interagit davantage avec ceux de leur cohorte?
+2eme section
+
 ## Est-ce que les étudiants préfèrent travailler avec les mêmes étudiants?
 3eme section
+
+```{r}
+#Figure 3
+
+#collab_etudiant <- read.csv2("arbres.csv")
+#paires <- table(collab_etudiant[,c(3,5)])
+#frequence <- as.numeric(row.names(paires))
+#plot(frequence, paires[,1], axes =TRUE,
+#     xlab = "Fréquence", ylab = "Nb paires différentes qui ont collaboré ensemble")
+#title(main = "Fréquence de collaboration des étudiants en fonction du nombre de paires différentes qui ont collaboré ensemble")
+#usethis::git_sitrep()
+```
+
 
 [citation](https://econumuds.github.io/BIO500/bloc3/#43)
 
@@ -56,7 +47,3 @@ Un tableau propre
 Conclusion ici
 
 # References {-}
-
-```{r, include=FALSE}
-knitr::write_bib(c(.packages(), 'pagedown', 'xaringan'), 'index.bib')
-```
