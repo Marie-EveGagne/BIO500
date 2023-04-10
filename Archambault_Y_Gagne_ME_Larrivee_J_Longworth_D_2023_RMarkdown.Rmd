@@ -8,6 +8,7 @@ output:
     highlight: tango
     theme: cerulean
     number_sections: yes
+    self_contained: false
 ---
 
 # Introduction
