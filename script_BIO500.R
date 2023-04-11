@@ -343,5 +343,8 @@ plot(frequence, paires[,1], axes =TRUE,
      xlab = "Fréquence", ylab = "Nb paires différentes qui ont collaboré ensemble")
 title(main = "Fréquence de collaboration des étudiants en fonction du nombre de paires différentes qui ont collaboré ensemble")
 usethis::git_sitrep()
+<<<<<<< HEAD
+=======
 
 >>>>>>> f4be1693111c93028638750189bbaa8f080b1f77
+>>>>>>> b72587e18732fae8f2177d2c62ad1786f287e23d
