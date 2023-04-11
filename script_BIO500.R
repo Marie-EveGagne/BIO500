@@ -4,12 +4,14 @@ install.packages('dplyr', dependencies=TRUE)
 install.packages('data.table', dependencies=TRUE)
 install.packages('stringdist', dependencies=TRUE)
 install.packages('igraph')
+install.packages("RColorBrewer")
 library(RSQLite)
 library(stringr)
 library(dplyr)
 library(data.table)
 library(stringdist)
 library(igraph)
+library(RColorBrewer)
 
 setwd('C:/Users/Marie-Eve/OneDrive - USherbrooke/Bureau/UdeS/methode_comp/travail_collab')
 
@@ -310,23 +312,29 @@ dbDisconnect(con)
 
 <<<<<<< HEAD
 #igraph
-interaction_df <- data.frame(etudiantA = collaboration$etudiant1, etudiantB = collaboration$etudiant2, stringsAsFactors = TRUE)
-interaction_matrice <- as.matrix(interaction_df)
-interaction_ig <- graph.edgelist(interaction_matrice , directed=TRUE)
-kamada_layout <- layout.kamada.kawai(interaction_ig)
+interaction_df <- data.frame(etudiantA = collaboration$etudiant1, etudiantB = collaboration$etudiant2, stringsAsFactors = F)
+interaction_ig <- graph.edgelist(interaction_matrice , directed=T)
+etudiant_df <- data.frame(etudiant = etudiant$prenom_nom, prog = etudiant$programme)
+
+color_map <- c('269000' = 'red', '205000' = 'blue', '267000' = 'green', '224000' = 'yellow', 'NA' = 'gray')
+V(interaction_ig)$color <- 'white'
+for (i in 1:nrow(etudiant_df)) {
+  node_id <- etudiant_df[i, 'prenom_nom']
+  attribute <- etudiant_df[i, 'programme']
+  color <- color_map[attribute]
+  V(interaction_ig)$color[node_id] <- color
+}
+
 plot(interaction_ig, 
      layout = kamada_layout, 
-     vertex.size = 14,
-     vertex.color = "red",
+     vertex.size = 16,
      vertex.frame.color = NA,
+     vertex.label = NA,
      vertex.label.cex = 1.2,
      edge.curved = .2,
-     edge.arrow.size = .3,
+     edge.arrow.size = .1,
      edge.width = 1)
 
-interaction <- matrix(nrow = 395, ncol = 395) 
-colnames(interaction) <- as.character(etudiant[,1])
-rownames(interaction) <- as.character(etudiant[,1])
 =======
 #Figure 3
 collab_etudiant <- read.csv2("arbres.csv")
@@ -338,3 +346,5 @@ title(main = "Fréquence de collaboration des étudiants en fonction du nombre d
 usethis::git_sitrep()
 
 >>>>>>> f4be1693111c93028638750189bbaa8f080b1f77
+
+
