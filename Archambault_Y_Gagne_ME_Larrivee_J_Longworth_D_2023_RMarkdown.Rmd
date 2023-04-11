@@ -1,57 +1,58 @@
 ---
-auteurs:
-  - name: Yuriko Archambault, Marie-Eve Gagne, Juliette Larrivee et Daphnee Longworth
-    affiliation: Université de Sherbrooke
-    address: |
-      First line  
-      Second line
-    email: <name@company.com>
-    url: <https://rstudio.com>
-  - name: Romain Lesur
-    affiliation: Affiliation
-title: "A Capitalized Title: Something about a Package **foo**"
-shorttitle: "**foo**:  A Capitalized Title"
-abstract: |
-  The abstract of the article.
-# at least one keyword must be supplied
-keywords: [keywords, not capitalized, "[Java]{.proglang}"]
-links-to-footnotes: true
-paged-footnotes: true
-bibliography: index.bib
+author:: Yuriko Archambault, Marie-Ève Gagné, Juliette Larrivée et Daphnée Longworth
+title: "Réseau écologique d'étudiants de l'Université de Sherbrooke"
+shorttitle: "Projet de session"
 output: 
-  pagedown::jss_paged:
+  html_document: 
+    toc: yes
+    highlight: tango
+    theme: cerulean
+    number_sections: yes
     self_contained: false
-# uncomment this line to produce HTML and PDF in RStudio:
-#knit: pagedown::chrome_print
 ---
+
 
 # Introduction
 
-This template demonstrates some of the basic [markdown]{.proglang} you'll need to know to create a JSS article with **pagedown** [@R-pagedown].
+Insérer introduction ici
 
-## Code formatting
+# Développement
 
-You should use **Pandoc**'s [markdown]{.proglang} but you also can use $\LaTeX$ commands:
-
-* [Java]{.proglang} or $\proglang{Java}$ 
-* **plyr**, [plyr]{.pkg} or $\pkg{plyr}$
-* `print("abc")` or $\code{print("abc")}$
-
-# [R]{.proglang} code
-
-Can be inserted in regular [R Markdown]{.proglang} blocks.
+## Est-ce que les étudiants interagit davantage avec ceux de leur programme?
+1ere section 
 
 ```{r}
-x <- 1:10
-x
+# Scrip r ici
 ```
 
-# Render the document
 
-If you use the option `self_contained: false` (see line \#22 of this `Rmd` file), don't click on the `Knit` button in RStudio. Use instead the **xaringan** [@R-xaringan] RStudio add-in _Infinite Moon Reader_.
+## Est-ce que les étudiants interagit davantage avec ceux de leur cohorte?
+2eme section
+
+## Est-ce que les étudiants préfèrent travailler avec les mêmes étudiants?
+3eme section
+
+```{r}
+#Figure 3
+
+#collab_etudiant <- read.csv2("arbres.csv")
+#paires <- table(collab_etudiant[,c(3,5)])
+#frequence <- as.numeric(row.names(paires))
+#plot(frequence, paires[,1], axes =TRUE,
+#     xlab = "Fréquence", ylab = "Nb paires différentes qui ont collaboré ensemble")
+#title(main = "Fréquence de collaboration des étudiants en fonction du nombre de paires différentes qui ont collaboré ensemble")
+#usethis::git_sitrep()
+```
+
+
+[citation](https://econumuds.github.io/BIO500/bloc3/#43)
+
+# Conclusion
+Conclusion ici
+
+```{r}
+sessionInfo()
+```
+
 
 # References {-}
-
-```{r, include=FALSE}
-knitr::write_bib(c(.packages(), 'pagedown', 'xaringan'), 'index.bib')
-```
