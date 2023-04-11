@@ -4,14 +4,17 @@ install.packages('dplyr', dependencies=TRUE)
 install.packages('data.table', dependencies=TRUE)
 install.packages('stringdist', dependencies=TRUE)
 install.packages('igraph')
-install.packages("RColorBrewer")
+install.packages('rticles')
+install.packages('tinytex')
+tinytex:: install_tinytex()
 library(RSQLite)
 library(stringr)
 library(dplyr)
 library(data.table)
 library(stringdist)
 library(igraph)
-library(RColorBrewer)
+library(rticles)
+library(tinytex)
 
 setwd('C:/Users/Marie-Eve/OneDrive - USherbrooke/Bureau/UdeS/methode_comp/travail_collab')
 
@@ -153,7 +156,9 @@ for (i in 1:nrow(etudiant_noms)) {
   else if (etudiant_noms[i,1]=='sabrina_leclerc'){
     etudiant_noms[i,1] <- str_replace(etudiant_noms[i,1],'sabrina_leclerc','sabrina_leclercq')
     etudiant_noms[i,3] <- str_replace(etudiant_noms[i,3],'leclerc','leclercq')
-  }
+
+    
+      }
   else if (etudiant_noms[i,1]=='simon_guilemette'){
     etudiant_noms[i,1] <- str_replace(etudiant_noms[i,1],'simon_guilemette','simon_guillemette')
     etudiant_noms[i,3] <- str_replace(etudiant_noms[i,3],'guilemette','guillemette')
@@ -321,34 +326,44 @@ GROUP BY Links;"
 Links_etudiants2 <- dbGetQuery(con, sql_requete3)
 head(Links_etudiants2)
 
+#sélection du programme des étudiants du fichier "étudiants" et insertions de la colonne dans le fichier "collaboration" pour étudiant1 et étudiant2
+sql_requete4 <- "
+  SELECT *
+  FROM collaboration
+  LEFT JOIN etudiant ON collaboration.etudiant1 = etudiant.prenom_nom
+"
+sql_requete4 <- "
+  SELECT collaboration.*
+  FROM collaboration
+"
+
+etudiant_prog <- dbGetQuery(con, sql_requete4)
+head(etudiant_prog)
+
+dbListTables(con)
+
 #Deconnexion du SQL
 dbDisconnect(con)
 
 <<<<<<< HEAD
 #igraph
-interaction_df <- data.frame(etudiantA = collaboration$etudiant1, etudiantB = collaboration$etudiant2, stringsAsFactors = F)
-interaction_ig <- graph.edgelist(interaction_matrice , directed=T)
-etudiant_df <- data.frame(etudiant = etudiant$prenom_nom, prog = etudiant$programme)
-
-color_map <- c('269000' = 'red', '205000' = 'blue', '267000' = 'green', '224000' = 'yellow', 'NA' = 'gray')
-V(interaction_ig)$color <- 'white'
-for (i in 1:nrow(etudiant_df)) {
-  node_id <- etudiant_df[i, 'prenom_nom']
-  attribute <- etudiant_df[i, 'programme']
-  color <- color_map[attribute]
-  V(interaction_ig)$color[node_id] <- color
-}
-
+interaction_df <- data.frame(etudiantA = collaboration$etudiant1, etudiantB = collaboration$etudiant2, stringsAsFactors = TRUE)
+interaction_matrice <- as.matrix(interaction_df)
+interaction_ig <- graph.edgelist(interaction_matrice , directed=TRUE)
+kamada_layout <- layout.kamada.kawai(interaction_ig)
 plot(interaction_ig, 
      layout = kamada_layout, 
-     vertex.size = 16,
+     vertex.size = 14,
+     vertex.color = "red",
      vertex.frame.color = NA,
-     vertex.label = NA,
      vertex.label.cex = 1.2,
      edge.curved = .2,
-     edge.arrow.size = .1,
+     edge.arrow.size = .3,
      edge.width = 1)
 
+interaction <- matrix(nrow = 395, ncol = 395) 
+colnames(interaction) <- as.character(etudiant[,1])
+rownames(interaction) <- as.character(etudiant[,1])
 =======
 #Figure 3
 collab_etudiant <- read.csv2("arbres.csv")
@@ -362,9 +377,4 @@ usethis::git_sitrep()
 =======
 
 >>>>>>> f4be1693111c93028638750189bbaa8f080b1f77
-<<<<<<< HEAD
-
-
-=======
 >>>>>>> b72587e18732fae8f2177d2c62ad1786f287e23d
->>>>>>> 0ea17648d8ceee380c2a4cf5cc5b244cb70bd928
