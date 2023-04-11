@@ -205,7 +205,7 @@
 \pagestyle{fancy}          % Enables the custom headers/footers
 
 \fancypagestyle{firststyle}{
-   \fancyfoot[R]{\footerfont PNAS\hspace{7pt}|\hspace{7pt}\textbf{\today}\hspace{7pt}|\hspace{7pt}vol. XXX\hspace{7pt}|\hspace{7pt}no. XX\hspace{7pt}|\hspace{7pt}\textbf{\thepage\textendash\pageref{LastPage}}}
+   \fancyfoot[R]{\hspace{7pt}\textbf{\today}\hspace{7pt}|\hspace{7pt}\textbf{\thepage\textendash\pageref{LastPage}}}
    \fancyfoot[L]{\footerfont\@ifundefined{@doi}{}{\@doi}}
 }
 
@@ -275,7 +275,7 @@
 \newcommand{\authordeclaration}[1]{\def\@authordeclaration{#1}}
 \newcommand{\equalauthors}[1]{\def\@equalauthors{#1}}
 \newcommand{\correspondingauthor}[1]{\def\@correspondingauthor{#1}}
-%\newcommand{\significancestatement}[1]{\def\@significancestatement{#1}}
+\newcommand{\significancestatement}[1]{\def\@significancestatement{#1}}
 \newcommand{\matmethods}[1]{\def\@matmethods{#1}}
 \newcommand{\acknow}[1]{\def\@acknow{#1}}
 
