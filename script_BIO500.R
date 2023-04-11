@@ -306,6 +306,20 @@ resultats_collab2 <- dbGetQuery(con, sql_requete2)
 resultats_collab2
 write.csv(resultats_collab2, 'C:/Users/Daphnee/Documents/BIO500/resultats.csv', row.names=FALSE)
 
+##selection requete2_test3
+sql_requete2 <- "
+SELECT (etudiant1 + etudiant2) AS Links
+FROM collaboration;"
+Links_etudiants <- dbGetQuery(con, sql_requete2)
+head(Links_etudiants)
+
+sql_requete3 <- "
+SELECT Links, sigle
+FROM collaboration
+count(sigle), Links
+GROUP BY Links;"
+Links_etudiants2 <- dbGetQuery(con, sql_requete3)
+head(Links_etudiants2)
 
 #Deconnexion du SQL
 dbDisconnect(con)
@@ -344,7 +358,13 @@ plot(frequence, paires[,1], axes =TRUE,
      xlab = "Fréquence", ylab = "Nb paires différentes qui ont collaboré ensemble")
 title(main = "Fréquence de collaboration des étudiants en fonction du nombre de paires différentes qui ont collaboré ensemble")
 usethis::git_sitrep()
+<<<<<<< HEAD
+=======
 
 >>>>>>> f4be1693111c93028638750189bbaa8f080b1f77
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> b72587e18732fae8f2177d2c62ad1786f287e23d
+>>>>>>> 0ea17648d8ceee380c2a4cf5cc5b244cb70bd928
