@@ -308,18 +308,11 @@ write.csv(resultats_collab2, 'C:/Users/Daphnee/Documents/BIO500/resultats.csv', 
 
 ##selection requete2_test3
 sql_requete2 <- "
-SELECT (etudiant1 + etudiant2) AS Links
-FROM collaboration;"
-Links_etudiants <- dbGetQuery(con, sql_requete2)
-head(Links_etudiants)
-
-sql_requete3 <- "
-SELECT Links, sigle
+SELECT etudiant1, etudiant2, COUNT(sigle)
 FROM collaboration
-count(sigle), Links
-GROUP BY Links;"
-Links_etudiants2 <- dbGetQuery(con, sql_requete3)
-head(Links_etudiants2)
+GROUP BY etudiant1, etudiant2;"
+lien_paire_etudiants <- dbGetQuery(con, sql_requete2)
+head(lien_paire_etudiants)
 
 #Deconnexion du SQL
 dbDisconnect(con)
