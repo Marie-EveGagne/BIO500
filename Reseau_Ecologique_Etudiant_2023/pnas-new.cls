@@ -275,7 +275,7 @@
 \newcommand{\authordeclaration}[1]{\def\@authordeclaration{#1}}
 \newcommand{\equalauthors}[1]{\def\@equalauthors{#1}}
 \newcommand{\correspondingauthor}[1]{\def\@correspondingauthor{#1}}
-\newcommand{\significancestatement}[1]{\def\@significancestatement{#1}}
+%\newcommand{\significancestatement}[1]{\def\@significancestatement{#1}}
 \newcommand{\matmethods}[1]{\def\@matmethods{#1}}
 \newcommand{\acknow}[1]{\def\@acknow{#1}}
 
