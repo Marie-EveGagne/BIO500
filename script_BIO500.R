@@ -4,25 +4,19 @@ install.packages('dplyr', dependencies=TRUE)
 install.packages('data.table', dependencies=TRUE)
 install.packages('stringdist', dependencies=TRUE)
 install.packages('igraph')
-<<<<<<< HEAD
 install.packages('rticles')
 install.packages('tinytex')
 tinytex:: install_tinytex()
-=======
 install.packages("RColorBrewer")
->>>>>>> b7b50109b0432f239cc4b919f7413a681068303e
 library(RSQLite)
 library(stringr)
 library(dplyr)
 library(data.table)
 library(stringdist)
 library(igraph)
-<<<<<<< HEAD
 library(rticles)
 library(tinytex)
-=======
 library(RColorBrewer)
->>>>>>> b7b50109b0432f239cc4b919f7413a681068303e
 
 setwd('C:/Users/Marie-Eve/OneDrive - USherbrooke/Bureau/UdeS/methode_comp/travail_collab')
 
@@ -346,7 +340,6 @@ dbListTables(con)
 #Deconnexion du SQL
 dbDisconnect(con)
 
-<<<<<<< HEAD
 #igraph
 interaction_df <- data.frame(etudiantA = collaboration$etudiant1, etudiantB = collaboration$etudiant2, stringsAsFactors = F)
 interaction_ig <- graph.edgelist(interaction_matrice , directed=T)
@@ -371,7 +364,6 @@ plot(interaction_ig,
      edge.arrow.size = .1,
      edge.width = 1)
 
-=======
 #Figure 3
 collab_etudiant <- read.csv2("arbres.csv")
 paires <- table(collab_etudiant[,c(3,5)])
@@ -380,13 +372,3 @@ plot(frequence, paires[,1], axes =TRUE,
      xlab = "Fréquence", ylab = "Nb paires différentes qui ont collaboré ensemble")
 title(main = "Fréquence de collaboration des étudiants en fonction du nombre de paires différentes qui ont collaboré ensemble")
 usethis::git_sitrep()
-<<<<<<< HEAD
-=======
-
->>>>>>> f4be1693111c93028638750189bbaa8f080b1f77
-<<<<<<< HEAD
-
-
-=======
->>>>>>> b72587e18732fae8f2177d2c62ad1786f287e23d
->>>>>>> 0ea17648d8ceee380c2a4cf5cc5b244cb70bd928
