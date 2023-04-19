@@ -233,11 +233,13 @@ write.csv(etudiant, 'C:/Users/Marie-Eve/OneDrive - USherbrooke/Bureau/UdeS/metho
 write.csv(Collab_corr, 'C:/Users/Marie-Eve/OneDrive - USherbrooke/Bureau/UdeS/methode_comp/travail_collab/BIO500/merge_collaboration.csv', row.names=FALSE)
 
 #daphnee
-write.csv(cours, 'C:/Users/Daphnee/Documents/BIO500/merge_cours.csv', row.names=FALSE)
-write.csv(etudiant, 'C:/Users/Daphnee/Documents/BIO500/merge_etudiant.csv', row.names=FALSE)
-write.csv(Collab_corr, 'C:/Users/Daphnee/Documents/BIO500/merge_collaboration.csv', row.names=FALSE)
+#write.csv(cours, 'C:/Users/Daphnee/Documents/BIO500/merge_cours.csv', row.names=FALSE)
+#write.csv(etudiant, 'C:/Users/Daphnee/Documents/BIO500/merge_etudiant.csv', row.names=FALSE)
+#write.csv(Collab_corr, 'C:/Users/Daphnee/Documents/BIO500/merge_collaboration.csv', row.names=FALSE)
 
 #Connection au SQL, creations des matrices SQL et injection des donnees 
+
+
 
 con <- dbConnect(SQLite(), dbname="collab.db")
 
@@ -275,9 +277,13 @@ dbSendQuery(con, tbl_cours)
 dbSendQuery(con, tbl_etudiant)
 dbSendQuery(con, tbl_collaboration)
 
+supprimer <- "DROP TABLE collaboration"
+
+dbExecute(con, supprimer)
+
 dbWriteTable(con, append = TRUE, name = "tbl_cours", value = cours, row.names = FALSE)
 dbWriteTable(con, append = TRUE, name = "tbl_etudiant", value = etudiant, row.names = FALSE)
-dbWriteTable(con, append = TRUE, name = "tbl_collaboration", value = collaboration, row.names = FALSE)
+dbWriteTable(con, append = TRUE, name = "tbl_collaboration", value = Collab_corr, row.names = FALSE)
 
 #Répondre aux questions pour le cours de BIO500 et enregistrer les reponses dans un csv
 
@@ -295,22 +301,23 @@ rm(sql_requete2)
 #                 AS nb_collab
  #                FROM tbl_collaboration
   #               GROUP BY tbl_collaboration.etudiant1, tbl_collaboration.etudiant2;"
-sql_requete2 <-"SELECT etudiant1, etudiant2, sigle, count(tbl_collaboration.sigle)
-                 AS nb_collab
-                 FROM tbl_collaboration
-                 GROUP BY tbl_collaboration.sigle;"                
+#sql_requete2 <-"SELECT etudiant1, etudiant2, sigle, count(tbl_collaboration.sigle)
+#                 AS nb_collab
+#                 FROM tbl_collaboration
+#                 GROUP BY tbl_collaboration.sigle;"                
 #LEFT JOIN tbl_cours ON tbl_collaboration.sigle=tbl_cours.sigle;"
-resultats_collab2 <- dbGetQuery(con, sql_requete2)
-resultats_collab2
-write.csv(resultats_collab2, 'C:/Users/Daphnee/Documents/BIO500/resultats.csv', row.names=FALSE)
 
 ##selection requete2_test3
 sql_requete2 <- "
 SELECT etudiant1, etudiant2, COUNT(sigle)
-FROM collaboration
+FROM tbl_collaboration
 GROUP BY etudiant1, etudiant2;"
 lien_paire_etudiants <- dbGetQuery(con, sql_requete2)
 head(lien_paire_etudiants)
+
+resultats_collab2 <- dbGetQuery(con, sql_requete2)
+resultats_collab2
+write.csv(resultats_collab2, 'C:/Users/Daphnee/Documents/BIO500/resultats.csv', row.names=FALSE)
 
 #Deconnexion du SQL
 dbDisconnect(con)
