@@ -375,7 +375,7 @@ interaction_ig <- graph.edgelist(interaction_matrice , directed=TRUE)
 V(interaction_ig)$label <- NA
 kamada_layout <- layout.kamada.kawai(interaction_ig)
 plot(interaction_ig, 
-     layout = kamada_layout, 
+     layout = kamada_layout,
      vertex.size = 14,
      vertex.color = "red",
      vertex.frame.color = NA,
