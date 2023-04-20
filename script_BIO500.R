@@ -11,7 +11,7 @@ library(data.table)
 library(stringdist)
 library(igraph)
 
-setwd('C:/Users/Marie-Eve/OneDrive - USherbrooke/Bureau/UdeS/methode_comp/travail_collab')
+setwd('C:/Users/Marie-Eve/OneDrive - USherbrooke/Bureau/UdeS/methode_comp/travail_collab/BIO500')
 
 #importer les données
 
@@ -227,9 +227,11 @@ for (i in 1:nrow(etudiant)) {
 
 Collab_corr <- Collab_corr[!duplicated(Collab_corr), ]
 
-write.csv(cours, 'BIO500/merge_cours.csv', row.names=FALSE)
-write.csv(etudiant, '/BIO500/merge_etudiant.csv', row.names=FALSE)
-write.csv(Collab_corr, '/BIO500/merge_collaboration.csv', row.names=FALSE)
+rm(collaboration,etudiant_noms)
+
+write.csv(cours, '/merge_cours.csv', row.names=FALSE)
+write.csv(etudiant, '/merge_etudiant.csv', row.names=FALSE)
+write.csv(Collab_corr, '/merge_collaboration.csv', row.names=FALSE)
 
 #Connection au SQL, creations des matrices SQL et injection des donnees 
 
@@ -287,7 +289,7 @@ GROUP BY etudiant1;"
 
 resultats_collab1 <- dbGetQuery(con, sql_requete1)
 resultats_collab1
-write.csv(resultats_collab1, 'BIO500/resultatscollab1.csv', row.names=FALSE)
+write.csv(resultats_collab1, '/resultatscollab1.csv', row.names=FALSE)
 
 sql_requete2 <- "
 SELECT etudiant1, etudiant2, COUNT(sigle)
@@ -298,7 +300,7 @@ head(lien_paire_etudiants)
 
 resultats_collab2 <- dbGetQuery(con, sql_requete2)
 resultats_collab2
-write.csv(resultats_collab2, 'BIO500/resultats.csv', row.names=FALSE)
+write.csv(resultats_collab2, '/resultats.csv', row.names=FALSE)
 
 #Deconnexion du SQL
 dbDisconnect(con)
@@ -332,3 +334,4 @@ title(main = "Fréquence de collaboration des étudiants en fonction du nombre d
 usethis::git_sitrep()
 
 
+tar_visnetwork()
