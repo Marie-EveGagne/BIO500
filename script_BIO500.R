@@ -370,9 +370,9 @@ write.csv(resultats_collab2, '/resultats.csv', row.names=FALSE)
 dbDisconnect(con)
 
 #igraph
-interaction_df <- data.frame(etudiantA = collaboration$etudiant1, etudiantB = collaboration$etudiant2, stringsAsFactors = TRUE)
-interaction_matrice <- as.matrix(interaction_df)
+interaction_df <- data.frame(etudiantA = Collab_corr$etudiant1, etudiantB = Collab_corr$etudiant2, stringsAsFactors = TRUE)
 interaction_ig <- graph.edgelist(interaction_matrice , directed=TRUE)
+V(interaction_ig)$label <- NA
 kamada_layout <- layout.kamada.kawai(interaction_ig)
 plot(interaction_ig, 
      layout = kamada_layout, 
@@ -384,9 +384,12 @@ plot(interaction_ig,
      edge.arrow.size = .3,
      edge.width = 1)
 
-interaction <- matrix(nrow = 395, ncol = 395) 
-colnames(interaction) <- as.character(etudiant[,1])
-rownames(interaction) <- as.character(etudiant[,1])
+interaction.g <- graph.data.frame(Collab_corr, directed = T)
+V(interaction.g)$label <- NA
+pal <- rainbow(n=length(unique(interaction.g$affilation)))
+oneAffil <- interaction.g$affilation[!duplicated(interaction.g$vertex)]
+V(interaction.g)$color <- pal[oneAffil]
+plot(interaction.g)
 
 #Figure 3
 collab_etudiant <- read.csv2("arbres.csv")
