@@ -4,14 +4,16 @@ install.packages('dplyr', dependencies=TRUE)
 install.packages('data.table', dependencies=TRUE)
 install.packages('stringdist', dependencies=TRUE)
 install.packages('igraph')
+install.packages("RColorBrewer")
 library(RSQLite)
 library(stringr)
 library(dplyr)
 library(data.table)
 library(stringdist)
 library(igraph)
+library(RColorBrewer)
 
-setwd('C:/Users/Marie-Eve/OneDrive - USherbrooke/Bureau/UdeS/methode_comp/travail_collab/BIO500')
+setwd('C:/Users/Marie-Eve/OneDrive - USherbrooke/Bureau/UdeS/methode_comp/travail_collab')
 
 #importer les données
 
@@ -222,11 +224,19 @@ for (i in 1:nrow(etudiant)) {
 
 Collab_corr <- Collab_corr[!duplicated(Collab_corr), ]
 
+<<<<<<< HEAD
 rm(collaboration,etudiant)
+=======
+>>>>>>> b868489e5e491833bf5cc7c6bfab5a8f52af3e8c
 
-write.csv(cours, '/merge_cours.csv', row.names=FALSE)
-write.csv(etudiant, '/merge_etudiant.csv', row.names=FALSE)
-write.csv(Collab_corr, '/merge_collaboration.csv', row.names=FALSE)
+write.csv(cours, 'C:/Users/Marie-Eve/OneDrive - USherbrooke/Bureau/UdeS/methode_comp/travail_collab/BIO500/merge_cours.csv', row.names=FALSE)
+write.csv(etudiant, 'C:/Users/Marie-Eve/OneDrive - USherbrooke/Bureau/UdeS/methode_comp/travail_collab/BIO500/merge_etudiant.csv', row.names=FALSE)
+write.csv(Collab_corr, 'C:/Users/Marie-Eve/OneDrive - USherbrooke/Bureau/UdeS/methode_comp/travail_collab/BIO500/merge_collaboration.csv', row.names=FALSE)
+
+#daphnee
+write.csv(cours, 'C:/Users/Daphnee/Documents/BIO500/merge_cours.csv', row.names=FALSE)
+write.csv(etudiant, 'C:/Users/Daphnee/Documents/BIO500/merge_etudiant.csv', row.names=FALSE)
+write.csv(Collab_corr, 'C:/Users/Daphnee/Documents/BIO500/merge_collaboration.csv', row.names=FALSE)
 
 #Connection au SQL, creations des matrices SQL et injection des donnees 
 
@@ -266,59 +276,72 @@ dbSendQuery(con, tbl_cours)
 dbSendQuery(con, tbl_etudiant)
 dbSendQuery(con, tbl_collaboration)
 
-supprimer <- "DROP TABLE collaboration"
-
-dbExecute(con, supprimer)
-
 dbWriteTable(con, append = TRUE, name = "tbl_cours", value = cours, row.names = FALSE)
 dbWriteTable(con, append = TRUE, name = "tbl_etudiant", value = etudiant, row.names = FALSE)
-dbWriteTable(con, append = TRUE, name = "tbl_collaboration", value = Collab_corr, row.names = FALSE)
+dbWriteTable(con, append = TRUE, name = "tbl_collaboration", value = collaboration, row.names = FALSE)
 
 #Répondre aux questions pour le cours de BIO500 et enregistrer les reponses dans un csv
 
-sql_requete1 <- "
-SELECT etudiant1, count(etudiant2)
-AS nb_collab
-FROM tbl_collaboration
-GROUP BY etudiant1;"
-
+sql_requete1 <- "SELECT etudiant1, count(etudiant2)
+                AS nb_collab
+                FROM tbl_collaboration
+                GROUP BY etudiant1;"
 resultats_collab1 <- dbGetQuery(con, sql_requete1)
 resultats_collab1
-write.csv(resultats_collab1, '/resultatscollab1.csv', row.names=FALSE)
+write.csv(resultats_collab1, 'C:/Users/Marie-Eve/OneDrive - USherbrooke/Bureau/UdeS/methode_comp/travail_collab/resultats.csv', row.names=FALSE)
 
+rm(sql_requete2)
+
+#sql_requete2 <- "SELECT sigle, session, count(tbl_cours.sigle)
+#                 AS nb_collab
+ #                FROM tbl_collaboration
+  #               GROUP BY tbl_collaboration.etudiant1, tbl_collaboration.etudiant2;"
+sql_requete2 <-"SELECT etudiant1, etudiant2, sigle, count(tbl_collaboration.sigle)
+                 AS nb_collab
+                 FROM tbl_collaboration
+                 GROUP BY tbl_collaboration.sigle;"                
+#LEFT JOIN tbl_cours ON tbl_collaboration.sigle=tbl_cours.sigle;"
+resultats_collab2 <- dbGetQuery(con, sql_requete2)
+resultats_collab2
+write.csv(resultats_collab2, 'C:/Users/Daphnee/Documents/BIO500/resultats.csv', row.names=FALSE)
+
+##selection requete2_test3
 sql_requete2 <- "
 SELECT etudiant1, etudiant2, COUNT(sigle)
-FROM tbl_collaboration
+FROM collaboration
 GROUP BY etudiant1, etudiant2;"
 lien_paire_etudiants <- dbGetQuery(con, sql_requete2)
 head(lien_paire_etudiants)
 
-resultats_collab2 <- dbGetQuery(con, sql_requete2)
-resultats_collab2
-write.csv(resultats_collab2, '/resultats.csv', row.names=FALSE)
-
 #Deconnexion du SQL
 dbDisconnect(con)
 
+<<<<<<< HEAD
 #igraph
-interaction_df <- data.frame(etudiantA = collaboration$etudiant1, etudiantB = collaboration$etudiant2, stringsAsFactors = TRUE)
-interaction_matrice <- as.matrix(interaction_df)
-interaction_ig <- graph.edgelist(interaction_matrice , directed=TRUE)
-kamada_layout <- layout.kamada.kawai(interaction_ig)
+interaction_df <- data.frame(etudiantA = collaboration$etudiant1, etudiantB = collaboration$etudiant2, stringsAsFactors = F)
+interaction_ig <- graph.edgelist(interaction_matrice , directed=T)
+etudiant_df <- data.frame(etudiant = etudiant$prenom_nom, prog = etudiant$programme)
+
+color_map <- c('269000' = 'red', '205000' = 'blue', '267000' = 'green', '224000' = 'yellow', 'NA' = 'gray')
+V(interaction_ig)$color <- 'white'
+for (i in 1:nrow(etudiant_df)) {
+  node_id <- etudiant_df[i, 'prenom_nom']
+  attribute <- etudiant_df[i, 'programme']
+  color <- color_map[attribute]
+  V(interaction_ig)$color[node_id] <- color
+}
+
 plot(interaction_ig, 
      layout = kamada_layout, 
-     vertex.size = 14,
-     vertex.color = "red",
+     vertex.size = 16,
      vertex.frame.color = NA,
+     vertex.label = NA,
      vertex.label.cex = 1.2,
      edge.curved = .2,
-     edge.arrow.size = .3,
+     edge.arrow.size = .1,
      edge.width = 1)
 
-interaction <- matrix(nrow = 395, ncol = 395) 
-colnames(interaction) <- as.character(etudiant[,1])
-rownames(interaction) <- as.character(etudiant[,1])
-
+=======
 #Figure 3
 collab_etudiant <- read.csv2("arbres.csv")
 paires <- table(collab_etudiant[,c(3,5)])
@@ -327,6 +350,13 @@ plot(frequence, paires[,1], axes =TRUE,
      xlab = "Fréquence", ylab = "Nb paires différentes qui ont collaboré ensemble")
 title(main = "Fréquence de collaboration des étudiants en fonction du nombre de paires différentes qui ont collaboré ensemble")
 usethis::git_sitrep()
+<<<<<<< HEAD
+=======
+
+>>>>>>> f4be1693111c93028638750189bbaa8f080b1f77
+<<<<<<< HEAD
 
 
-tar_visnetwork()
+=======
+>>>>>>> b72587e18732fae8f2177d2c62ad1786f287e23d
+>>>>>>> 0ea17648d8ceee380c2a4cf5cc5b244cb70bd928
