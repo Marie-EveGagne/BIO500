@@ -176,21 +176,27 @@ etudiant <- etudiant[!duplicated(etudiant), ]
 
 sommeNAs <- rowSums(is.na(etudiant))
 etudiant <- cbind(etudiant,sommeNAs)
+etudiantbackup <- etudiant
+etudiant <- etudiantbackup
 
 nb_lignes <- nrow(etudiant)
 
 
 for (i in 1:nb_lignes) {
   for (j in 2:nb_lignes) {
-    if(etudiant[i,1]==etudiant[j,1] && etudiant[i,9]>etudiant[j,9]){
+    if(etudiant[i,1]==etudiant[j,1]){ #&& etudiant[i,9]>etudiant[j,9]){
       etudiant <- etudiant[-c(i), ]
       nb_lignes <- nrow(etudiant)
+      #print('c,est good')
+      #print(i)
     }
 
-    else if(etudiant[i,1]==etudiant[j,1] && etudiant[i,9]<etudiant[j,9]){
-      etudiant <- etudiant[-c(j), ]
-      nb_lignes <- nrow(etudiant)
-    }
+    #else if(etudiant[i,1]==etudiant[j,1] && etudiant[i,9]<etudiant[j,9]){
+    #  etudiant <- etudiant[-c(j), ]
+    #  nb_lignes <- nrow(etudiant)
+    #  print('c,est encore good')
+    #  print(i)
+    #}
     i=i+1
   }
 }
@@ -315,7 +321,7 @@ head(lien_paire_etudiants)
 dbDisconnect(con)
 
 #igraph
-interaction_df <- data.frame(etudiantA = collaboration$etudiant1, etudiantB = collaboration$etudiant2, stringsAsFactors = F)
+interaction_df <- data.frame(etudiantA = Collab_corr$etudiant1, etudiantB = Collab_corr$etudiant2, stringsAsFactors = F)
 interaction_ig <- graph.edgelist(interaction_matrice , directed=T)
 etudiant_df <- data.frame(etudiant = etudiant$prenom_nom, prog = etudiant$programme)
 
