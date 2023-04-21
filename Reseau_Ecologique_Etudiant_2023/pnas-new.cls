@@ -206,9 +206,6 @@
 
 \fancypagestyle{firststyle}{
    \fancyfoot[R]{\hspace{7pt}\textbf{\today}\hspace{7pt}|\hspace{7pt}\textbf{\thepage\textendash\pageref{LastPage}}}
-   \fancyfoot[L]{\footerfont\@ifundefined{@doi}{}{\@doi}}
-}
-
 
 % Headers
 \fancyhead[LE,RO]{}
