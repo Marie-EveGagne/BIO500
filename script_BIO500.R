@@ -13,7 +13,7 @@ library(stringdist)
 library(igraph)
 library(RColorBrewer)
 
-setwd('C:/Users/Marie-Eve/OneDrive - USherbrooke/Bureau/UdeS/methode_comp/travail_collab')
+setwd('C:/Users/Marie-Eve/OneDrive - USherbrooke/Bureau/UdeS/methode_comp/travail_collab/BIO500')
 
 #importer les données
 
@@ -198,11 +198,15 @@ for (i in 1:nb_lignes) {
 
 #Trouver l'indexation des noms en double non corrigés par la boucle
 
+
+agrep('cassandra_godin', etudiant$prenom_nom, max.distance = 1, value = FALSE)
 agrep('juliette_meilleur', etudiant$prenom_nom, max.distance = 1, value = FALSE)
-agrep('mia_carriere ', etudiant$prenom_nom, max.distance = 1, value = FALSE)
+agrep('mia_carriere', etudiant$prenom_nom, max.distance = 1, value = FALSE)
+agrep('rosalie_gagnon', etudiant$prenom_nom, max.distance = 1, value = FALSE)
+agrep('yanick_sageau', etudiant$prenom_nom, max.distance = 1, value = FALSE)
 
 
-etudiant <- etudiant[-c(84,118),]
+etudiant <- etudiant[-c(30,85,119,121,136,161),]
 etudiant <- etudiant[,-c(9)]
 
 cours <- cours[!duplicated(cours), ]
@@ -225,19 +229,12 @@ for (i in 1:nrow(etudiant)) {
 
 Collab_corr <- Collab_corr[!duplicated(Collab_corr), ]
 
-<<<<<<< HEAD
-rm(collaboration,etudiant)
-=======
->>>>>>> b868489e5e491833bf5cc7c6bfab5a8f52af3e8c
+rm(collaboration)
 
-write.csv(cours, 'C:/Users/Marie-Eve/OneDrive - USherbrooke/Bureau/UdeS/methode_comp/travail_collab/BIO500/merge_cours.csv', row.names=FALSE)
-write.csv(etudiant, 'C:/Users/Marie-Eve/OneDrive - USherbrooke/Bureau/UdeS/methode_comp/travail_collab/BIO500/merge_etudiant.csv', row.names=FALSE)
-write.csv(Collab_corr, 'C:/Users/Marie-Eve/OneDrive - USherbrooke/Bureau/UdeS/methode_comp/travail_collab/BIO500/merge_collaboration.csv', row.names=FALSE)
+write.csv(cours, 'BIO500/merge_cours.csv', row.names=FALSE)
+write.csv(etudiant, 'BIO500/merge_etudiant.csv', row.names=FALSE)
+write.csv(Collab_corr, 'BIO500/merge_collaboration.csv', row.names=FALSE)
 
-#daphnee
-write.csv(cours, 'C:/Users/Daphnee/Documents/BIO500/merge_cours.csv', row.names=FALSE)
-write.csv(etudiant, 'C:/Users/Daphnee/Documents/BIO500/merge_etudiant.csv', row.names=FALSE)
-write.csv(Collab_corr, 'C:/Users/Daphnee/Documents/BIO500/merge_collaboration.csv', row.names=FALSE)
 
 #Connection au SQL, creations des matrices SQL et injection des donnees 
 
@@ -317,7 +314,6 @@ head(lien_paire_etudiants)
 #Deconnexion du SQL
 dbDisconnect(con)
 
-<<<<<<< HEAD
 #igraph
 interaction_df <- data.frame(etudiantA = collaboration$etudiant1, etudiantB = collaboration$etudiant2, stringsAsFactors = F)
 interaction_ig <- graph.edgelist(interaction_matrice , directed=T)
@@ -342,7 +338,6 @@ plot(interaction_ig,
      edge.arrow.size = .1,
      edge.width = 1)
 
-=======
 #Figure 3
 collab_etudiant <- read.csv2("arbres.csv")
 paires <- table(collab_etudiant[,c(3,5)])
@@ -351,13 +346,3 @@ plot(frequence, paires[,1], axes =TRUE,
      xlab = "Fréquence", ylab = "Nb paires différentes qui ont collaboré ensemble")
 title(main = "Fréquence de collaboration des étudiants en fonction du nombre de paires différentes qui ont collaboré ensemble")
 usethis::git_sitrep()
-<<<<<<< HEAD
-=======
-
->>>>>>> f4be1693111c93028638750189bbaa8f080b1f77
-<<<<<<< HEAD
-
-
-=======
->>>>>>> b72587e18732fae8f2177d2c62ad1786f287e23d
->>>>>>> 0ea17648d8ceee380c2a4cf5cc5b244cb70bd928
