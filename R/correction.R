@@ -111,14 +111,14 @@ etudiant <- cbind(etudiant,sommeNAs)
 
 nb_lignes <- nrow(etudiant)
 
-for (i in 1:nb_lignes-1) {
+for (i in 1:nb_lignes) {
    for (j in 2:nb_lignes) {
       if(etudiant[i,1]==etudiant[j,1] && etudiant[i,9]>etudiant[j,9]){
          etudiant <- etudiant[-c(i), ]
          nb_lignes <- nrow(etudiant)
       }
       else if(etudiant[i,1]==etudiant[j,1] && etudiant[i,9]<etudiant[j,9]){
-         etudiant <- etudiant[-c(i), ]
+         etudiant <- etudiant[-c(j), ]
          nb_lignes <- nrow(etudiant)
       }
       i=i+1

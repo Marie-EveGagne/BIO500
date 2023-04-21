@@ -186,8 +186,9 @@ for (i in 1:nb_lignes) {
       etudiant <- etudiant[-c(i), ]
       nb_lignes <- nrow(etudiant)
     }
+
     else if(etudiant[i,1]==etudiant[j,1] && etudiant[i,9]<etudiant[j,9]){
-      etudiant <- etudiant[-c(i), ]
+      etudiant <- etudiant[-c(j), ]
       nb_lignes <- nrow(etudiant)
     }
     i=i+1
