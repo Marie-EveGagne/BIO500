@@ -2,7 +2,7 @@
 
 #Corrections des noms mal ecrits dans etudiant
 
-correction = function(etudiant_clean){
+corr_etd = function(etudiant_clean){
    
    etudiant <- etudiant_clean
    
@@ -91,23 +91,11 @@ for (i in 1:nrow(etudiant)) {
 
 etudiant <- etudiant[!duplicated(etudiant), ]
 
-#print(head(etudiant))
-
-#}
 
 #Retrait des etudiants en double avec des NAs
 
 sommeNAs <- rowSums(is.na(etudiant))
 etudiant <- cbind(etudiant,sommeNAs)
-
-#for (i in 1:nrow(etudiant)) {
-#  for (j in 2:nrow(etudiant)) {
-#    if(etudiant[i,1]==etudiant[j,1] && etudiant[i,9]<etudiant[j,9]){
-#      etudiant <- etudiant[-c(j), ]
-#    }
-#    i=i+1
-#  }
-#}
 
 retirer_lignes <- c()
 n=1
@@ -141,28 +129,28 @@ etudiant <- etudiant[!(row.names(etudiant) %in% retirer_lignes),]
 
 #Trouver l'indexation des noms en double non corrigés par la boucle
 
-
 agrep('cassandra_godin', etudiant$prenom_nom, max.distance = 1, value = FALSE)
 agrep('juliette_meilleur', etudiant$prenom_nom, max.distance = 1, value = FALSE)
 agrep('mia_carriere', etudiant$prenom_nom, max.distance = 1, value = FALSE)
 agrep('rosalie_gagnon', etudiant$prenom_nom, max.distance = 1, value = FALSE)
-agrep('yanick_sageau', etudiant$prenom_nom, max.distance = 1, value = FALSE)
 
+etudiant[118,1] <- paste0('mia_carriere')
+etudiant[118,3] <- paste0('carriere')
 
 etudiant <- etudiant[-c(30,85,119,134,136,164,166),]
 etudiant <- etudiant[,-c(9)]
 
-#Trouver l'indexation des noms en double non corrigés par la boucle
-
-#agrep('cassandra_godin', etudiant$prenom_nom, max.distance = 1, value = FALSE)
-#agrep('juliette_meilleur', etudiant$prenom_nom, max.distance = 1, value = FALSE)
-#agrep('mia_carriere ', etudiant$prenom_nom, max.distance = 1, value = FALSE)
-#agrep('rosalie_gagnon', etudiant$prenom_nom, max.distance = 1, value = FALSE)
-
-
-#etudiant <- etudiant[-c(30,84,118,134),]
-#etudiant <- etudiant[,-c(9)]
 }
+
+corr_collab = function(collab_clean){
+   
+   collaboration <- collab_clean
+   etudiant <- tar_read(corr_etd)
+   
+   print('hello')
+   
+}
+   
 
 #Correction des noms mal ecrits dans collaboration
 

@@ -28,7 +28,11 @@ list(
    ),
    tar_target(
      name = etudiant_clean,
-     command = correction(data_etudiant)
+     command = corr_etd(data_etudiant)
+   ),
+   tar_target(
+     name = collab_clean,
+     command = corr_collab(data_collab)
    ))
 #   tar_target(
 #     name = SQL,

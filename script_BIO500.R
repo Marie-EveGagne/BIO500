@@ -183,20 +183,12 @@ n=1
 for (i in 1:nrow(etudiant)) {
   for (j in 2:nrow(etudiant)) {
     if(etudiant[i,1]==etudiant[j,1] && etudiant[i,9]>etudiant[j,9]){
-      #etudiant <- etudiant[-c(i), ]
-      #nb_lignes <- nrow(etudiant)
       retirer_lignes[n] <- paste0(row.names(etudiant[i,]))
       n=n+1
-      #print(etudiant[i,])
-      #print(i)
     }
 
      else if(etudiant[i,1]==etudiant[j,1] && etudiant[i,9]<etudiant[j,9]){
-      #etudiant <- etudiant[-c(j), ]
-      #nb_lignes <- nrow(etudiant)
       retirer_lignes[n] <- paste0(row.names(etudiant[j,]))
-      #print('c,est encore good')
-      #print(etudiant[j,])
       n=n+1
     }
   }
@@ -214,10 +206,11 @@ agrep('cassandra_godin', etudiant$prenom_nom, max.distance = 1, value = FALSE)
 agrep('juliette_meilleur', etudiant$prenom_nom, max.distance = 1, value = FALSE)
 agrep('mia_carriere', etudiant$prenom_nom, max.distance = 1, value = FALSE)
 agrep('rosalie_gagnon', etudiant$prenom_nom, max.distance = 1, value = FALSE)
-agrep('yanick_sageau', etudiant$prenom_nom, max.distance = 1, value = FALSE)
 
+etudiant[118,1] <- paste0('mia_carriere')
+etudiant[118,3] <- paste0('carriere')
 
-etudiant <- etudiant[-c(30,85,119,134,136,164,166),]
+etudiant <- etudiant[-c(30,85,119,134),]
 etudiant <- etudiant[,-c(9)]
 
 cours <- cours[!duplicated(cours), ]
@@ -394,12 +387,9 @@ write.csv(resultats_collab2, '/resultats.csv', row.names=FALSE)
 dbDisconnect(con)
 
 #igraph
-<<<<<<< HEAD
 interaction_df <- data.frame(etudiantA = Collab_corr$etudiant1, etudiantB = Collab_corr$etudiant2, stringsAsFactors = F)
 interaction_ig <- graph.edgelist(interaction_matrice , directed=T)
 etudiant_df <- data.frame(etudiant = etudiant$prenom_nom, prog = etudiant$programme)
-=======
->>>>>>> 55c8b6a5a7cd5bca76aa16f5cf1af157ff1c412b
 
 interaction_df <- data.frame(etudiantA = Collab_corr$etudiant1, etudiantB = Collab_corr$etudiant2, stringsAsFactors = TRUE)
 interaction_ig <- graph.data.frame(interaction_df,directed = T)
