@@ -205,7 +205,14 @@
 \pagestyle{fancy}          % Enables the custom headers/footers
 
 \fancypagestyle{firststyle}{
+<<<<<<< HEAD
    \fancyfoot[R]{\hspace{7pt}\textbf{\today}\hspace{7pt}|\hspace{7pt}\textbf{\thepage\textendash\pageref{LastPage}}}
+=======
+   \fancyfoot[R]{\footerfont PNAS\hspace{7pt}|\hspace{7pt}\textbf{\today}\hspace{7pt}|\hspace{7pt}vol. XXX\hspace{7pt}|\hspace{7pt}no. XX\hspace{7pt}|\hspace{7pt}\textbf{\thepage\textendash\pageref{LastPage}}}
+   \fancyfoot[L]{\footerfont\@ifundefined{@doi}{}{\@doi}}
+}
+
+>>>>>>> 705bddd19dab877928ab8faee4d21e779830b53c
 
 % Headers
 \fancyhead[LE,RO]{}
