@@ -1,102 +1,63 @@
 ---
 title: Réseau écologique des étudiants de Sherbrooke
-
-# Use letters for affiliations, numbers to show equal authorship (if applicable) and to indicate the corresponding author
 author:
-  - name: Yuriko Archambault
-    affiliation: a
-  - name: Marie-Ève Gagné
-    affiliation: a
-  - name: Juliette Larrivée
-    affiliation: a
-  - name: Daphnée Longworth
-    affiliation: a
-address:
-  - code: a
-    address: Université de Sherbrooke, Faculté de science, 2500 Bd de l'Univeristé, Sherbrooke, Québec, J1K 2R1
-
-abstract: |
-  Please provide an abstract of no more than 250 words in a single paragraph.
-
-keywords:
-  - one
-  - two
-  - optional
-  - optional
-  - optional
-
-## must be one of: pnasresearcharticle (usual two-column layout), pnasmathematics (one column layout), or pnasinvited (invited submissions only)
-pnas_type: pnasresearcharticle
-
-bibliography: pnas-sample.bib
-csl: pnas.csl
-
-## change to true to add optional line numbering
-lineno: false
-
-output: rticles::pnas_article
+- Yuriko Archambault
+- Marie-Ève Gagné
+- Juliette Larrivée
+- Daphnée Longworth
+output:
+  pdf_document: default
 ---
 
-Intro {.unnumbered}
-========================================
+# Introduction
+
 Texte ici
 
+# Résultats
 
-Résultats {.unnumbered}
-========================================
+## Section 1
 
-Section 1 {.unnumbered}
------------------
-
-texte ici
-
-Section 2 {.unnumbered}
------------------
-
-texte ici
-
-Section 3 {.unnumbered}
------------------
-
-texte ici
-
-Méthode {.unnumbered}
-========================================
-
-Section 1 {.unnumbered}
------------------
-
-texte ici
-
-Section 2 {.unnumbered}
------------------
-
-texte ici
-
-Section 3 {.unnumbered}
------------------
 Texte ici
 
-Discussion {.unnumbered}
-========================================
+## Section 2
 
-Section 1 {.unnumbered}
------------------
-ici
+Texte ici
 
-Section 2 {.unnumbered}
------------------
-ici
+## Section 3
 
-Section 3 {.unnumbered}
------------------
-ici
+Texte ici
 
-Conclusion {.unnumbered}
-========================================
+# Méthode
 
-Bibliographie {#references .unnumbered}
-========================================
+## Section 1
+
+Texte ici
+
+## Section 2
+
+Texte ici
+
+## Section 3
+
+Texte ici
+
+# Discussion
+
+## Section 1
+
+Texte ici
+
+## Section 2
+
+Texte ici
+
+## Section 3
+
+Texte ici
+
+# Conclusion
+
+# Bibliographie
 
 References should be cited in numerical order as they appear in text;
 this will be done automatically via bibtex, e.g. @belkin2002using and
@@ -106,8 +67,8 @@ appearing in both sections should not be duplicated. SI references
 included in tables should be included with the main reference section.
 
 
-figure et tableau {.unnumbered}
------------------------
+# Figure et tableau
+
 ![Placeholder image of a frog with a long example caption to show
 justification setting.<span data-label="fig:frog"></span>](frog.png)
 
@@ -125,12 +86,3 @@ $$\begin{aligned}
        &=(x+y)(x^2+2xy+y^2) \label{eqn:example} \\
        &=x^3+3x^2y+3xy^3+x^3. 
 \end{aligned}$$
-
-
-
-
-
-
-<!-- Leave these lines as they are at the end of your .Rmd file to ensure placement of methods & acknowledgements sections before the references-->
-\showmatmethods
-\pnasbreak

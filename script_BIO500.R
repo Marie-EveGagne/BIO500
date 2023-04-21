@@ -312,6 +312,7 @@ lien_paire_etudiants <- dbGetQuery(con, sql_requete2)
 head(lien_paire_etudiants)
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #sélection du programme des étudiants du fichier "étudiants" et insertions de la colonne dans le fichier "collaboration" pour étudiant1 et étudiant2
 
 sql_requete4 <- "
@@ -382,10 +383,13 @@ write.csv(resultats_collab2, '/resultats.csv', row.names=FALSE)
 
 =======
 >>>>>>> 63793a0f65ac149ddc789ed2254544f0edb1a5df
+=======
+>>>>>>> 63793a0f65ac149ddc789ed2254544f0edb1a5df
 #Deconnexion du SQL
 dbDisconnect(con)
 
 #igraph
+<<<<<<< HEAD
 <<<<<<< HEAD
 interaction_df <- data.frame(etudiantA = Collab_corr$etudiant1, etudiantB = Collab_corr$etudiant2, stringsAsFactors = TRUE)
 interaction_ig <- graph.data.frame(interaction_df,directed = T)
@@ -421,6 +425,24 @@ plot(interaction_ig,
      layout = kamada_layout, 
      vertex.size = 16,
 >>>>>>> 63793a0f65ac149ddc789ed2254544f0edb1a5df
+=======
+interaction_df <- data.frame(etudiantA = collaboration$etudiant1, etudiantB = collaboration$etudiant2, stringsAsFactors = F)
+interaction_ig <- graph.edgelist(interaction_matrice , directed=T)
+etudiant_df <- data.frame(etudiant = etudiant$prenom_nom, prog = etudiant$programme)
+
+color_map <- c('269000' = 'red', '205000' = 'blue', '267000' = 'green', '224000' = 'yellow', 'NA' = 'gray')
+V(interaction_ig)$color <- 'white'
+for (i in 1:nrow(etudiant_df)) {
+  node_id <- etudiant_df[i, 'prenom_nom']
+  attribute <- etudiant_df[i, 'programme']
+  color <- color_map[attribute]
+  V(interaction_ig)$color[node_id] <- color
+}
+
+plot(interaction_ig, 
+     layout = kamada_layout, 
+     vertex.size = 16,
+>>>>>>> 63793a0f65ac149ddc789ed2254544f0edb1a5df
      vertex.frame.color = NA,
      vertex.label = NA,
      vertex.label.cex = 1.2,
@@ -428,12 +450,15 @@ plot(interaction_ig,
      edge.arrow.size = .1,
      edge.width = 1)
 <<<<<<< HEAD
+<<<<<<< HEAD
 interaction.g <- graph.data.frame(Collab_corr, directed = T)
 V(interaction.g)$label <- NA
 pal <- rainbow(n=length(unique(interaction.g$affilation)))
 oneAffil <- interaction.g$affilation[!duplicated(interaction.g$vertex)]
 V(interaction.g)$color <- pal[oneAffil]
 plot(interaction.g)
+=======
+>>>>>>> 63793a0f65ac149ddc789ed2254544f0edb1a5df
 =======
 >>>>>>> 63793a0f65ac149ddc789ed2254544f0edb1a5df
 
@@ -446,7 +471,10 @@ plot(frequence, paires[,1], axes =TRUE,
 title(main = "Fréquence de collaboration des étudiants en fonction du nombre de paires différentes qui ont collaboré ensemble")
 usethis::git_sitrep()
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 tar_visnetwork()
+=======
+>>>>>>> 63793a0f65ac149ddc789ed2254544f0edb1a5df
 =======
 >>>>>>> 63793a0f65ac149ddc789ed2254544f0edb1a5df

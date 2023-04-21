@@ -13,6 +13,9 @@
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
 
 
+<<<<<<< HEAD
+
+=======
 % Pandoc citation processing
 \newlength{\cslhangindent}
 \setlength{\cslhangindent}{1.5em}
@@ -42,7 +45,8 @@
 \newcommand{\CSLLeftMargin}[1]{\parbox[t]{\csllabelwidth}{#1}}
 \newcommand{\CSLRightInline}[1]{\parbox[t]{\linewidth - \csllabelwidth}{#1}\break}
 \newcommand{\CSLIndent}[1]{\hspace{\cslhangindent}#1}
-
+\begin{document}
+>>>>>>> b868489e5e491833bf5cc7c6bfab5a8f52af3e8c
 
 \templatetype{pnasresearcharticle}  % Choose template
 
@@ -53,8 +57,8 @@
 \author[a]{Juliette Larrivée}
 \author[a]{Daphnée Longworth}
 
-  \affil[a]{Université de Sherbrooke, Faculté de science, 2500 Bd de
-l'Univeristé, Sherbrooke, Québec, J1K 2R1}
+  \affil[a]{Université de Sherbrooke, Faculté de science, 2500 Bd de l'Univeristé,
+Sherbrooke, Québec, J1K 2R1}
 
 
 % Please give the surname of the lead author for the running footer
@@ -178,7 +182,7 @@ ici
 \addcontentsline{toc}{section}{Bibliographie}
 
 References should be cited in numerical order as they appear in text;
-this will be done automatically via bibtex, e.g. (1) and (2, 3). All
+this will be done automatically via bibtex, e.g.~(1) and (2, 3). All
 references, including for the SI, should be included in the main
 manuscript file. References appearing in both sections should not be
 duplicated. SI references included in tables should be included with the
@@ -215,27 +219,21 @@ environment. Figures wider than one column should be sized to 11.4 cm or
 \pnasbreak
 
 \hypertarget{refs}{}
-\begin{CSLReferences}{0}{0}
-\leavevmode\vadjust pre{\hypertarget{ref-belkin2002using}{}}%
-\CSLLeftMargin{1. }%
-\CSLRightInline{Belkin M, Niyogi P (2002) Using manifold stucture for
-partially labeled classification. \emph{Advances in Neural Information
-Processing Systems}, pp 929--936.}
+\leavevmode\hypertarget{ref-belkin2002using}{}%
+1. Belkin M, Niyogi P (2002) Using manifold stucture for partially
+labeled classification. \emph{Advances in Neural Information Processing
+Systems}, pp 929--936.
 
-\leavevmode\vadjust pre{\hypertarget{ref-berard1994embedding}{}}%
-\CSLLeftMargin{2. }%
-\CSLRightInline{Bérard P, Besson G, Gallot S (1994) Embedding riemannian
-manifolds by their heat kernel. \emph{Geometric \& Functional Analysis
-GAFA} 4(4):373--398.}
+\leavevmode\hypertarget{ref-berard1994embedding}{}%
+2. Bérard P, Besson G, Gallot S (1994) Embedding riemannian manifolds by
+their heat kernel. \emph{Geometric \& Functional Analysis GAFA}
+4(4):373--398.
 
-\leavevmode\vadjust pre{\hypertarget{ref-coifman2005geometric}{}}%
-\CSLLeftMargin{3. }%
-\CSLRightInline{Coifman RR, et al. (2005) Geometric diffusions as a tool
-for harmonic analysis and structure definition of data: Diffusion maps.
+\leavevmode\hypertarget{ref-coifman2005geometric}{}%
+3. Coifman RR, et al. (2005) Geometric diffusions as a tool for harmonic
+analysis and structure definition of data: Diffusion maps.
 \emph{Proceedings of the National Academy of Sciences of the United
-States of America} 102(21):7426--7431.}
-
-\end{CSLReferences}
+States of America} 102(21):7426--7431.
 
 
 
@@ -243,3 +241,4 @@ States of America} 102(21):7426--7431.}
 % \bibliography{pnas-sample}
 
 \end{document}
+
