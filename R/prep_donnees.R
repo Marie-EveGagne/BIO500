@@ -1,8 +1,8 @@
 #etape 1 : importer les données
 
-prep_collab = function(data_collab){
+prep_collab = function(file_paths){
   
-  fichiers<- c(data_collab)
+  fichiers<- c(file_paths)
   
   collaboration_1 <- read.table(fichiers[1], header=TRUE, sep = ';', stringsAsFactors = FALSE)
   collaboration_2 <- read.table(fichiers[4], header=TRUE, sep = ';', stringsAsFactors = FALSE)
@@ -37,9 +37,9 @@ prep_collab = function(data_collab){
   
 }
 
-prep_cours = function(data_cours){
+prep_cours = function(file_paths){
   
-  fichiers<- c(data_cours)
+ fichiers<- c(file_paths)
   
   cours_1 <- read.table(fichiers[2], header=TRUE, sep = ';', stringsAsFactors = FALSE)
   cours_2 <- read.table(fichiers[5], header=TRUE, sep = ';', stringsAsFactors = FALSE)
@@ -61,14 +61,14 @@ prep_cours = function(data_cours){
   cours_10 <- na.omit(cours_10)
   
   cours <- rbind(cours_1, cours_2, cours_3, cours_4, cours_5, cours_6, cours_7, cours_8, cours_9, cours_10)
-  
+
   cours <- cours[!duplicated(cours), ]
 
 }
 
-prep_etudiants = function(data_etudiant){
+prep_etudiants = function(file_paths){
   
-  fichiers<- c(data_etudiant)
+  fichiers<- c(file_paths)
 
 etudiant_1 <- read.table(fichiers[3], header=TRUE, sep = ';', stringsAsFactors = FALSE)
 etudiant_2 <- read.table(fichiers[6], header=TRUE, sep = ';', stringsAsFactors = FALSE)
@@ -92,13 +92,5 @@ etudiant_9 <- etudiant_9[c('prenom_nom', 'prenom', 'nom', 'region_administrative
 
 etudiant <- rbind(etudiant_1, etudiant_2, etudiant_3, etudiant_4, etudiant_5, etudiant_6, etudiant_7, etudiant_8, etudiant_9, etudiant_10)
 
-}
- 
-correction = function(donnees_BIO500){
-  
-  header <- tail(donnees_BIO500)
-  
-  print(header)
-  
 }
 

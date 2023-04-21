@@ -5,6 +5,7 @@ install.packages('data.table', dependencies=TRUE)
 install.packages('stringdist', dependencies=TRUE)
 install.packages('igraph')
 install.packages("RColorBrewer")
+install.packages('purrr')
 library(RSQLite)
 library(stringr)
 library(dplyr)
@@ -12,6 +13,7 @@ library(data.table)
 library(stringdist)
 library(igraph)
 library(RColorBrewer)
+library(purrr)
 
 setwd('C:/Users/Marie-Eve/OneDrive - USherbrooke/Bureau/UdeS/methode_comp/travail_collab/BIO500')
 
@@ -177,23 +179,26 @@ etudiant <- etudiant[!duplicated(etudiant), ]
 sommeNAs <- rowSums(is.na(etudiant))
 etudiant <- cbind(etudiant,sommeNAs)
 
-nb_lignes <- nrow(etudiant)
+retirer_lignes <- c()
+n=1
 
-
-for (i in 1:nb_lignes) {
-  for (j in 2:nb_lignes) {
+for (i in 1:nrow(etudiant)) {
+  for (j in 2:nrow(etudiant)) {
     if(etudiant[i,1]==etudiant[j,1] && etudiant[i,9]>etudiant[j,9]){
-      etudiant <- etudiant[-c(i), ]
-      nb_lignes <- nrow(etudiant)
+      retirer_lignes[n] <- paste0(row.names(etudiant[i,]))
+      n=n+1
     }
 
-    else if(etudiant[i,1]==etudiant[j,1] && etudiant[i,9]<etudiant[j,9]){
-      etudiant <- etudiant[-c(j), ]
-      nb_lignes <- nrow(etudiant)
+     else if(etudiant[i,1]==etudiant[j,1] && etudiant[i,9]<etudiant[j,9]){
+      retirer_lignes[n] <- paste0(row.names(etudiant[j,]))
+      n=n+1
     }
-    i=i+1
   }
 }
+
+retirer_lignes <- retirer_lignes[!duplicated(retirer_lignes)]
+
+etudiant <- etudiant[!(row.names(etudiant) %in% retirer_lignes),]
 
 
 #Trouver l'indexation des noms en double non corrigés par la boucle
@@ -203,10 +208,12 @@ agrep('cassandra_godin', etudiant$prenom_nom, max.distance = 1, value = FALSE)
 agrep('juliette_meilleur', etudiant$prenom_nom, max.distance = 1, value = FALSE)
 agrep('mia_carriere', etudiant$prenom_nom, max.distance = 1, value = FALSE)
 agrep('rosalie_gagnon', etudiant$prenom_nom, max.distance = 1, value = FALSE)
-agrep('yanick_sageau', etudiant$prenom_nom, max.distance = 1, value = FALSE)
+
+etudiant[118,1] <- paste0('mia_carriere')
+etudiant[118,3] <- paste0('carriere')
 
 
-etudiant <- etudiant[-c(30,85,119,121,136,161),]
+etudiant <- etudiant[-c(30,85,119,134),]
 etudiant <- etudiant[,-c(9)]
 
 cours <- cours[!duplicated(cours), ]
@@ -217,13 +224,18 @@ collaboration <- collaboration[!duplicated(collaboration), ]
 Collab_corr <- collaboration
 
 for (i in 1:nrow(etudiant)) {
-  differences1 <- agrep(etudiant[i,1], Collab_corr$etudiant1, max.distance = 5, value = FALSE)
-  differences2 <- agrep(etudiant[i,1], Collab_corr$etudiant2, max.distance = 5, value = FALSE)
-  for (j in 1:length(differences1)) {
-    Collab_corr[differences1[j],1] <- paste0(etudiant[i,1])
+  differences1 <- agrep(etudiant[i,1], Collab_corr$etudiant1, max.distance = 2, value = FALSE)
+  differences2 <- agrep(etudiant[i,1], Collab_corr$etudiant2, max.distance = 2, value = FALSE)
+  if(is_empty(differences1)==FALSE){
+    for (j in 1:length(differences1)) {
+      Collab_corr[differences1[j],1] <- paste0(etudiant[i,1])
+    }
   }
-  for (k in 1:length(differences2)) {
-    Collab_corr[differences2[k],2] <- paste0(etudiant[i,1])
+  if(is_empty(differences2)==FALSE){
+    for (k in 1:length(differences2)) {
+      Collab_corr[differences2[k],2] <- paste0(etudiant[i,1])
+    }
+    i=i+1
   }
 }
 
@@ -270,13 +282,13 @@ FOREIGN KEY (etudiant2)          REFERENCES tbl_etudiant(prenom_nom),
 FOREIGN KEY (sigle, session)     REFERENCES tbl_cours(sigle, session)
 );"
 
-dbSendQuery(con, tbl_cours)
 dbSendQuery(con, tbl_etudiant)
+dbSendQuery(con, tbl_cours)
 dbSendQuery(con, tbl_collaboration)
 
 dbWriteTable(con, append = TRUE, name = "tbl_cours", value = cours, row.names = FALSE)
 dbWriteTable(con, append = TRUE, name = "tbl_etudiant", value = etudiant, row.names = FALSE)
-dbWriteTable(con, append = TRUE, name = "tbl_collaboration", value = collaboration, row.names = FALSE)
+dbWriteTable(con, append = TRUE, name = "tbl_collaboration", value = Collab_corr, row.names = FALSE)
 
 #Répondre aux questions pour le cours de BIO500 et enregistrer les reponses dans un csv
 
@@ -311,23 +323,95 @@ GROUP BY etudiant1, etudiant2;"
 lien_paire_etudiants <- dbGetQuery(con, sql_requete2)
 head(lien_paire_etudiants)
 
+#sélection du programme des étudiants du fichier "étudiants" et insertions de la colonne dans le fichier "collaboration" pour étudiant1 et étudiant2
+
+sql_requete4 <- "
+  SELECT tbl_etudiant.prenom_nom, tbl_collaboration.etudiant1, tbl_etudiant.programme
+  FROM tbl_collaboration
+  LEFT JOIN tbl_etudiant
+  ON tbl_etudiant.prenom_nom = tbl_collaboration.etudiant1;"
+
+etudiant_prog <- dbGetQuery(con, sql_requete4)
+head(etudiant_prog)
+
+tbl_prog <- "CREATE TABLE etudiant_prog (
+prenom_nom    VARCHAR(40) NOT NULL,
+etudiant1     VARCHAR(40) NOT NULL,
+programme     VARCHAR(6),
+PRIMARY KEY (prenom_nom)
+);"
+
+dbSendQuery(con, "DROP TABLE etudiant_prog;")
+dbSendQuery(con, tbl_prog)
+dbWriteTable(con, append = TRUE, name = "tbl_prog", value = etudiant_prog, row.names = FALSE)
+
+sql_requete5 <- "
+  SELECT tbl_etudiant.prenom_nom, tbl_collaboration.etudiant2, tbl_etudiant.programme
+  FROM tbl_collaboration
+  LEFT JOIN tbl_etudiant
+  ON tbl_etudiant.prenom_nom = tbl_collaboration.etudiant2;"
+
+sql_requete5 <- "
+  SELECT tbl_prog.*, tbl_collaboration.etudiant2, tbl_etudiant.programme
+  FROM tbl_collaboration
+  LEFT JOIN tbl_etudiant
+    ON tbl_etudiant.prenom_nom = tbl_collaboration.etudiant2
+  LEFT JOIN tbl_collaboration
+    ON tbl_etudiant.prenom_nom = tbl_collaboration.etudiant2
+  ;"
+
+etudiant_prog2 <- dbGetQuery(con, sql_requete5)
+head(etudiant_prog2)
+
+tbl_prog2 <- "CREATE TABLE etudiant_prog2 (
+prenom_nom     VARCHAR(40) NOT NULL,
+etudiant2     VARCHAR(40) NOT NULL,
+programme     VARCHAR(6),
+PRIMARY KEY (prenom_nom)
+);"
+
+dbSendQuery(con, tbl_prog2)
+dbWriteTable(con, append = TRUE, name = "tbl_prog2", value = etudiant_prog2, row.names = FALSE)
+
+sql_requete6 <- "
+  SELECT tbl_prog.*, tbl_prog2.*
+  FROM   tbl_prog
+  LEFT JOIN tbl_prog2 USING (prenom_nom)
+  UNION ALL
+  SELECT tbl_prog.*, tbl_prog2.*
+FROM tbl_prog
+LEFT JOIN tbl_prog2 USING(prenom_nom)
+;"
+
+programme <- dbSendQuery(con, sql_requete6)
+
+dbListTables(con)
+
+resultats_collab2 <- dbGetQuery(con, sql_requete2)
+resultats_collab2
+write.csv(resultats_collab2, '/resultats.csv', row.names=FALSE)
+
 #Deconnexion du SQL
 dbDisconnect(con)
 
 #igraph
-interaction_df <- data.frame(etudiantA = collaboration$etudiant1, etudiantB = collaboration$etudiant2, stringsAsFactors = F)
+interaction_df <- data.frame(etudiantA = Collab_corr$etudiant1, etudiantB = Collab_corr$etudiant2, stringsAsFactors = F)
 interaction_ig <- graph.edgelist(interaction_matrice , directed=T)
 etudiant_df <- data.frame(etudiant = etudiant$prenom_nom, prog = etudiant$programme)
 
-color_map <- c('269000' = 'red', '205000' = 'blue', '267000' = 'green', '224000' = 'yellow', 'NA' = 'gray')
-V(interaction_ig)$color <- 'white'
-for (i in 1:nrow(etudiant_df)) {
-  node_id <- etudiant_df[i, 'prenom_nom']
-  attribute <- etudiant_df[i, 'programme']
-  color <- color_map[attribute]
-  V(interaction_ig)$color[node_id] <- color
-}
+interaction_df <- data.frame(etudiantA = Collab_corr$etudiant1, etudiantB = Collab_corr$etudiant2, stringsAsFactors = TRUE)
+interaction_ig <- graph.data.frame(interaction_df,directed = T)
+V(interaction_ig)$label <- NA
+nom <- etudiant[ ,1]
+programme <- etudiant[ ,8]
+programme[is.na(programme)] <- 0
 
+color.vec <- rainbow(n = length(programme))
+V(interaction_ig)$color <- color.vec
+
+length(programme)
+
+kamada_layout <- layout.kamada.kawai(interaction_ig)
 plot(interaction_ig, 
      layout = kamada_layout, 
      vertex.size = 16,
@@ -338,6 +422,13 @@ plot(interaction_ig,
      edge.arrow.size = .1,
      edge.width = 1)
 
+interaction.g <- graph.data.frame(Collab_corr, directed = T)
+V(interaction.g)$label <- NA
+pal <- rainbow(n=length(unique(interaction.g$affilation)))
+oneAffil <- interaction.g$affilation[!duplicated(interaction.g$vertex)]
+V(interaction.g)$color <- pal[oneAffil]
+plot(interaction.g)
+
 #Figure 3
 collab_etudiant <- read.csv2("arbres.csv")
 paires <- table(collab_etudiant[,c(3,5)])
@@ -346,3 +437,5 @@ plot(frequence, paires[,1], axes =TRUE,
      xlab = "Fréquence", ylab = "Nb paires différentes qui ont collaboré ensemble")
 title(main = "Fréquence de collaboration des étudiants en fonction du nombre de paires différentes qui ont collaboré ensemble")
 usethis::git_sitrep()
+
+tar_visnetwork()
