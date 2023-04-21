@@ -281,8 +281,8 @@ FOREIGN KEY (etudiant2)          REFERENCES tbl_etudiant(prenom_nom),
 FOREIGN KEY (sigle, session)     REFERENCES tbl_cours(sigle, session)
 );"
 
-dbSendQuery(con, tbl_cours)
 dbSendQuery(con, tbl_etudiant)
+dbSendQuery(con, tbl_cours)
 dbSendQuery(con, tbl_collaboration)
 
 dbWriteTable(con, append = TRUE, name = "tbl_cours", value = cours, row.names = FALSE)
@@ -322,23 +322,98 @@ GROUP BY etudiant1, etudiant2;"
 lien_paire_etudiants <- dbGetQuery(con, sql_requete2)
 head(lien_paire_etudiants)
 
+#sélection du programme des étudiants du fichier "étudiants" et insertions de la colonne dans le fichier "collaboration" pour étudiant1 et étudiant2
+
+sql_requete4 <- "
+  SELECT tbl_etudiant.prenom_nom, tbl_collaboration.etudiant1, tbl_etudiant.programme
+  FROM tbl_collaboration
+  LEFT JOIN tbl_etudiant
+  ON tbl_etudiant.prenom_nom = tbl_collaboration.etudiant1;"
+
+etudiant_prog <- dbGetQuery(con, sql_requete4)
+head(etudiant_prog)
+
+tbl_prog <- "CREATE TABLE etudiant_prog (
+prenom_nom    VARCHAR(40) NOT NULL,
+etudiant1     VARCHAR(40) NOT NULL,
+programme     VARCHAR(6),
+PRIMARY KEY (prenom_nom)
+);"
+
+dbSendQuery(con, "DROP TABLE etudiant_prog;")
+dbSendQuery(con, tbl_prog)
+dbWriteTable(con, append = TRUE, name = "tbl_prog", value = etudiant_prog, row.names = FALSE)
+
+sql_requete5 <- "
+  SELECT tbl_etudiant.prenom_nom, tbl_collaboration.etudiant2, tbl_etudiant.programme
+  FROM tbl_collaboration
+  LEFT JOIN tbl_etudiant
+  ON tbl_etudiant.prenom_nom = tbl_collaboration.etudiant2;"
+
+sql_requete5 <- "
+  SELECT tbl_prog.*, tbl_collaboration.etudiant2, tbl_etudiant.programme
+  FROM tbl_collaboration
+  LEFT JOIN tbl_etudiant
+    ON tbl_etudiant.prenom_nom = tbl_collaboration.etudiant2
+  LEFT JOIN tbl_collaboration
+    ON tbl_etudiant.prenom_nom = tbl_collaboration.etudiant2
+  ;"
+
+etudiant_prog2 <- dbGetQuery(con, sql_requete5)
+head(etudiant_prog2)
+
+tbl_prog2 <- "CREATE TABLE etudiant_prog2 (
+prenom_nom     VARCHAR(40) NOT NULL,
+etudiant2     VARCHAR(40) NOT NULL,
+programme     VARCHAR(6),
+PRIMARY KEY (prenom_nom)
+);"
+
+dbSendQuery(con, tbl_prog2)
+dbWriteTable(con, append = TRUE, name = "tbl_prog2", value = etudiant_prog2, row.names = FALSE)
+
+sql_requete6 <- "
+  SELECT tbl_prog.*, tbl_prog2.*
+  FROM   tbl_prog
+  LEFT JOIN tbl_prog2 USING (prenom_nom)
+  UNION ALL
+  SELECT tbl_prog.*, tbl_prog2.*
+FROM tbl_prog
+LEFT JOIN tbl_prog2 USING(prenom_nom)
+;"
+
+programme <- dbSendQuery(con, sql_requete6)
+
+dbListTables(con)
+
+resultats_collab2 <- dbGetQuery(con, sql_requete2)
+resultats_collab2
+write.csv(resultats_collab2, '/resultats.csv', row.names=FALSE)
+
 #Deconnexion du SQL
 dbDisconnect(con)
 
 #igraph
+<<<<<<< HEAD
 interaction_df <- data.frame(etudiantA = Collab_corr$etudiant1, etudiantB = Collab_corr$etudiant2, stringsAsFactors = F)
 interaction_ig <- graph.edgelist(interaction_matrice , directed=T)
 etudiant_df <- data.frame(etudiant = etudiant$prenom_nom, prog = etudiant$programme)
+=======
+>>>>>>> 55c8b6a5a7cd5bca76aa16f5cf1af157ff1c412b
 
-color_map <- c('269000' = 'red', '205000' = 'blue', '267000' = 'green', '224000' = 'yellow', 'NA' = 'gray')
-V(interaction_ig)$color <- 'white'
-for (i in 1:nrow(etudiant_df)) {
-  node_id <- etudiant_df[i, 'prenom_nom']
-  attribute <- etudiant_df[i, 'programme']
-  color <- color_map[attribute]
-  V(interaction_ig)$color[node_id] <- color
-}
+interaction_df <- data.frame(etudiantA = Collab_corr$etudiant1, etudiantB = Collab_corr$etudiant2, stringsAsFactors = TRUE)
+interaction_ig <- graph.data.frame(interaction_df,directed = T)
+V(interaction_ig)$label <- NA
+nom <- etudiant[ ,1]
+programme <- etudiant[ ,8]
+programme[is.na(programme)] <- 0
 
+color.vec <- rainbow(n = length(programme))
+V(interaction_ig)$color <- color.vec
+
+length(programme)
+
+kamada_layout <- layout.kamada.kawai(interaction_ig)
 plot(interaction_ig, 
      layout = kamada_layout, 
      vertex.size = 16,
@@ -349,6 +424,13 @@ plot(interaction_ig,
      edge.arrow.size = .1,
      edge.width = 1)
 
+interaction.g <- graph.data.frame(Collab_corr, directed = T)
+V(interaction.g)$label <- NA
+pal <- rainbow(n=length(unique(interaction.g$affilation)))
+oneAffil <- interaction.g$affilation[!duplicated(interaction.g$vertex)]
+V(interaction.g)$color <- pal[oneAffil]
+plot(interaction.g)
+
 #Figure 3
 collab_etudiant <- read.csv2("arbres.csv")
 paires <- table(collab_etudiant[,c(3,5)])
@@ -357,3 +439,5 @@ plot(frequence, paires[,1], axes =TRUE,
      xlab = "Fréquence", ylab = "Nb paires différentes qui ont collaboré ensemble")
 title(main = "Fréquence de collaboration des étudiants en fonction du nombre de paires différentes qui ont collaboré ensemble")
 usethis::git_sitrep()
+
+tar_visnetwork()
