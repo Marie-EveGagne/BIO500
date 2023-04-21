@@ -371,19 +371,26 @@ dbDisconnect(con)
 
 #igraph
 interaction_df <- data.frame(etudiantA = Collab_corr$etudiant1, etudiantB = Collab_corr$etudiant2, stringsAsFactors = TRUE)
-interaction_ig <- graph.edgelist(interaction_matrice , directed=TRUE)
+interaction_ig <- graph.data.frame(interaction_df,directed = T)
 V(interaction_ig)$label <- NA
+nom <- etudiant[ ,1]
+programme <- etudiant[ ,8]
+programme[is.na(programme)] <- 0
+
+color.vec <- rainbow(n = length(programme))
+V(interaction_ig)$color <- color.vec
+
+length(programme)
+
 kamada_layout <- layout.kamada.kawai(interaction_ig)
 plot(interaction_ig, 
      layout = kamada_layout,
      vertex.size = 14,
-     vertex.color = "red",
      vertex.frame.color = NA,
      vertex.label.cex = 1.2,
      edge.curved = .2,
      edge.arrow.size = .3,
      edge.width = 1)
-
 interaction.g <- graph.data.frame(Collab_corr, directed = T)
 V(interaction.g)$label <- NA
 pal <- rainbow(n=length(unique(interaction.g$affilation)))
