@@ -1,9 +1,9 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.4.21)  21 APR 2023 19:22
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.4.21)  21 APR 2023 19:26
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**Markdown_Projet.tex
-(./Markdown_Projet.tex
+**Rmarkdown_Reseau_Ecologique.tex
+(./Rmarkdown_Reseau_Ecologique.tex
 LaTeX2e <2022-11-01> patch level 1
 L3 programming layer <2023-04-20> (./pnas-new.cls
 Document Class: pnas-new 2018/05/06, v1.44
@@ -916,8 +916,8 @@ Package: fontenc 2021/04/29 v2.0v Standard LaTeX package
 Package: pnasresearcharticle 2018/05/06 v1.3 PNAS two column research article style
 \@float@every@sigstatement=\toks51
 \c@sigstatement=\count368
-) (./Markdown_Projet.aux)
-\openout1 = `Markdown_Projet.aux'.
+) (./Rmarkdown_Reseau_Ecologique.aux)
+\openout1 = `Rmarkdown_Reseau_Ecologique.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 52.
 LaTeX Font Info:    ... okay on input line 52.
@@ -944,9 +944,9 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 48
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 ))
 Package hyperref Info: Link coloring ON on input line 52.
-(./Markdown_Projet.out) (./Markdown_Projet.out)
+(./Rmarkdown_Reseau_Ecologique.out) (./Rmarkdown_Reseau_Ecologique.out)
 \@outlinefile=\write4
-\openout4 = `Markdown_Projet.out'.
+\openout4 = `Rmarkdown_Reseau_Ecologique.out'.
 
 (c:/Users/Daphnee/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/draftwatermark/draftwatermark.sty
 Package: draftwatermark 2020/12/08 3.0 Put a gray textual watermark on document pages
@@ -1126,20 +1126,20 @@ LaTeX Font Info:    Font shape `T1/phv/m/sl' will be
 
 ] 
 enddocument/afterlastpage: lastpage setting LastPage.
-(./Markdown_Projet.aux)
-Package rerunfilecheck Info: File `Markdown_Projet.out' has not changed.
+(./Rmarkdown_Reseau_Ecologique.aux)
+Package rerunfilecheck Info: File `Rmarkdown_Reseau_Ecologique.out' has not changed.
 (rerunfilecheck)             Checksum: F0BEC0C86A198F6BE7A48A5458484BAE;1655.
  ) 
 Here is how much of TeX's memory you used:
  30094 strings out of 477961
- 569119 string characters out of 5836758
+ 569323 string characters out of 5836758
  1870068 words of memory out of 5000000
  49574 multiletter control sequences out of 15000+600000
  576131 words of font info for 130 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 117i,14n,118p,1012b,1115s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 117i,14n,118p,1024b,1115s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <c:/Users/Daphnee/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/bitstrea/charter/bchb8a.pfb><c:/Users/Daphnee/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi9.pfb><c:/Users/Daphnee/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr6.pfb><c:/Users/Daphnee/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr9.pfb><c:/Users/Daphnee/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmssbx10.pfb><c:/Users/Daphnee/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmtt9.pfb><c:/Users/Daphnee/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb><c:/Users/Daphnee/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb><c:/Users/Daphnee/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/urw/helvetic/uhvro8a.pfb>
-Output written on Markdown_Projet.pdf (2 pages, 226117 bytes).
+Output written on Rmarkdown_Reseau_Ecologique.pdf (2 pages, 226117 bytes).
 PDF statistics:
  167 PDF objects out of 1000 (max. 8388607)
  140 compressed objects within 2 object streams
