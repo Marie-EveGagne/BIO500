@@ -176,30 +176,35 @@ etudiant <- etudiant[!duplicated(etudiant), ]
 
 sommeNAs <- rowSums(is.na(etudiant))
 etudiant <- cbind(etudiant,sommeNAs)
-etudiantbackup <- etudiant
-etudiant <- etudiantbackup
 
-nb_lignes <- nrow(etudiant)
+retirer_lignes <- c()
+n=1
 
-
-for (i in 1:nb_lignes) {
-  for (j in 2:nb_lignes) {
-    if(etudiant[i,1]==etudiant[j,1]){ #&& etudiant[i,9]>etudiant[j,9]){
-      etudiant <- etudiant[-c(i), ]
-      nb_lignes <- nrow(etudiant)
-      #print('c,est good')
+for (i in 1:nrow(etudiant)) {
+  for (j in 2:nrow(etudiant)) {
+    if(etudiant[i,1]==etudiant[j,1] && etudiant[i,9]>etudiant[j,9]){
+      #etudiant <- etudiant[-c(i), ]
+      #nb_lignes <- nrow(etudiant)
+      retirer_lignes[n] <- paste0(row.names(etudiant[i,]))
+      n=n+1
+      #print(etudiant[i,])
       #print(i)
     }
 
-    #else if(etudiant[i,1]==etudiant[j,1] && etudiant[i,9]<etudiant[j,9]){
-    #  etudiant <- etudiant[-c(j), ]
-    #  nb_lignes <- nrow(etudiant)
-    #  print('c,est encore good')
-    #  print(i)
-    #}
-    i=i+1
+     else if(etudiant[i,1]==etudiant[j,1] && etudiant[i,9]<etudiant[j,9]){
+      #etudiant <- etudiant[-c(j), ]
+      #nb_lignes <- nrow(etudiant)
+      retirer_lignes[n] <- paste0(row.names(etudiant[j,]))
+      #print('c,est encore good')
+      #print(etudiant[j,])
+      n=n+1
+    }
   }
 }
+
+retirer_lignes <- retirer_lignes[!duplicated(retirer_lignes)]
+
+etudiant <- etudiant[!(row.names(etudiant) %in% retirer_lignes),]
 
 
 #Trouver l'indexation des noms en double non corrigés par la boucle
@@ -212,7 +217,7 @@ agrep('rosalie_gagnon', etudiant$prenom_nom, max.distance = 1, value = FALSE)
 agrep('yanick_sageau', etudiant$prenom_nom, max.distance = 1, value = FALSE)
 
 
-etudiant <- etudiant[-c(30,85,119,121,136,161),]
+etudiant <- etudiant[-c(30,85,119,134,136,164,166),]
 etudiant <- etudiant[,-c(9)]
 
 cours <- cours[!duplicated(cours), ]
