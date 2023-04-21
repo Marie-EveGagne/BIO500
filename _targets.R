@@ -3,21 +3,21 @@ library(usethis)
 
 source("R/prep_donnees.R")
 source("R/correction.R")
-tar_option_set(packages = c("RSQLite", 'stringr','dplyr','data.table','stringdist','igraph'))
+tar_option_set(packages = c("RSQLite", 'stringr','dplyr','data.table','stringdist','igraph','purrr'))
 list(
   tar_target(
     name = path,
     command = "./donnees_BIO500",
     format = "file"
-  ),
+   ),
    tar_target(
      name = file_paths,
      command = list.files(path, full.names = TRUE)
    ),
    tar_target(
      name = data_collab,
-     command = prep_collab(file_paths)
-  ),
+     command = prep_collab(file_paths),
+   ),
    tar_target(
      name = data_cours,
      command = prep_cours(file_paths)
