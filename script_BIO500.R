@@ -4,12 +4,14 @@ install.packages('dplyr', dependencies=TRUE)
 install.packages('data.table', dependencies=TRUE)
 install.packages('stringdist', dependencies=TRUE)
 install.packages('igraph')
+install.packages("RColorBrewer")
 library(RSQLite)
 library(stringr)
 library(dplyr)
 library(data.table)
 library(stringdist)
 library(igraph)
+library(RColorBrewer)
 
 setwd('C:/Users/Marie-Eve/OneDrive - USherbrooke/Bureau/UdeS/methode_comp/travail_collab/BIO500')
 
@@ -94,117 +96,117 @@ for (i in 1:nrow(etudiant)) {
   etudiant[i,1] <- paste0(etudiant[i,2],"_",etudiant[i,3])
 }
 
-etudiant_noms <- etudiant
+etudiant <- etudiant[order(etudiant$prenom_nom),]
 
-etudiant_noms <- etudiant_noms[order(etudiant_noms$prenom_nom),]
-
-for (i in 1:nrow(etudiant_noms)) {
-  if(etudiant_noms[i,1]=='arianne_barette'){
-  etudiant_noms[i,1] <- str_replace(etudiant_noms[i,1],'arianne_barette','ariane_barrette')
-  etudiant_noms[i,2] <- str_replace(etudiant_noms[i,2],'arianne','ariane')
-  etudiant_noms[i,3] <- str_replace(etudiant_noms[i,3],'barette','barrette')
+for (i in 1:nrow(etudiant)) {
+  if(etudiant[i,1]=='arianne_barette'){
+  etudiant[i,1] <- str_replace(etudiant[i,1],'arianne_barette','ariane_barrette')
+  etudiant[i,2] <- str_replace(etudiant[i,2],'arianne','ariane')
+  etudiant[i,3] <- str_replace(etudiant[i,3],'barette','barrette')
   }
-  else if (etudiant_noms[i,1]=='cassandra_gobin'){
-  etudiant_noms[i,1] <- str_replace(etudiant_noms[i,1],'cassandra_gobin','cassandra_godin')
-  etudiant_noms[i,3] <- str_replace(etudiant_noms[i,3],'gobin','godin')
+  else if (etudiant[i,1]=='cassandra_gobin'){
+  etudiant[i,1] <- str_replace(etudiant[i,1],'cassandra_gobin','cassandra_godin')
+  etudiant[i,3] <- str_replace(etudiant[i,3],'gobin','godin')
   }
-  else if (etudiant_noms[i,1]=='cassandre_godin'){
-    etudiant_noms[i,1] <- str_replace(etudiant_noms[i,1],'cassandre_godin','cassandra_godin')
-    etudiant_noms[i,3] <- str_replace(etudiant_noms[i,2],'cassandre','cassandra')
+  else if (etudiant[i,1]=='cassandre_godin'){
+    etudiant[i,1] <- str_replace(etudiant[i,1],'cassandre_godin','cassandra_godin')
+    etudiant[i,3] <- str_replace(etudiant[i,2],'cassandre','cassandra')
   }
-  else if (etudiant_noms[i,1]=='edouard_nadon-baumier'){
-  etudiant_noms[i,1] <- str_replace(etudiant_noms[i,1],'edouard_nadon-baumier','edouard_nadon-beaumier')
-  etudiant_noms[i,3] <- str_replace(etudiant_noms[i,3],'nadon-baumier','nadon-beaumier')
+  else if (etudiant[i,1]=='edouard_nadon-baumier'){
+  etudiant[i,1] <- str_replace(etudiant[i,1],'edouard_nadon-baumier','edouard_nadon-beaumier')
+  etudiant[i,3] <- str_replace(etudiant[i,3],'nadon-baumier','nadon-beaumier')
   }
-  else if (etudiant_noms[i,1]=='francis_bolly'){
-  etudiant_noms[i,1] <- str_replace(etudiant_noms[i,1],'francis_bolly','francis_boily')
-  etudiant_noms[i,3] <- str_replace(etudiant_noms[i,3],'bolly','boily')
+  else if (etudiant[i,1]=='francis_bolly'){
+  etudiant[i,1] <- str_replace(etudiant[i,1],'francis_bolly','francis_boily')
+  etudiant[i,3] <- str_replace(etudiant[i,3],'bolly','boily')
   }
-  else if (etudiant_noms[i,1]=='louis-philipe_theriault'){
-    etudiant_noms[i,1] <- str_replace(etudiant_noms[i,1],'louis-philipe_theriault','louis-philippe_theriault')
-    etudiant_noms[i,2] <- str_replace(etudiant_noms[i,2],'louis-philipe','louis-philippe')
+  else if (etudiant[i,1]=='louis-philipe_theriault'){
+    etudiant[i,1] <- str_replace(etudiant[i,1],'louis-philipe_theriault','louis-philippe_theriault')
+    etudiant[i,2] <- str_replace(etudiant[i,2],'louis-philipe','louis-philippe')
   }
-  else if (etudiant_noms[i,1]=='louis-philippe_therrien'){
-    etudiant_noms[i,1] <- str_replace(etudiant_noms[i,1],'louis-philippe_therrien','louis-philippe_theriault')
-    etudiant_noms[i,3] <- str_replace(etudiant_noms[i,3],'therrien','theriault')  
+  else if (etudiant[i,1]=='louis-philippe_therrien'){
+    etudiant[i,1] <- str_replace(etudiant[i,1],'louis-philippe_therrien','louis-philippe_theriault')
+    etudiant[i,3] <- str_replace(etudiant[i,3],'therrien','theriault')  
   }
-  else if (etudiant_noms[i,1]=='louis-phillipe_theriault'){
-    etudiant_noms[i,1] <- str_replace(etudiant_noms[i,1],'louis-phillipe_theriault','louis-philippe_theriault')
-    etudiant_noms[i,2] <- str_replace(etudiant_noms[i,2],'louis-phillipe','louis-philippe')
+  else if (etudiant[i,1]=='louis-phillipe_theriault'){
+    etudiant[i,1] <- str_replace(etudiant[i,1],'louis-phillipe_theriault','louis-philippe_theriault')
+    etudiant[i,2] <- str_replace(etudiant[i,2],'louis-phillipe','louis-philippe')
   }
-  else if (etudiant_noms[i,1]=='mael_guerin'){
-    etudiant_noms[i,1] <- str_replace(etudiant_noms[i,1],'mael_guerin','mael_gerin')
-    etudiant_noms[i,3] <- str_replace(etudiant_noms[i,3],'guerin','gerin')  
+  else if (etudiant[i,1]=='mael_guerin'){
+    etudiant[i,1] <- str_replace(etudiant[i,1],'mael_guerin','mael_gerin')
+    etudiant[i,3] <- str_replace(etudiant[i,3],'guerin','gerin')  
   }
-  else if (etudiant_noms[i,1]=='marie_burghin'){
-    etudiant_noms[i,1] <- str_replace(etudiant_noms[i,1],'marie_burghin','marie_bughin')
-    etudiant_noms[i,3] <- str_replace(etudiant_noms[i,3],'burghin','bughin')
+  else if (etudiant[i,1]=='marie_burghin'){
+    etudiant[i,1] <- str_replace(etudiant[i,1],'marie_burghin','marie_bughin')
+    etudiant[i,3] <- str_replace(etudiant[i,3],'burghin','bughin')
   }
-  else if (etudiant_noms[i,1]=='peneloppe_robert'){
-    etudiant_noms[i,1] <- str_replace(etudiant_noms[i,1],'peneloppe_robert','penelope_robert')
-    etudiant_noms[i,2] <- str_replace(etudiant_noms[i,2],'peneloppe','penelope')
+  else if (etudiant[i,1]=='peneloppe_robert'){
+    etudiant[i,1] <- str_replace(etudiant[i,1],'peneloppe_robert','penelope_robert')
+    etudiant[i,2] <- str_replace(etudiant[i,2],'peneloppe','penelope')
   }
-  else if (etudiant_noms[i,1]=='sabrina_leclerc'){
-    etudiant_noms[i,1] <- str_replace(etudiant_noms[i,1],'sabrina_leclerc','sabrina_leclercq')
-    etudiant_noms[i,3] <- str_replace(etudiant_noms[i,3],'leclerc','leclercq')
+  else if (etudiant[i,1]=='sabrina_leclerc'){
+    etudiant[i,1] <- str_replace(etudiant[i,1],'sabrina_leclerc','sabrina_leclercq')
+    etudiant[i,3] <- str_replace(etudiant[i,3],'leclerc','leclercq')
   }
-  else if (etudiant_noms[i,1]=='sabrina_leclerc'){
-    etudiant_noms[i,1] <- str_replace(etudiant_noms[i,1],'sabrina_leclerc','sabrina_leclercq')
-    etudiant_noms[i,3] <- str_replace(etudiant_noms[i,3],'leclerc','leclercq')
+  else if (etudiant[i,1]=='sabrina_leclerc'){
+    etudiant[i,1] <- str_replace(etudiant[i,1],'sabrina_leclerc','sabrina_leclercq')
+    etudiant[i,3] <- str_replace(etudiant[i,3],'leclerc','leclercq')
   }
-  else if (etudiant_noms[i,1]=='simon_guilemette'){
-    etudiant_noms[i,1] <- str_replace(etudiant_noms[i,1],'simon_guilemette','simon_guillemette')
-    etudiant_noms[i,3] <- str_replace(etudiant_noms[i,3],'guilemette','guillemette')
+  else if (etudiant[i,1]=='simon_guilemette'){
+    etudiant[i,1] <- str_replace(etudiant[i,1],'simon_guilemette','simon_guillemette')
+    etudiant[i,3] <- str_replace(etudiant[i,3],'guilemette','guillemette')
   }
-  else if (etudiant_noms[i,1]=='thomas_ramond'){
-    etudiant_noms[i,1] <- str_replace(etudiant_noms[i,1],'thomas_ramond','thomas_raymond')
-    etudiant_noms[i,3] <- str_replace(etudiant_noms[i,3],'ramond','raymond')
+  else if (etudiant[i,1]=='thomas_ramond'){
+    etudiant[i,1] <- str_replace(etudiant[i,1],'thomas_ramond','thomas_raymond')
+    etudiant[i,3] <- str_replace(etudiant[i,3],'ramond','raymond')
   }
-  else if (etudiant_noms[i,1]=='yannick_sageau'){
-    etudiant_noms[i,1] <- str_replace(etudiant_noms[i,1],'yannick_sageau','yanick_sageau')
-    etudiant_noms[i,2] <- str_replace(etudiant_noms[i,2],'yannick','yanick')
+  else if (etudiant[i,1]=='yannick_sageau'){
+    etudiant[i,1] <- str_replace(etudiant[i,1],'yannick_sageau','yanick_sageau')
+    etudiant[i,2] <- str_replace(etudiant[i,2],'yannick','yanick')
   }
-  else if (etudiant_noms[i,1]=='yanick_sagneau'){
-    etudiant_noms[i,1] <- str_replace(etudiant_noms[i,1],'yanick_sagneau','yanick_sageau')
-    etudiant_noms[i,3] <- str_replace(etudiant_noms[i,3],'sagneau','sageau')
+  else if (etudiant[i,1]=='yanick_sagneau'){
+    etudiant[i,1] <- str_replace(etudiant[i,1],'yanick_sagneau','yanick_sageau')
+    etudiant[i,3] <- str_replace(etudiant[i,3],'sagneau','sageau')
   }
 }
 
-etudiant_noms <- etudiant_noms[!duplicated(etudiant_noms), ]
+etudiant <- etudiant[!duplicated(etudiant), ]
 
 #Retrait des etudiants en double avec des NAs
 
-etudiant <- etudiant_noms
 sommeNAs <- rowSums(is.na(etudiant))
 etudiant <- cbind(etudiant,sommeNAs)
 
-for (i in 1:nrow(etudiant)) {
-  for (j in 2:nrow(etudiant)) {
-    if(etudiant[i,1]==etudiant[j,1] && etudiant[i,9]<etudiant[j,9]){
+nb_lignes <- nrow(etudiant)
+
+
+for (i in 1:nb_lignes) {
+  for (j in 2:nb_lignes) {
+    if(etudiant[i,1]==etudiant[j,1] && etudiant[i,9]>etudiant[j,9]){
+      etudiant <- etudiant[-c(i), ]
+      nb_lignes <- nrow(etudiant)
+    }
+
+    else if(etudiant[i,1]==etudiant[j,1] && etudiant[i,9]<etudiant[j,9]){
       etudiant <- etudiant[-c(j), ]
+      nb_lignes <- nrow(etudiant)
     }
     i=i+1
   }
 }
 
-for (i in 1:nrow(etudiant)) {
-  for (j in 2:nrow(etudiant)) {
-    if(etudiant[i,1]==etudiant[j,1] && etudiant[i,9]>etudiant[j,9]){
-      etudiant <- etudiant[-c(i), ]
-    }
-    i=i+1
-  }
-}
 
 #Trouver l'indexation des noms en double non corrigés par la boucle
 
+
 agrep('cassandra_godin', etudiant$prenom_nom, max.distance = 1, value = FALSE)
 agrep('juliette_meilleur', etudiant$prenom_nom, max.distance = 1, value = FALSE)
-agrep('mia_carriere ', etudiant$prenom_nom, max.distance = 1, value = FALSE)
+agrep('mia_carriere', etudiant$prenom_nom, max.distance = 1, value = FALSE)
 agrep('rosalie_gagnon', etudiant$prenom_nom, max.distance = 1, value = FALSE)
+agrep('yanick_sageau', etudiant$prenom_nom, max.distance = 1, value = FALSE)
 
 
-etudiant <- etudiant[-c(30,84,118,134),]
+etudiant <- etudiant[-c(30,85,119,121,136,161),]
 etudiant <- etudiant[,-c(9)]
 
 cours <- cours[!duplicated(cours), ]
@@ -227,11 +229,12 @@ for (i in 1:nrow(etudiant)) {
 
 Collab_corr <- Collab_corr[!duplicated(Collab_corr), ]
 
-rm(collaboration,etudiant_noms)
+rm(collaboration)
 
-write.csv(cours, '/merge_cours.csv', row.names=FALSE)
-write.csv(etudiant, '/merge_etudiant.csv', row.names=FALSE)
-write.csv(Collab_corr, '/merge_collaboration.csv', row.names=FALSE)
+write.csv(cours, 'BIO500/merge_cours.csv', row.names=FALSE)
+write.csv(etudiant, 'BIO500/merge_etudiant.csv', row.names=FALSE)
+write.csv(Collab_corr, 'BIO500/merge_collaboration.csv', row.names=FALSE)
+
 
 #Connection au SQL, creations des matrices SQL et injection des donnees 
 
@@ -271,33 +274,44 @@ dbSendQuery(con, tbl_etudiant)
 dbSendQuery(con, tbl_cours)
 dbSendQuery(con, tbl_collaboration)
 
-supprimer <- "DROP TABLE collaboration"
-
-dbExecute(con, supprimer)
-
 dbWriteTable(con, append = TRUE, name = "tbl_cours", value = cours, row.names = FALSE)
 dbWriteTable(con, append = TRUE, name = "tbl_etudiant", value = etudiant, row.names = FALSE)
 dbWriteTable(con, append = TRUE, name = "tbl_collaboration", value = Collab_corr, row.names = FALSE)
 
 #Répondre aux questions pour le cours de BIO500 et enregistrer les reponses dans un csv
 
-sql_requete1 <- "
-SELECT etudiant1, count(etudiant2)
-AS nb_collab
-FROM tbl_collaboration
-GROUP BY etudiant1;"
-
+sql_requete1 <- "SELECT etudiant1, count(etudiant2)
+                AS nb_collab
+                FROM tbl_collaboration
+                GROUP BY etudiant1;"
 resultats_collab1 <- dbGetQuery(con, sql_requete1)
 resultats_collab1
-write.csv(resultats_collab1, '/resultatscollab1.csv', row.names=FALSE)
+write.csv(resultats_collab1, 'C:/Users/Marie-Eve/OneDrive - USherbrooke/Bureau/UdeS/methode_comp/travail_collab/resultats.csv', row.names=FALSE)
 
+rm(sql_requete2)
+
+#sql_requete2 <- "SELECT sigle, session, count(tbl_cours.sigle)
+#                 AS nb_collab
+ #                FROM tbl_collaboration
+  #               GROUP BY tbl_collaboration.etudiant1, tbl_collaboration.etudiant2;"
+sql_requete2 <-"SELECT etudiant1, etudiant2, sigle, count(tbl_collaboration.sigle)
+                 AS nb_collab
+                 FROM tbl_collaboration
+                 GROUP BY tbl_collaboration.sigle;"                
+#LEFT JOIN tbl_cours ON tbl_collaboration.sigle=tbl_cours.sigle;"
+resultats_collab2 <- dbGetQuery(con, sql_requete2)
+resultats_collab2
+write.csv(resultats_collab2, 'C:/Users/Daphnee/Documents/BIO500/resultats.csv', row.names=FALSE)
+
+##selection requete2_test3
 sql_requete2 <- "
 SELECT etudiant1, etudiant2, COUNT(sigle)
-FROM tbl_collaboration
+FROM collaboration
 GROUP BY etudiant1, etudiant2;"
 lien_paire_etudiants <- dbGetQuery(con, sql_requete2)
 head(lien_paire_etudiants)
 
+<<<<<<< HEAD
 #sélection du programme des étudiants du fichier "étudiants" et insertions de la colonne dans le fichier "collaboration" pour étudiant1 et étudiant2
 
 sql_requete4 <- "
@@ -366,10 +380,13 @@ resultats_collab2 <- dbGetQuery(con, sql_requete2)
 resultats_collab2
 write.csv(resultats_collab2, '/resultats.csv', row.names=FALSE)
 
+=======
+>>>>>>> 63793a0f65ac149ddc789ed2254544f0edb1a5df
 #Deconnexion du SQL
 dbDisconnect(con)
 
 #igraph
+<<<<<<< HEAD
 interaction_df <- data.frame(etudiantA = Collab_corr$etudiant1, etudiantB = Collab_corr$etudiant2, stringsAsFactors = TRUE)
 interaction_ig <- graph.data.frame(interaction_df,directed = T)
 V(interaction_ig)$label <- NA
@@ -386,17 +403,39 @@ kamada_layout <- layout.kamada.kawai(interaction_ig)
 plot(interaction_ig, 
      layout = kamada_layout,
      vertex.size = 14,
+=======
+interaction_df <- data.frame(etudiantA = collaboration$etudiant1, etudiantB = collaboration$etudiant2, stringsAsFactors = F)
+interaction_ig <- graph.edgelist(interaction_matrice , directed=T)
+etudiant_df <- data.frame(etudiant = etudiant$prenom_nom, prog = etudiant$programme)
+
+color_map <- c('269000' = 'red', '205000' = 'blue', '267000' = 'green', '224000' = 'yellow', 'NA' = 'gray')
+V(interaction_ig)$color <- 'white'
+for (i in 1:nrow(etudiant_df)) {
+  node_id <- etudiant_df[i, 'prenom_nom']
+  attribute <- etudiant_df[i, 'programme']
+  color <- color_map[attribute]
+  V(interaction_ig)$color[node_id] <- color
+}
+
+plot(interaction_ig, 
+     layout = kamada_layout, 
+     vertex.size = 16,
+>>>>>>> 63793a0f65ac149ddc789ed2254544f0edb1a5df
      vertex.frame.color = NA,
+     vertex.label = NA,
      vertex.label.cex = 1.2,
      edge.curved = .2,
-     edge.arrow.size = .3,
+     edge.arrow.size = .1,
      edge.width = 1)
+<<<<<<< HEAD
 interaction.g <- graph.data.frame(Collab_corr, directed = T)
 V(interaction.g)$label <- NA
 pal <- rainbow(n=length(unique(interaction.g$affilation)))
 oneAffil <- interaction.g$affilation[!duplicated(interaction.g$vertex)]
 V(interaction.g)$color <- pal[oneAffil]
 plot(interaction.g)
+=======
+>>>>>>> 63793a0f65ac149ddc789ed2254544f0edb1a5df
 
 #Figure 3
 collab_etudiant <- read.csv2("arbres.csv")
@@ -406,5 +445,8 @@ plot(frequence, paires[,1], axes =TRUE,
      xlab = "Fréquence", ylab = "Nb paires différentes qui ont collaboré ensemble")
 title(main = "Fréquence de collaboration des étudiants en fonction du nombre de paires différentes qui ont collaboré ensemble")
 usethis::git_sitrep()
+<<<<<<< HEAD
 
 tar_visnetwork()
+=======
+>>>>>>> 63793a0f65ac149ddc789ed2254544f0edb1a5df
