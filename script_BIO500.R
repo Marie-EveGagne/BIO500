@@ -241,9 +241,9 @@ Collab_corr <- Collab_corr[!duplicated(Collab_corr), ]
 
 rm(collaboration)
 
-write.csv(cours, 'BIO500/merge_cours.csv', row.names=FALSE)
-write.csv(etudiant, 'BIO500/merge_etudiant.csv', row.names=FALSE)
-write.csv(Collab_corr, 'BIO500/merge_collaboration.csv', row.names=FALSE)
+write.csv(cours, 'merge_cours.csv', row.names=FALSE)
+write.csv(etudiant, 'merge_etudiant.csv', row.names=FALSE)
+write.csv(Collab_corr, 'merge_collaboration.csv', row.names=FALSE)
 
 
 #Connection au SQL, creations des matrices SQL et injection des donnees 
