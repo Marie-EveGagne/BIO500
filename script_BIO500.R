@@ -5,6 +5,7 @@ install.packages('data.table', dependencies=TRUE)
 install.packages('stringdist', dependencies=TRUE)
 install.packages('igraph')
 install.packages("RColorBrewer")
+install.packages('purrr')
 library(RSQLite)
 library(stringr)
 library(dplyr)
@@ -12,6 +13,7 @@ library(data.table)
 library(stringdist)
 library(igraph)
 library(RColorBrewer)
+library(purrr)
 
 setwd('C:/Users/Marie-Eve/OneDrive - USherbrooke/Bureau/UdeS/methode_comp/travail_collab/BIO500')
 
@@ -210,6 +212,7 @@ agrep('rosalie_gagnon', etudiant$prenom_nom, max.distance = 1, value = FALSE)
 etudiant[118,1] <- paste0('mia_carriere')
 etudiant[118,3] <- paste0('carriere')
 
+
 etudiant <- etudiant[-c(30,85,119,134),]
 etudiant <- etudiant[,-c(9)]
 
@@ -221,13 +224,18 @@ collaboration <- collaboration[!duplicated(collaboration), ]
 Collab_corr <- collaboration
 
 for (i in 1:nrow(etudiant)) {
-  differences1 <- agrep(etudiant[i,1], Collab_corr$etudiant1, max.distance = 5, value = FALSE)
-  differences2 <- agrep(etudiant[i,1], Collab_corr$etudiant2, max.distance = 5, value = FALSE)
-  for (j in 1:length(differences1)) {
-    Collab_corr[differences1[j],1] <- paste0(etudiant[i,1])
+  differences1 <- agrep(etudiant[i,1], Collab_corr$etudiant1, max.distance = 2, value = FALSE)
+  differences2 <- agrep(etudiant[i,1], Collab_corr$etudiant2, max.distance = 2, value = FALSE)
+  if(is_empty(differences1)==FALSE){
+    for (j in 1:length(differences1)) {
+      Collab_corr[differences1[j],1] <- paste0(etudiant[i,1])
+    }
   }
-  for (k in 1:length(differences2)) {
-    Collab_corr[differences2[k],2] <- paste0(etudiant[i,1])
+  if(is_empty(differences2)==FALSE){
+    for (k in 1:length(differences2)) {
+      Collab_corr[differences2[k],2] <- paste0(etudiant[i,1])
+    }
+    i=i+1
   }
 }
 

@@ -2,9 +2,9 @@
 
 #Corrections des noms mal ecrits dans etudiant
 
-corr_etd = function(etudiant_clean){
+corr_etd = function(data_etudiant){
    
-   etudiant <- etudiant_clean
+   etudiant <- data_etudiant
    
 
  for (i in 1:nrow(etudiant)) {
@@ -13,7 +13,6 @@ corr_etd = function(etudiant_clean){
    etudiant[i,1] <- paste0(etudiant[i,2],"_",etudiant[i,3])
  }
    
-#}
 
 etudiant <- etudiant[order(etudiant$prenom_nom),]
 
@@ -140,34 +139,45 @@ etudiant[118,3] <- paste0('carriere')
 etudiant <- etudiant[-c(30,85,119,134,136,164,166),]
 etudiant <- etudiant[,-c(9)]
 
+path_as_csv <-  file.path(getwd(),"etudiant.csv")
+
+write.csv(etudiant, file=path_as_csv, row.names=FALSE)
+
 }
 
-corr_collab = function(collab_clean){
+corr_collab = function(data_collab){
    
-   collaboration <- collab_clean
-   etudiant <- tar_read(corr_etd)
+   Collab_corr <- data_collab
+   etudiant <- read.table('etudiant.csv', header=TRUE, sep = ',', stringsAsFactors = FALSE)
    
-   print('hello')
-   
-}
-   
-
 #Correction des noms mal ecrits dans collaboration
 
-#Collab_corr <- collaboration
 
-#for (i in 1:nrow(etudiant)) {
-#  differences1 <- agrep(etudiant[i,1], Collab_corr$etudiant1, max.distance = 5, value = FALSE)
-#  differences2 <- agrep(etudiant[i,1], Collab_corr$etudiant2, max.distance = 5, value = FALSE)
-#  for (j in 1:length(differences1)) {
-#    Collab_corr[differences1[j],1] <- paste0(etudiant[i,1])
-#  }
-#  for (k in 1:length(differences2)) {
-#    Collab_corr[differences2[k],2] <- paste0(etudiant[i,1])
-#  }
-#}
+ for (i in 1:nrow(etudiant)) {
+    differences1 <- agrep(etudiant[i,1], Collab_corr$etudiant1, max.distance = 2, value = FALSE)
+    differences2 <- agrep(etudiant[i,1], Collab_corr$etudiant2, max.distance = 2, value = FALSE)
+    if(is_empty(differences1)==FALSE){
+       for (j in 1:length(differences1)) {
+          Collab_corr[differences1[j],1] <- paste0(etudiant[i,1])
+       }
+    }
+    if(is_empty(differences2)==FALSE){
+       for (k in 1:length(differences2)) {
+          Collab_corr[differences2[k],2] <- paste0(etudiant[i,1])
+       }
+       i=i+1
+    }
+ }
 
-#Collab_corr <- Collab_corr[!duplicated(Collab_corr), ]
+Collab_corr <- Collab_corr[!duplicated(Collab_corr), ]
+   
+path_csv <-  file.path(getwd(),"collaboration.csv")
+
+print(path_csv )
+
+write.csv(Collab_corr, file=path_csv, row.names=FALSE)
+
+}
 
 #write.csv(cours, 'BIO500/merge_cours.csv', row.names=FALSE)
 #write.csv(etudiant, '/BIO500/merge_etudiant.csv', row.names=FALSE)
