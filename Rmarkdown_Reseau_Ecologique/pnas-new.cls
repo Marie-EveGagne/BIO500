@@ -93,17 +93,17 @@
 \newcommand\numberthis{\addtocounter{equation}{1}\tag{\theequation}}
 
 %% Watermark 
-\newboolean{displaywatermark}
-\setboolean{displaywatermark}{true} % Set to false to remove the watermark
-\AtBeginDocument{%
-  \ifthenelse{\boolean{displaywatermark}}{%
-  \RequirePackage{draftwatermark}
-  \SetWatermarkAngle{45}
-  \SetWatermarkColor{gray!20}
-  \SetWatermarkFontSize{3cm}
-  \SetWatermarkText{{\fontfamily{bch}\bfseries DRAFT}}
-}{}
-}
+%\newboolean{displaywatermark}
+%\setboolean{displaywatermark}{true} % Set to false to remove the watermark
+%\AtBeginDocument{%
+ % \ifthenelse{\boolean{displaywatermark}}{%
+  %\RequirePackage{draftwatermark}
+  %\SetWatermarkAngle{45}
+  %\SetWatermarkColor{gray!20}
+  %\SetWatermarkFontSize{3cm}
+  %\SetWatermarkText{{\fontfamily{bch}\bfseries DRAFT}}
+%}{}
+%}
 
 %% Copyright statement (not used)
 \newboolean{displaycopyright}
@@ -205,7 +205,7 @@
 \pagestyle{fancy}          % Enables the custom headers/footers
 
 \fancypagestyle{firststyle}{
-   %\fancyfoot[R]%{\footerfont PNAS\hspace{7pt}|\hspace{7pt}\textbf{\today}\hspace{7pt}|%\hspace{7pt}vol. XXX\hspace{7pt}|\hspace{7pt}no. 
+   \fancyfoot[R]{\footerfont PNAS\hspace{7pt}|\hspace{7pt}\textbf{\today}\hspace{7pt}|\hspace{7pt}vol. XXX\hspace{7pt}|\hspace{7pt}no. 
    XX\hspace{7pt}|\hspace{7pt}\textbf{\thepage\textendash\pageref{LastPage}}}
    \fancyfoot[L]{\footerfont\@ifundefined{@doi}{}{\@doi}}
 }

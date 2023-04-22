@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.4.21)  21 APR 2023 21:00
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.4.21)  21 APR 2023 21:54
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -948,9 +948,6 @@ Package hyperref Info: Link coloring ON on input line 48.
 \@outlinefile=\write4
 \openout4 = `Rmarkdown_Reseau_Ecologique.out'.
 
-(c:/Users/Daphnee/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/draftwatermark/draftwatermark.sty
-Package: draftwatermark 2020/12/08 3.0 Put a gray textual watermark on document pages
-)
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
 *geometry* verbose mode - [ preamble ] result:
@@ -1091,12 +1088,7 @@ LaTeX Font Info:    Font shape `T1/phv/b/n' will be
 (Font)              scaled to size 6.64998pt on input line 140.
 LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <7> on input line 148.
-LaTeX Font Info:    Trying to load font information for T1+bch on input line 148.
-(c:/Users/Daphnee/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/psnfss/t1bch.fd
-File: t1bch.fd 2004/10/18 font definitions for T1/bch.
-) (c:/Users/Daphnee/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/microtype/mt-bch.cfg
-File: mt-bch.cfg 2007/03/03 v1.5 microtype config. file: Bitstream Charter (RS)
-) [1{c:/Users/Daphnee/AppData/Roaming/TinyTeX/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{c:/Users/Daphnee/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/base/8r.enc}{c:/Users/Daphnee/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}
+[1{c:/Users/Daphnee/AppData/Roaming/TinyTeX/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{c:/Users/Daphnee/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{c:/Users/Daphnee/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/base/8r.enc}
 
 LaTeX Warning: No \author given.
 
@@ -1122,18 +1114,18 @@ Package rerunfilecheck Info: File `Rmarkdown_Reseau_Ecologique.out' has not chan
 (rerunfilecheck)             Checksum: F0BEC0C86A198F6BE7A48A5458484BAE;1655.
  ) 
 Here is how much of TeX's memory you used:
- 30020 strings out of 477961
- 568261 string characters out of 5836758
- 1865068 words of memory out of 5000000
- 49525 multiletter control sequences out of 15000+600000
- 571983 words of font info for 118 fonts, out of 8000000 for 9000
+ 29847 strings out of 477961
+ 564221 string characters out of 5836758
+ 1864068 words of memory out of 5000000
+ 49369 multiletter control sequences out of 15000+600000
+ 565651 words of font info for 113 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  117i,14n,118p,1024b,1113s stack positions out of 10000i,1000n,20000p,200000b,200000s
-<c:/Users/Daphnee/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/bitstrea/charter/bchb8a.pfb><c:/Users/Daphnee/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr9.pfb><c:/Users/Daphnee/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmssbx10.pfb><c:/Users/Daphnee/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb><c:/Users/Daphnee/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb>
-Output written on Rmarkdown_Reseau_Ecologique.pdf (2 pages, 171911 bytes).
+<c:/Users/Daphnee/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr9.pfb><c:/Users/Daphnee/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmssbx10.pfb><c:/Users/Daphnee/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb><c:/Users/Daphnee/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb>
+Output written on Rmarkdown_Reseau_Ecologique.pdf (2 pages, 166731 bytes).
 PDF statistics:
- 142 PDF objects out of 1000 (max. 8388607)
- 124 compressed objects within 2 object streams
+ 137 PDF objects out of 1000 (max. 8388607)
+ 121 compressed objects within 2 object streams
  36 named destinations out of 1000 (max. 500000)
- 44690 words of extra memory for PDF output out of 51595 (max. 10000000)
+ 42130 words of extra memory for PDF output out of 42996 (max. 10000000)
 

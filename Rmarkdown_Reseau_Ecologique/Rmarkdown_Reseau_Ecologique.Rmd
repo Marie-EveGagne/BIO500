@@ -3,7 +3,8 @@ title: Réseau écologique des étudiants de Sherbrooke
 output:
   rticles::pnas_article
 ---
-  \section*{Auteurs}
+
+\section*{Auteurs}
 Yuriko Archambault \\
 Marie-Ève Gagné \\
 Juliette Larrivée \\
