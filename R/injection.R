@@ -38,10 +38,27 @@ FOREIGN KEY (sigle, session)     REFERENCES tbl_cours(sigle, session)
 );"
 
 
-
+# le code pour cette partie bug
 #dbSendQuery(con, tbl_cours)
 #dbSendQuery(con, tbl_etudiant)
 #dbSendQuery(con, tbl_collaboration)
-dbDisconnect(con)
+
 }
+
+inject = function(collab_clean, etudiant_clean, data_cours){
+  
+  tbl_cours <-
+  tbl_etudiant <-
+  tbl_collaboration <-
+  cours <-
+  etudiant <-
+  Collab_corr <-
+  
+dbWriteTable(con, append = TRUE, name = "tbl_cours", value = cours, row.names = FALSE)
+dbWriteTable(con, append = TRUE, name = "tbl_etudiant", value = etudiant, row.names = FALSE)
+dbWriteTable(con, append = TRUE, name = "tbl_collaboration", value = Collab_corr, row.names = FALSE)
+
+}
+
+
 

@@ -9,13 +9,11 @@ library(stringdist)
 library(igraph)
 library(RColorBrewer)
 
-
-setwd("C:/Users/Marie-Eve/OneDrive - USherbrooke/Bureau/UdeS/methode_comp/travail_collab/BIO500")
-
 source("R/prep_donnees.R")
 source("R/correction.R")
 source("R/injection.R")
-tar_option_set(packages = c("RSQLite", 'stringr','dplyr','data.table','stringdist','igraph','purrr'))
+#source("R/tbl_fig.R")
+tar_option_set(packages = c("RSQLite", 'stringr','dplyr','data.table','stringdist','igraph','purrr','RColorBrewer'))
 
 list(
    tar_target(
@@ -46,20 +44,20 @@ list(
    tar_target(
      collab_clean,
      corr_collab(data_collab)
-   ),
-   tar_target(
-     sql,
-     tables_sql(collab_clean)
+   ))   
+#   ),  
+#La target sql ne marche pas et bloque le reste   
+#   tar_target(
+#     sql,
+#     tables_sql(collab_clean)
 #   ),
 #   tar_target(
 #     injection,
 #     inject(collab_clean)
-   ))   
-#   tar_target(
-#     name = graphique,
-#     command = tbl_fig(SQL)
 #   ),
-# )
+#   tar_target(
+#     graphique,
+#     tbl_fig(injection)
 #))
 
 
