@@ -321,68 +321,6 @@ GROUP BY etudiant1, etudiant2;"
 lien_paire_etudiants <- dbGetQuery(con, sql_requete2)
 head(lien_paire_etudiants)
 
-#sélection du programme des étudiants du fichier "étudiants" et insertions de la colonne dans le fichier "collaboration" pour étudiant1 et étudiant2
-
-sql_requete4 <- "
-  SELECT tbl_etudiant.prenom_nom, tbl_collaboration.etudiant1, tbl_etudiant.programme
-  FROM tbl_collaboration
-  LEFT JOIN tbl_etudiant
-  ON tbl_etudiant.prenom_nom = tbl_collaboration.etudiant1;"
-
-etudiant_prog <- dbGetQuery(con, sql_requete4)
-head(etudiant_prog)
-
-tbl_prog <- "CREATE TABLE etudiant_prog (
-prenom_nom    VARCHAR(40) NOT NULL,
-etudiant1     VARCHAR(40) NOT NULL,
-programme     VARCHAR(6),
-PRIMARY KEY (prenom_nom)
-);"
-
-dbSendQuery(con, "DROP TABLE etudiant_prog;")
-dbSendQuery(con, tbl_prog)
-dbWriteTable(con, append = TRUE, name = "tbl_prog", value = etudiant_prog, row.names = FALSE)
-
-sql_requete5 <- "
-  SELECT tbl_etudiant.prenom_nom, tbl_collaboration.etudiant2, tbl_etudiant.programme
-  FROM tbl_collaboration
-  LEFT JOIN tbl_etudiant
-  ON tbl_etudiant.prenom_nom = tbl_collaboration.etudiant2;"
-
-sql_requete5 <- "
-  SELECT tbl_prog.*, tbl_collaboration.etudiant2, tbl_etudiant.programme
-  FROM tbl_collaboration
-  LEFT JOIN tbl_etudiant
-    ON tbl_etudiant.prenom_nom = tbl_collaboration.etudiant2
-  LEFT JOIN tbl_collaboration
-    ON tbl_etudiant.prenom_nom = tbl_collaboration.etudiant2
-  ;"
-
-etudiant_prog2 <- dbGetQuery(con, sql_requete5)
-head(etudiant_prog2)
-
-tbl_prog2 <- "CREATE TABLE etudiant_prog2 (
-prenom_nom     VARCHAR(40) NOT NULL,
-etudiant2     VARCHAR(40) NOT NULL,
-programme     VARCHAR(6),
-PRIMARY KEY (prenom_nom)
-);"
-
-dbSendQuery(con, tbl_prog2)
-dbWriteTable(con, append = TRUE, name = "tbl_prog2", value = etudiant_prog2, row.names = FALSE)
-
-sql_requete6 <- "
-  SELECT tbl_prog.*, tbl_prog2.*
-  FROM   tbl_prog
-  LEFT JOIN tbl_prog2 USING (prenom_nom)
-  UNION ALL
-  SELECT tbl_prog.*, tbl_prog2.*
-FROM tbl_prog
-LEFT JOIN tbl_prog2 USING(prenom_nom)
-;"
-
-programme <- dbSendQuery(con, sql_requete6)
-
 dbListTables(con)
 
 resultats_collab2 <- dbGetQuery(con, sql_requete2)
@@ -434,6 +372,6 @@ frequence <- as.numeric(row.names(paires))
 plot(frequence, paires[,1], axes =TRUE,
      xlab = "Fréquence", ylab = "Nb paires différentes qui ont collaboré ensemble")
 title(main = "Fréquence de collaboration des étudiants en fonction du nombre de paires différentes qui ont collaboré ensemble")
-usethis::git_sitrep()
+
 
 tar_visnetwork()
