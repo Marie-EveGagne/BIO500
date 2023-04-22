@@ -229,9 +229,9 @@ Collab_corr <- Collab_corr[!duplicated(Collab_corr), ]
 
 rm(collaboration)
 
-write.csv(cours, 'merge_cours.csv', row.names=FALSE)
-write.csv(etudiant, 'merge_etudiant.csv', row.names=FALSE)
-write.csv(Collab_corr, 'merge_collaboration.csv', row.names=FALSE)
+write.csv(cours, '/resultats/merge_cours.csv', row.names=FALSE)
+write.csv(etudiant, '/resultats/merge_etudiant.csv', row.names=FALSE)
+write.csv(Collab_corr, '/resultats/merge_collaboration.csv', row.names=FALSE)
 
 
 #Connection au SQL, creations des matrices SQL et injection des donnees 
@@ -283,7 +283,7 @@ sql_requete1 <- "SELECT etudiant1, count(etudiant2)
                 FROM tbl_collaboration
                 GROUP BY etudiant1;"
 resultats_collab1 <- dbGetQuery(con, sql_requete1)
-write.csv(resultats_collab1, 'resultats.csv', row.names=FALSE)
+write.csv(resultats_collab1, '/resultats/resultats.csv', row.names=FALSE)
 
 sql_requete2 <-"SELECT etudiant1, etudiant2, sigle, COUNT(*) AS nb_collab
 FROM tbl_collaboration
@@ -292,14 +292,14 @@ GROUP BY etudiant1, etudiant2, sigle"
 #LEFT JOIN tbl_cours ON tbl_collaboration.sigle=tbl_cours.sigle;"
 resultats_collab2 <- dbGetQuery(con, sql_requete2)
 resultats_collab2
-write.csv(resultats_collab2, 'resultats2.csv', row.names=FALSE)
+write.csv(resultats_collab2, '/resultats/resultats2.csv', row.names=FALSE)
 
 
 dbListTables(con)
 
 resultats_collab2 <- dbGetQuery(con, sql_requete2)
 resultats_collab2
-write.csv(resultats_collab2, 'resultats.csv', row.names=FALSE)
+write.csv(resultats_collab2, '/resultats/resultats.csv', row.names=FALSE)
 
 #Deconnexion du SQL
 dbDisconnect(con)
