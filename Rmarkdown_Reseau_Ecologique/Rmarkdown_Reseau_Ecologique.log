@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.4.21)  21 APR 2023 19:22
+=======
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.4.21)  21 APR 2023 21:54
+>>>>>>> 85926c97396f37f442647685591a54f64f4213d0
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -919,6 +923,7 @@ Package: pnasresearcharticle 2018/05/06 v1.3 PNAS two column research article st
 ) (./Rmarkdown_Reseau_Ecologique.aux)
 \openout1 = `Rmarkdown_Reseau_Ecologique.aux'.
 
+<<<<<<< HEAD
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 52.
 LaTeX Font Info:    ... okay on input line 52.
 LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 52.
@@ -938,19 +943,43 @@ LaTeX Font Info:    ... okay on input line 52.
 LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 52.
 LaTeX Font Info:    ... okay on input line 52.
 (c:/Users/Julie/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
+=======
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 48.
+LaTeX Font Info:    ... okay on input line 48.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 48.
+LaTeX Font Info:    ... okay on input line 48.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 48.
+LaTeX Font Info:    ... okay on input line 48.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 48.
+LaTeX Font Info:    ... okay on input line 48.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 48.
+LaTeX Font Info:    ... okay on input line 48.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 48.
+LaTeX Font Info:    ... okay on input line 48.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 48.
+LaTeX Font Info:    ... okay on input line 48.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 48.
+LaTeX Font Info:    ... okay on input line 48.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 48.
+LaTeX Font Info:    ... okay on input line 48.
+(c:/Users/Daphnee/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
+>>>>>>> 85926c97396f37f442647685591a54f64f4213d0
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
 Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 485.
 (c:/Users/Julie/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 ))
-Package hyperref Info: Link coloring ON on input line 52.
+Package hyperref Info: Link coloring ON on input line 48.
 (./Rmarkdown_Reseau_Ecologique.out) (./Rmarkdown_Reseau_Ecologique.out)
 \@outlinefile=\write4
 \openout4 = `Rmarkdown_Reseau_Ecologique.out'.
 
+<<<<<<< HEAD
 (c:/Users/Julie/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/draftwatermark/draftwatermark.sty
 Package: draftwatermark 2020/12/08 3.0 Put a gray textual watermark on document pages
 )
+=======
+>>>>>>> 85926c97396f37f442647685591a54f64f4213d0
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
 *geometry* verbose mode - [ preamble ] result:
@@ -995,54 +1024,66 @@ Package newfloat Info: `sidecap' package detected.
 
 Package sidecap Warning: Package `ragged2e' not found -- expect bad formatting.
 
-LaTeX Info: Redefining \microtypecontext on input line 52.
-Package microtype Info: Applying patch `item' on input line 52.
-Package microtype Info: Applying patch `toc' on input line 52.
+LaTeX Info: Redefining \microtypecontext on input line 48.
+Package microtype Info: Applying patch `item' on input line 48.
+Package microtype Info: Applying patch `toc' on input line 48.
 
-Package microtype Warning: Unable to apply patch `eqnum' on input line 52.
+Package microtype Warning: Unable to apply patch `eqnum' on input line 48.
 
-Package microtype Info: Applying patch `footnote' on input line 52.
-Package microtype Info: Applying patch `verbatim' on input line 52.
+Package microtype Info: Applying patch `footnote' on input line 48.
+Package microtype Info: Applying patch `verbatim' on input line 48.
 Package microtype Info: Generating PDF output.
 Package microtype Info: Character protrusion enabled (level 2).
 Package microtype Info: Using default protrusion set `alltext'.
 Package microtype Info: Automatic font expansion enabled (level 2),
 (microtype)             stretch: 20, shrink: 20, step: 1, non-selected.
 Package microtype Info: Using default expansion set `alltext-nott'.
-LaTeX Info: Redefining \showhyphens on input line 52.
+LaTeX Info: Redefining \showhyphens on input line 48.
 Package microtype Info: No adjustment of tracking.
 Package microtype Info: No adjustment of interword spacing.
 Package microtype Info: No adjustment of character kerning.
 (c:/Users/Julie/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/microtype/mt-cmr.cfg
 File: mt-cmr.cfg 2013/05/19 v2.2 microtype config. file: Computer Modern Roman (RS)
 )
+<<<<<<< HEAD
 LaTeX Font Info:    Trying to load font information for T1+lmss on input line 60.
 (c:/Users/Julie/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/lm/t1lmss.fd
+=======
+LaTeX Font Info:    Trying to load font information for T1+lmss on input line 56.
+(c:/Users/Daphnee/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/lm/t1lmss.fd
+>>>>>>> 85926c97396f37f442647685591a54f64f4213d0
 File: t1lmss.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    Font shape `T1/lmss/b/n' in size <9> not available
-(Font)              Font shape `T1/lmss/bx/n' tried instead on input line 60.
+(Font)              Font shape `T1/lmss/bx/n' tried instead on input line 56.
 Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             `lmss' (encoding: T1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
 LaTeX Font Info:    Font shape `T1/lmss/b/n' in size <22> not available
+<<<<<<< HEAD
 (Font)              Font shape `T1/lmss/bx/n' tried instead on input line 60.
 LaTeX Font Info:    Trying to load font information for T1+phv on input line 60.
 (c:/Users/Julie/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/psnfss/t1phv.fd
+=======
+(Font)              Font shape `T1/lmss/bx/n' tried instead on input line 56.
+LaTeX Font Info:    Trying to load font information for T1+phv on input line 56.
+(c:/Users/Daphnee/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/psnfss/t1phv.fd
+>>>>>>> 85926c97396f37f442647685591a54f64f4213d0
 File: t1phv.fd 2020/03/25 scalable font definitions for T1/phv.
 )
 LaTeX Font Info:    Font shape `T1/phv/m/n' will be
-(Font)              scaled to size 8.54997pt on input line 60.
+(Font)              scaled to size 8.54997pt on input line 56.
 Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             `phv' (encoding: T1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
 LaTeX Font Info:    Font shape `T1/phv/b/n' will be
-(Font)              scaled to size 8.54997pt on input line 60.
+(Font)              scaled to size 8.54997pt on input line 56.
 LaTeX Font Info:    Font shape `T1/phv/m/n' will be
-(Font)              scaled to size 6.64998pt on input line 60.
+(Font)              scaled to size 6.64998pt on input line 56.
 LaTeX Font Info:    Font shape `T1/phv/b/n' will be
+<<<<<<< HEAD
 (Font)              scaled to size 7.59998pt on input line 62.
 LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 62.
 (c:/Users/Julie/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/lm/ot1lmr.fd
@@ -1058,36 +1099,65 @@ File: omslmsy.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    Trying to load font information for OMX+lmex on input line 62.
 (c:/Users/Julie/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/lm/omxlmex.fd
+=======
+(Font)              scaled to size 7.59998pt on input line 58.
+LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 58.
+(c:/Users/Daphnee/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/lm/ot1lmr.fd
+File: ot1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
+)
+LaTeX Font Info:    Trying to load font information for OML+lmm on input line 58.
+(c:/Users/Daphnee/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/lm/omllmm.fd
+File: omllmm.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
+)
+LaTeX Font Info:    Trying to load font information for OMS+lmsy on input line 58.
+(c:/Users/Daphnee/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/lm/omslmsy.fd
+File: omslmsy.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
+)
+LaTeX Font Info:    Trying to load font information for OMX+lmex on input line 58.
+(c:/Users/Daphnee/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/lm/omxlmex.fd
+>>>>>>> 85926c97396f37f442647685591a54f64f4213d0
 File: omxlmex.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <9> on input line 62.
+(Font)              <9> on input line 58.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <6> on input line 62.
+(Font)              <6> on input line 58.
 LaTeX Font Info:    External font `lmex10' loaded for size
+<<<<<<< HEAD
 (Font)              <5> on input line 62.
 LaTeX Font Info:    Trying to load font information for U+msa on input line 62.
 (c:/Users/Julie/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/amsfonts/umsa.fd
+=======
+(Font)              <5> on input line 58.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 58.
+(c:/Users/Daphnee/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/amsfonts/umsa.fd
+>>>>>>> 85926c97396f37f442647685591a54f64f4213d0
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 ) (c:/Users/Julie/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/microtype/mt-msa.cfg
 File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
 )
+<<<<<<< HEAD
 LaTeX Font Info:    Trying to load font information for U+msb on input line 62.
 (c:/Users/Julie/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/amsfonts/umsb.fd
+=======
+LaTeX Font Info:    Trying to load font information for U+msb on input line 58.
+(c:/Users/Daphnee/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/amsfonts/umsb.fd
+>>>>>>> 85926c97396f37f442647685591a54f64f4213d0
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) (c:/Users/Julie/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/microtype/mt-msb.cfg
 File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
 )
 LaTeX Font Info:    Font shape `T1/phv/m/n' will be
-(Font)              scaled to size 9.49997pt on input line 69.
+(Font)              scaled to size 9.49997pt on input line 64.
 LaTeX Font Info:    Font shape `T1/phv/b/n' will be
-(Font)              scaled to size 9.49997pt on input line 69.
+(Font)              scaled to size 9.49997pt on input line 64.
 <frog.png, id=71, 200.75pt x 198.7425pt>
 File: frog.png Graphic file (type png)
 <use frog.png>
-Package pdftex.def Info: frog.png  used on input line 146.
+Package pdftex.def Info: frog.png  used on input line 139.
 (pdftex.def)             Requested size: 200.7495pt x 198.742pt.
 LaTeX Font Info:    Font shape `T1/phv/b/n' will be
+<<<<<<< HEAD
 (Font)              scaled to size 6.64998pt on input line 148.
 LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 152.
 (c:/Users/Julie/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/lm/t1lmtt.fd
@@ -1109,18 +1179,27 @@ File: mt-bch.cfg 2007/03/03 v1.5 microtype config. file: Bitstream Charter (RS)
 
 {c:/Users/Julie/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{c:/Users/Julie/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc} <./frog.png>]
 Package mdframed Info: mdframed works in twoside mode on input line 172.
+=======
+(Font)              scaled to size 6.64998pt on input line 140.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <7> on input line 148.
+[1{c:/Users/Daphnee/AppData/Roaming/TinyTeX/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{c:/Users/Daphnee/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{c:/Users/Daphnee/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/base/8r.enc}
+
+LaTeX Warning: No \author given.
+
+
+
+ <./frog.png>]
+Package mdframed Info: mdframed works in twoside mode on input line 148.
+>>>>>>> 85926c97396f37f442647685591a54f64f4213d0
 Package mdframed Info: mdframed inside float 
- mdframed uses option nobreak mdframed on input line 172.
+ mdframed uses option nobreak mdframed on input line 148.
 Package mdframed Info: mdframed inside a box 
- mdframed uses option nobreak mdframed on input line 172.
+ mdframed uses option nobreak mdframed on input line 148.
 LaTeX Font Info:    Font shape `T1/phv/m/n' will be
-(Font)              scaled to size 5.69998pt on input line 172.
+(Font)              scaled to size 5.69998pt on input line 148.
 LaTeX Font Info:    Font shape `T1/phv/m/n' will be
-(Font)              scaled to size 4.74998pt on input line 172.
-LaTeX Font Info:    Font shape `T1/phv/m/it' in size <7> not available
-(Font)              Font shape `T1/phv/m/sl' tried instead on input line 172.
-LaTeX Font Info:    Font shape `T1/phv/m/sl' will be
-(Font)              scaled to size 6.64998pt on input line 172.
+(Font)              scaled to size 4.74998pt on input line 148.
 [2
 
 
@@ -1131,6 +1210,7 @@ Package rerunfilecheck Info: File `Rmarkdown_Reseau_Ecologique.out' has not chan
 (rerunfilecheck)             Checksum: F0BEC0C86A198F6BE7A48A5458484BAE;1655.
  ) 
 Here is how much of TeX's memory you used:
+<<<<<<< HEAD
  30094 strings out of 477961
  568417 string characters out of 5836922
  1870068 words of memory out of 5000000
@@ -1140,9 +1220,20 @@ Here is how much of TeX's memory you used:
  117i,14n,118p,1024b,1115s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <c:/Users/Julie/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/bitstrea/charter/bchb8a.pfb><c:/Users/Julie/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi9.pfb><c:/Users/Julie/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr6.pfb><c:/Users/Julie/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr9.pfb><c:/Users/Julie/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmssbx10.pfb><c:/Users/Julie/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmtt9.pfb><c:/Users/Julie/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb><c:/Users/Julie/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb><c:/Users/Julie/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/urw/helvetic/uhvro8a.pfb>
 Output written on Rmarkdown_Reseau_Ecologique.pdf (2 pages, 226117 bytes).
+=======
+ 29847 strings out of 477961
+ 564221 string characters out of 5836758
+ 1864068 words of memory out of 5000000
+ 49369 multiletter control sequences out of 15000+600000
+ 565651 words of font info for 113 fonts, out of 8000000 for 9000
+ 14 hyphenation exceptions out of 8191
+ 117i,14n,118p,1024b,1113s stack positions out of 10000i,1000n,20000p,200000b,200000s
+<c:/Users/Daphnee/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr9.pfb><c:/Users/Daphnee/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmssbx10.pfb><c:/Users/Daphnee/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb><c:/Users/Daphnee/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb>
+Output written on Rmarkdown_Reseau_Ecologique.pdf (2 pages, 166731 bytes).
+>>>>>>> 85926c97396f37f442647685591a54f64f4213d0
 PDF statistics:
- 167 PDF objects out of 1000 (max. 8388607)
- 140 compressed objects within 2 object streams
+ 137 PDF objects out of 1000 (max. 8388607)
+ 121 compressed objects within 2 object streams
  36 named destinations out of 1000 (max. 500000)
- 49298 words of extra memory for PDF output out of 51595 (max. 10000000)
+ 42130 words of extra memory for PDF output out of 42996 (max. 10000000)
 
