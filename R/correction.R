@@ -137,7 +137,7 @@ etudiant[118,3] <- paste0('carriere')
 etudiant <- etudiant[-c(30,85,119,134,136,164,166),]
 etudiant <- etudiant[,-c(9)]
 
-path_as_csv <-  file.path(getwd(),"etudiant.csv")
+path_as_csv <-  file.path(getwd(),"data/etudiant.csv")
 
 write.csv(etudiant, file=path_as_csv, row.names=FALSE)
 
@@ -170,13 +170,10 @@ corr_collab = function(data_collab, etudiant_clean){
 
 Collab_corr <- Collab_corr[!duplicated(Collab_corr), ]
    
-path_as_csv <-  file.path(getwd(),"collaboration.csv")
+path_as_csv <-  file.path(getwd(),"data/collaboration.csv")
 
 write.csv(Collab_corr, path_as_csv, row.names=FALSE)
 
 Collab_corr
 }
 
-#write.csv(cours, 'BIO500/merge_cours.csv', row.names=FALSE)
-#write.csv(etudiant, '/BIO500/merge_etudiant.csv', row.names=FALSE)
-#write.csv(Collab_corr, '/BIO500/merge_collaboration.csv', row.names=FALSE)
