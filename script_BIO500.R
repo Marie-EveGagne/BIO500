@@ -286,6 +286,7 @@ sql_requete1 <- "SELECT etudiant1, count(etudiant2)
                 GROUP BY etudiant1;"
 resultats_collab1 <- dbGetQuery(con, sql_requete1)
 write.csv(resultats_collab1, file.path("resultats", "resultats.csv"), row.names=FALSE)
+write.csv(resultats_collab2, file.path("Rmarkdown_Reseau_Ecologique", "resultats.csv"), row.names=FALSE)
 
 sql_requete2 <-"SELECT etudiant1, etudiant2, sigle, COUNT(*) AS nb_collab
 FROM tbl_collaboration
@@ -295,7 +296,7 @@ GROUP BY etudiant1, etudiant2, sigle"
 resultats_collab2 <- dbGetQuery(con, sql_requete2)
 resultats_collab2
 write.csv(resultats_collab2, file.path("Rmarkdown_Reseau_Ecologique", "resultats2.csv"), row.names=FALSE)
-
+write.csv(resultats_collab1, file.path("resultats", "resultats2.csv"), row.names=FALSE)
 
 dbListTables(con)
 
@@ -374,4 +375,21 @@ tableau_moyennes <- data.frame(
 # Afficher le tableau
 kable(tableau_moyennes)
 
+
+#Tableau 2: Fréquence de collaborations en pourcentage selon le nombre de collaborations
+library(ggplot2)
+
+# Charger les données à partir du fichier CSV
+data <- read.csv("resultats2.csv")
+
+# Calculer la fréquence en pourcentage pour chaque nombre de collaborations
+freq_collab <- data %>%
+  group_by(nb_collab) %>%
+  summarize(freq = n()/nrow(data)*100)
+
+# Créer l'histogramme de la fréquence des collaborations en pourcentage
+ggplot(freq_collab, aes(x = nb_collab, y = freq)) +
+  geom_bar(stat = "identity", fill = "blue") +
+  labs(x = "Nombre de collaborations", y = "Fréquence en pourcentage") +
+  ggtitle("Fréquence des collaborations en pourcentage par nombre de collaborations")
 
