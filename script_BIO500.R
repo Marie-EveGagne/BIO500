@@ -356,4 +356,3 @@ cat("Nombre de paires ayant travaillé ensemble deux fois : ", n_pairs_2, "\n")
 
 
 
-
