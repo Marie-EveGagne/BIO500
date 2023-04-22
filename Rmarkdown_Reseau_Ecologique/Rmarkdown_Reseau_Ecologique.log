@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.4.21)  22 APR 2023 16:51
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.4.21)  22 APR 2023 16:55
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1131,9 +1131,9 @@ Overfull \hbox (12.0pt too wide) in paragraph at lines 237--238
  []
 
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <7> on input line 240.
+(Font)              <7> on input line 241.
 LaTeX Font Info:    Font shape `T1/phv/b/n' will be
-(Font)              scaled to size 6.64998pt on input line 240.
+(Font)              scaled to size 6.64998pt on input line 241.
 [1{c:/Users/Daphnee/AppData/Roaming/TinyTeX/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{c:/Users/Daphnee/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{c:/Users/Daphnee/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/base/8r.enc}
 
 LaTeX Warning: No \author given.
@@ -1141,39 +1141,46 @@ LaTeX Warning: No \author given.
 
 
  <./igraph_plot.png> <./moyenne.png>]
-Overfull \hbox (32.6776pt too wide) in paragraph at lines 250--250
+Overfull \hbox (32.6776pt too wide) in paragraph at lines 253--253
 []\T1/lmtt/m/n/9 ## Les objets suivants sont masqués depuis 'package:stats':[] 
  []
 
 
-Overfull \hbox (27.9526pt too wide) in paragraph at lines 256--256
+Overfull \hbox (27.9526pt too wide) in paragraph at lines 259--259
 []\T1/lmtt/m/n/9 ## Les objets suivants sont masqués depuis 'package:base':[] 
  []
 
 <Rmarkdown_Reseau_Ecologique_files/figure-latex/unnamed-chunk-4-1.pdf, id=55, 216.81pt x 144.54pt>
 File: Rmarkdown_Reseau_Ecologique_files/figure-latex/unnamed-chunk-4-1.pdf Graphic file (type pdf)
 <use Rmarkdown_Reseau_Ecologique_files/figure-latex/unnamed-chunk-4-1.pdf>
-Package pdftex.def Info: Rmarkdown_Reseau_Ecologique_files/figure-latex/unnamed-chunk-4-1.pdf  used on input line 258.
+Package pdftex.def Info: Rmarkdown_Reseau_Ecologique_files/figure-latex/unnamed-chunk-4-1.pdf  used on input line 261.
 (pdftex.def)             Requested size: 216.80946pt x 144.53963pt.
-[2 <./Rmarkdown_Reseau_Ecologique_files/figure-latex/unnamed-chunk-4-1.pdf>] 
+<microsoftTeams-image.png, id=56, 343.2825pt x 238.64156pt>
+File: microsoftTeams-image.png Graphic file (type png)
+<use microsoftTeams-image.png>
+Package pdftex.def Info: microsoftTeams-image.png  used on input line 270.
+(pdftex.def)             Requested size: 196.87823pt x 136.86461pt.
+[2 <./Rmarkdown_Reseau_Ecologique_files/figure-latex/unnamed-chunk-4-1.pdf> <./MicrosoftTeams-image.png>] [3
+
+] 
 enddocument/afterlastpage: lastpage setting LastPage.
 (./Rmarkdown_Reseau_Ecologique.aux)
 Package rerunfilecheck Info: File `Rmarkdown_Reseau_Ecologique.out' has not changed.
 (rerunfilecheck)             Checksum: 91E4BEE6027F4D76573BF446A3D112A0;648.
  ) 
 Here is how much of TeX's memory you used:
- 30447 strings out of 477961
- 574114 string characters out of 5836758
+ 30460 strings out of 477961
+ 574431 string characters out of 5836758
  1880068 words of memory out of 5000000
- 49905 multiletter control sequences out of 15000+600000
- 573156 words of font info for 146 fonts, out of 8000000 for 9000
+ 49915 multiletter control sequences out of 15000+600000
+ 573245 words of font info for 147 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  117i,14n,118p,1024b,1113s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <c:/Users/Daphnee/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr7.pfb><c:/Users/Daphnee/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr9.pfb><c:/Users/Daphnee/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmri9.pfb><c:/Users/Daphnee/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmssbx10.pfb><c:/Users/Daphnee/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmtt9.pfb><c:/Users/Daphnee/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb><c:/Users/Daphnee/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb>
-Output written on Rmarkdown_Reseau_Ecologique.pdf (2 pages, 183290 bytes).
+Output written on Rmarkdown_Reseau_Ecologique.pdf (3 pages, 190325 bytes).
 PDF statistics:
- 115 PDF objects out of 1000 (max. 8388607)
- 91 compressed objects within 1 object stream
- 23 named destinations out of 1000 (max. 500000)
- 44628 words of extra memory for PDF output out of 51595 (max. 10000000)
+ 122 PDF objects out of 1000 (max. 8388607)
+ 95 compressed objects within 1 object stream
+ 24 named destinations out of 1000 (max. 500000)
+ 44633 words of extra memory for PDF output out of 51595 (max. 10000000)
 

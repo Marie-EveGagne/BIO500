@@ -349,10 +349,29 @@ n_pairs_2 <- nrow(filter(data, nb_collab == 2))
 cat("Nombre de paires ayant travaillé ensemble deux fois : ", n_pairs_2, "\n")
 
 
+# Tableau 1 : Moyennes d'interraction
+# Charger les données à partir du fichier CSV
+data1 <- read.csv("resultats.csv")
 
+# Calculer le nombre moyen d'interactions par étudiant
+moyenne_interactions <- data1 %>%
+  group_by(etudiant1) %>%
+  summarise(moyenne = mean(nb_collab)) %>%
+  summarise(moyenne_totale = mean(moyenne))
 
+# Charger les données à partir du fichier CSV
+data2 <- read.csv("resultats2.csv")
 
+# Calculer la moyenne du nb_collab
+mean_nb_collab <- mean(data2$nb_collab)
 
+# Créer un tableau avec les deux moyennes
+tableau_moyennes <- data.frame(
+  "Moyenne interactions par étudiant" = moyenne_interactions$moyenne_totale,
+  "Moyenne du nb_collab" = mean_nb_collab
+)
 
+# Afficher le tableau
+kable(tableau_moyennes)
 
 

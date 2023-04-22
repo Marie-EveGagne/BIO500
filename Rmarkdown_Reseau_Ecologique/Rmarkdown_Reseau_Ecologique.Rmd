@@ -74,6 +74,14 @@ ggplot(pairs, aes(x = freq)) +
 
 ```
 
+
+Figure 2: Fréquence de collaborations en pourcentage selon le nombre de collaborations
+```{r, out.width='80%'}
+knitr::include_graphics("microsoftTeams-image.png")
+```
+
+
+
 Les résultats obtenus montrent qu'une proportion des étudiants en biologie de l'université de Sherbrooke préfèrent collaborer avec les mêmes personnes. En effet, certains individus sont plutôt en retrait du réseau et semblent collaborer avec un nombre restreint de personnes qui sont toujours les mêmes. Il est également intéressant de noter que certains étudiants sont liés au reste du réseau uniquement par un autre étudiant qui a collaboré avec le reste du réseau. Aussi, les étudiants qui se retrouvent au centre du réseau sont ceux qui ont collaboré avec le plus grand nombre d'étudiants. Il semble y avoir une majorité d'étudiants qui collaborent avec plusieurs personnes différentes et quelques groupes plus en retrait.
 
 
