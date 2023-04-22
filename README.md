@@ -16,3 +16,6 @@
 - Création de la base de données SQL, injection des données et requêtes
 - Création des tableaux et figures
 - Création du rapport Rmarkdown
+
+## URL du Git:
+https://github.com/Marie-EveGagne/BIO500.git
