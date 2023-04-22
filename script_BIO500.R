@@ -231,8 +231,6 @@ for (i in 1:nrow(etudiant)) {
 
 Collab_corr <- Collab_corr[!duplicated(Collab_corr), ]
 
-rm(collaboration)
-
 write.csv(cours, file.path("resultats", "merge_cours.csv"), row.names=FALSE)
 write.csv(etudiant, file.path("resultats", "merge_etudiant.csv"), row.names=FALSE)
 write.csv(Collab_corr, file.path ("resultats", "merge_etudiant.csv"), row.names=FALSE)

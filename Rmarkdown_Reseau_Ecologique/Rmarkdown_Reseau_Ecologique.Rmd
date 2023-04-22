@@ -54,7 +54,7 @@ pairs <- data %>%
   count(etudiant1, etudiant2, name = "freq") %>%
   arrange(desc(freq))
 library(ggplot2)
-fig.width=3, fig.height=2, echo = FALSE
+```{r, fig.width=3, fig.height=2, echo = FALSE}
 ggplot(pairs, aes(x = freq)) +
   geom_bar(stat = "count", fill = "steelblue") +
   scale_x_continuous(breaks = seq
