@@ -43,7 +43,33 @@ Les résultats obtenus montrent qu'une proportion des étudiants en biologie de 
 
 Illustration 2 (Yuriko) : Réseau selon la cohorte
 
-Illustration 3 (Yuriko) : Réseau selon le programme
+Tableau 1 : Moyennes d'interractions
+```{r}
+# Charger les données à partir du fichier CSV
+data1 <- read.csv("resultats.csv")
+
+# Calculer le nombre moyen d'interactions par étudiant
+moyenne_interactions <- data1 %>%
+  group_by(etudiant1) %>%
+  summarise(moyenne = mean(nb_collab)) %>%
+  summarise(moyenne_totale = mean(moyenne))
+
+# Charger les données à partir du fichier CSV
+data2 <- read.csv("resultats2.csv")
+
+# Calculer la moyenne du nb_collab
+mean_nb_collab <- mean(data2$nb_collab)
+
+# Créer un tableau avec les deux moyennes
+tableau_moyennes <- data.frame(
+  "Moyenne interactions par étudiant" = moyenne_interactions$moyenne_totale,
+  "Moyenne du nb_collab" = mean_nb_collab
+)
+
+# Afficher le tableau
+kable(tableau_moyennes)
+```
+
 
 Figure 1 : Nombre de fois qu'une paire d'étudiant va travailler ensemble 
 
