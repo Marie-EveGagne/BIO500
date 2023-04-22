@@ -1,17 +1,17 @@
 library(targets)
 library(usethis)
+library(purrr)
 
 setwd("C:/Users/Marie-Eve/OneDrive - USherbrooke/Bureau/UdeS/methode_comp/travail_collab/BIO500")
 
 source("R/prep_donnees.R")
 source("R/correction.R")
 tar_option_set(packages = c("RSQLite", 'stringr','dplyr','data.table','stringdist','igraph','purrr'))
-tar_option_set(packages = c("RSQLite", 'stringr','dplyr','data.table','stringdist','igraph'))
 
 list(
    tar_target(
     name = path,
-    command = "/donnees_BIO500",
+    command = "./donnees_BIO500",
     format = "file"
    ),
    tar_target(
@@ -40,13 +40,18 @@ list(
    ))
 #   tar_target(
 #     name = SQL,
-#     command = inj_req(donnees_BIO500)
+#     command = injection()
 #   ),
+#   tar_target(
+#     name = requete,
+#     command = injection(collab_clean)
+#   ),   
 #   tar_target(
 #     name = graphique,
 #     command = tbl_fig(SQL)
 #   ),
 # )
+
 
 
 

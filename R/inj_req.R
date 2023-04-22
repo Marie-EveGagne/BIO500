@@ -1,5 +1,7 @@
 #etape 3 -> Connection au SQL, creations des matrices SQL et injection des donnees 
 
+
+
 con <- dbConnect(SQLite(), dbname="collab.db")
 
 tbl_etudiant <- "CREATE TABLE etudiant (

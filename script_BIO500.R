@@ -212,7 +212,6 @@ agrep('rosalie_gagnon', etudiant$prenom_nom, max.distance = 1, value = FALSE)
 etudiant[118,1] <- paste0('mia_carriere')
 etudiant[118,3] <- paste0('carriere')
 
-
 etudiant <- etudiant[-c(30,85,119,134),]
 etudiant <- etudiant[,-c(9)]
 
