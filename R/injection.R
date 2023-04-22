@@ -1,6 +1,11 @@
 #etape 3 -> Connection au SQL, creations des matrices SQL et injection des donnees 
 
+tables_sql = function(collab_clean){
+
 con <- dbConnect(SQLite(), dbname="collab.db")
+
+drop <- "DROP TABLE IF EXISTS cours, etudiant, collaboration ;"
+flush <- "FLUSH TABLES cours, etudiant, collaboration ;" 
 
 tbl_etudiant <- "CREATE TABLE etudiant (
 prenom_nom              VARCHAR(40),
@@ -32,33 +37,11 @@ FOREIGN KEY (etudiant2)          REFERENCES tbl_etudiant(prenom_nom),
 FOREIGN KEY (sigle, session)     REFERENCES tbl_cours(sigle, session)
 );"
 
-dbSendQuery(con, tbl_cours)
-dbSendQuery(con, tbl_etudiant)
-dbSendQuery(con, tbl_collaboration)
 
-dbWriteTable(con, append = TRUE, name = "tbl_cours", value = cours, row.names = FALSE)
-dbWriteTable(con, append = TRUE, name = "tbl_etudiant", value = etudiant, row.names = FALSE)
-dbWriteTable(con, append = TRUE, name = "tbl_collaboration", value = Collab_corr, row.names = FALSE)
 
-#Répondre aux questions pour le cours de BIO500 et enregistrer les reponses dans un csv
+#dbSendQuery(con, tbl_cours)
+#dbSendQuery(con, tbl_etudiant)
+#dbSendQuery(con, tbl_collaboration)
+dbDisconnect(con)
+}
 
-sql_requete1 <- "
-SELECT etudiant1, count(etudiant2)
-AS nb_collab
-FROM tbl_collaboration
-GROUP BY etudiant1;"
-
-resultats_collab1 <- dbGetQuery(con, sql_requete1)
-resultats_collab1
-write.csv(resultats_collab1, '/resultatscollab1.csv', row.names=FALSE)
-
-sql_requete2 <- "
-SELECT etudiant1, etudiant2, COUNT(sigle)
-FROM tbl_collaboration
-GROUP BY etudiant1, etudiant2;"
-lien_paire_etudiants <- dbGetQuery(con, sql_requete2)
-head(lien_paire_etudiants)
-
-resultats_collab2 <- dbGetQuery(con, sql_requete2)
-resultats_collab2
-write.csv(resultats_collab2, '/resultats.csv', row.names=FALSE)
