@@ -13,9 +13,12 @@ library(stringdist)
 library(igraph)
 library(RColorBrewer)
 
+<<<<<<< HEAD
 setwd('C:/Users/Marie-Eve/OneDrive - USherbrooke/Bureau/UdeS/methode_comp/travail_collab/BIO500')
 setwd('C:/Users/Julie/OneDrive/Bureau/BIO500/Travail_BIO500/Travail_lienGit/BIO500')
 
+=======
+>>>>>>> 7cc7bdbf91becd298bf7a47a13896f43b162e71e
 #importer les données
 
 allFiles <- dir('donnees_BIO500')
@@ -232,9 +235,9 @@ Collab_corr <- Collab_corr[!duplicated(Collab_corr), ]
 
 rm(collaboration)
 
-write.csv(cours, 'BIO500/merge_cours.csv', row.names=FALSE)
-write.csv(etudiant, 'BIO500/merge_etudiant.csv', row.names=FALSE)
-write.csv(Collab_corr, 'BIO500/merge_collaboration.csv', row.names=FALSE)
+write.csv(cours, 'merge_cours.csv', row.names=FALSE)
+write.csv(etudiant, 'merge_etudiant.csv', row.names=FALSE)
+write.csv(Collab_corr, 'merge_collaboration.csv', row.names=FALSE)
 
 
 #Connection au SQL, creations des matrices SQL et injection des donnees 
@@ -287,7 +290,7 @@ sql_requete1 <- "SELECT etudiant1, count(etudiant2)
                 GROUP BY etudiant1;"
 resultats_collab1 <- dbGetQuery(con, sql_requete1)
 resultats_collab1
-write.csv(resultats_collab1, 'C:/Users/Marie-Eve/OneDrive - USherbrooke/Bureau/UdeS/methode_comp/travail_collab/resultats.csv', row.names=FALSE)
+write.csv(resultats_collab1, 'resultats.csv', row.names=FALSE)
 
 rm(sql_requete2)
 
