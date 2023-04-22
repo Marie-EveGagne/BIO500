@@ -37,39 +37,21 @@ Par la suite, les étapes de compilations des données, d'analyses et de rédact
 
 # Résultats
 
-Illustration 1 (Yuriko): Réseau des étudiants
-
-Les résultats obtenus montrent qu'une proportion des étudiants en biologie de l'université de Sherbrooke préfèrent collaborer avec les mêmes personnes. En effet, certains individus sont plutôt en retrait du réseau et semblent collaborer avec un nombre restreint de personnes qui sont toujours les mêmes. Il est également intéressant de noter que certains étudiants sont liés au reste du réseau uniquement par un autre étudiant qui a collaboré avec le reste du réseau. Aussi, les étudiants qui se retrouvent au centre du réseau sont ceux qui ont collaboré avec le plus grand nombre d'étudiants. Il semble y avoir une majorité d'étudiants qui collaborent avec plusieurs personnes différentes et quelques groupes plus en retrait.
-
-Illustration 2 (Yuriko) : Réseau selon la cohorte
-
-Tableau 1 : Moyennes d'interractions
-```{r}
-# Charger les données à partir du fichier CSV
-data1 <- read.csv("resultats.csv")
-
-# Calculer le nombre moyen d'interactions par étudiant
-moyenne_interactions <- data1 %>%
-  group_by(etudiant1) %>%
-  summarise(moyenne = mean(nb_collab)) %>%
-  summarise(moyenne_totale = mean(moyenne))
-
-# Charger les données à partir du fichier CSV
-data2 <- read.csv("resultats2.csv")
-
-# Calculer la moyenne du nb_collab
-mean_nb_collab <- mean(data2$nb_collab)
-
-# Créer un tableau avec les deux moyennes
-tableau_moyennes <- data.frame(
-  "Moyenne interactions par étudiant" = moyenne_interactions$moyenne_totale,
-  "Moyenne du nb_collab" = mean_nb_collab
-)
-
-# Afficher le tableau
-kable(tableau_moyennes)
+Illustration 1: Réseau des étudiants
+```{r, out.width='50%'}
+knitr::include_graphics("igraph_plot.png")
 ```
 
+
+L'illustration 1 illustre le réseau d'interractions entre les étudiants de sherbrooke.
+
+
+Tableau 1 : Moyennes d'interractions
+```{r, out.width='100%'}
+knitr::include_graphics("moyenne.png")
+```
+
+Le tableau 1 montre la moyenne d'interractions pour les étudiants et le nombre de collaborations entre paires d'étudiants.
 
 Figure 1 : Nombre de fois qu'une paire d'étudiant va travailler ensemble 
 
@@ -92,7 +74,10 @@ ggplot(pairs, aes(x = freq)) +
 
 ```
 
-Préférence de collègue pour les étudiants. Comme illustré dans le graphique X, la pente positive nous indique que les étudiants de biologie semblent préférer travailler avec les mêmes étudiants. On peut également constater que.... Si on a une courbe qui va vers le haut, oui les étudiants préfèrent travailler avec les mêmes étudiants.
+Les résultats obtenus montrent qu'une proportion des étudiants en biologie de l'université de Sherbrooke préfèrent collaborer avec les mêmes personnes. En effet, certains individus sont plutôt en retrait du réseau et semblent collaborer avec un nombre restreint de personnes qui sont toujours les mêmes. Il est également intéressant de noter que certains étudiants sont liés au reste du réseau uniquement par un autre étudiant qui a collaboré avec le reste du réseau. Aussi, les étudiants qui se retrouvent au centre du réseau sont ceux qui ont collaboré avec le plus grand nombre d'étudiants. Il semble y avoir une majorité d'étudiants qui collaborent avec plusieurs personnes différentes et quelques groupes plus en retrait.
+
+
+Préférence de collègue pour les étudiants. Comme illustré dans la figure 1, la pente négative nous indique que les étudiants de biologie semblent ne pas préférer travailler avec les mêmes étudiants. Si on a une courbe qui va vers le bas, oui les étudiants préfèrent travailler avec d'autres étudiants.
 
 # Discussion
 
@@ -103,7 +88,3 @@ Dans la nature, les espèces qui cohabitent ensemble et qui ont interagi entre e
 Somme toute, il est possible de constater qu'il y a certaines ressemblances entre les réseaux écologiques et le réseau de collaboration entre les étudiants de biologie. En effet, comme observé en nature, il est possible de constater une tendance chez certains étudiants de collaborer avec les mêmes personnes à plusieurs reprises. De plus, les étudiants d'une même cohorte et d'un même programme collaborent plus souvent entre eux. Ces similitudes entre les réseaux écologiques et le réseau de collaboration des étudiants permettent de se demander si, peu importe l'espèce, tous les animaux ont une certaine tendance à rechercher la collaboration de ceux qui les ressemblent le plus.
 
 # Bibliographie
-
-# Figure et tableau
-
-![Nom de la figure.](frog.png)
