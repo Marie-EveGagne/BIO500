@@ -15,8 +15,6 @@ library(igraph)
 library(RColorBrewer)
 library(purrr)
 
-setwd('C:/Users/Marie-Eve/OneDrive - USherbrooke/Bureau/UdeS/methode_comp/travail_collab/BIO500')
-
 #importer les données
 
 allFiles <- dir('donnees_BIO500')
