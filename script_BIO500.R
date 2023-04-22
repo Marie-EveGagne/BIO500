@@ -296,7 +296,7 @@ sql_requete1 <- "SELECT etudiant1, count(etudiant2)
                 GROUP BY etudiant1;"
 resultats_collab1 <- dbGetQuery(con, sql_requete1)
 resultats_collab1
-write.csv(resultats_collab1, 'C:/Users/Marie-Eve/OneDrive - USherbrooke/Bureau/UdeS/methode_comp/travail_collab/resultats.csv', row.names=FALSE)
+write.csv(resultats_collab1, 'resultats.csv', row.names=FALSE)
 
 rm(sql_requete2)
 
