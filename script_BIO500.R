@@ -13,7 +13,6 @@ library(stringdist)
 library(igraph)
 library(RColorBrewer)
 
-setwd('C:/Users/Marie-Eve/OneDrive - USherbrooke/Bureau/UdeS/methode_comp/travail_collab/BIO500')
 
 #importer les données
 
@@ -180,21 +179,17 @@ etudiant <- cbind(etudiant,sommeNAs)
 nb_lignes <- nrow(etudiant)
 
 
-for (i in 1:nb_lignes) {
-  for (j in 2:nb_lignes) {
-    if(etudiant[i,1]==etudiant[j,1] && etudiant[i,9]>etudiant[j,9]){
-      etudiant <- etudiant[-c(i), ]
-      nb_lignes <- nrow(etudiant)
-    }
+etudiant <- etudiant[complete.cases(etudiant),] # Supprimer les lignes avec des valeurs manquantes
 
-    else if(etudiant[i,1]==etudiant[j,1] && etudiant[i,9]<etudiant[j,9]){
+for (i in 1:nrow(etudiant)) {
+  for (j in 2:nrow(etudiant)) {
+    if (!is.na(etudiant[i,1]) && !is.na(etudiant[j,1]) && etudiant[i,1] == etudiant[j,1] && etudiant[i,9] > etudiant[j,9]) {
+      etudiant <- etudiant[-c(i), ]
+    } else if (!is.na(etudiant[i,1]) && !is.na(etudiant[j,1]) && etudiant[i,1] == etudiant[j,1] && etudiant[i,9] < etudiant[j,9]) {
       etudiant <- etudiant[-c(j), ]
-      nb_lignes <- nrow(etudiant)
     }
-    i=i+1
   }
 }
-
 
 #Trouver l'indexation des noms en double non corrigés par la boucle
 
@@ -311,6 +306,13 @@ GROUP BY etudiant1, etudiant2;"
 lien_paire_etudiants <- dbGetQuery(con, sql_requete2)
 head(lien_paire_etudiants)
 
+
+dbListTables(con)
+
+resultats_collab2 <- dbGetQuery(con, sql_requete2)
+resultats_collab2
+write.csv(resultats_collab2, 'resultats.csv', row.names=FALSE)
+
 #Deconnexion du SQL
 dbDisconnect(con)
 
@@ -348,4 +350,3 @@ frequence <- as.numeric(row.names(paires))
 plot(frequence, paires[,1], axes =TRUE,
      xlab = "Fréquence", ylab = "Nb paires différentes qui ont collaboré ensemble")
 title(main = "Fréquence de collaboration des étudiants en fonction du nombre de paires différentes qui ont collaboré ensemble")
-usethis::git_sitrep()
