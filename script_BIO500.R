@@ -5,6 +5,8 @@ install.packages('data.table', dependencies=TRUE)
 install.packages('stringdist', dependencies=TRUE)
 install.packages('igraph')
 install.packages("RColorBrewer")
+install.packages('dplyr')
+install.packages('ggplot2')
 library(RSQLite)
 library(stringr)
 library(dplyr)
@@ -12,6 +14,8 @@ library(data.table)
 library(stringdist)
 library(igraph)
 library(RColorBrewer)
+library(dplyr)
+library(ggplot2)
 
 
 #importer les données
@@ -229,9 +233,9 @@ Collab_corr <- Collab_corr[!duplicated(Collab_corr), ]
 
 rm(collaboration)
 
-write.csv(cours, '/resultats/merge_cours.csv', row.names=FALSE)
-write.csv(etudiant, '/resultats/merge_etudiant.csv', row.names=FALSE)
-write.csv(Collab_corr, '/resultats/merge_collaboration.csv', row.names=FALSE)
+write.csv(cours, file.path("resultats", "merge_cours.csv"), row.names=FALSE)
+write.csv(etudiant, file.path("resultats", "merge_etudiant.csv"), row.names=FALSE)
+write.csv(Collab_corr, file.path ("resultats", "merge_etudiant.csv"), row.names=FALSE)
 
 
 #Connection au SQL, creations des matrices SQL et injection des donnees 
@@ -283,7 +287,7 @@ sql_requete1 <- "SELECT etudiant1, count(etudiant2)
                 FROM tbl_collaboration
                 GROUP BY etudiant1;"
 resultats_collab1 <- dbGetQuery(con, sql_requete1)
-write.csv(resultats_collab1, '/resultats/resultats.csv', row.names=FALSE)
+write.csv(resultats_collab1, file.path("resultats", "resultats.csv"), row.names=FALSE)
 
 sql_requete2 <-"SELECT etudiant1, etudiant2, sigle, COUNT(*) AS nb_collab
 FROM tbl_collaboration
@@ -292,19 +296,13 @@ GROUP BY etudiant1, etudiant2, sigle"
 #LEFT JOIN tbl_cours ON tbl_collaboration.sigle=tbl_cours.sigle;"
 resultats_collab2 <- dbGetQuery(con, sql_requete2)
 resultats_collab2
-write.csv(resultats_collab2, '/resultats/resultats2.csv', row.names=FALSE)
+write.csv(resultats_collab2, file.path("Rmarkdown_Reseau_Ecologique", "resultats2.csv"), row.names=FALSE)
 
 
 dbListTables(con)
 
-resultats_collab2 <- dbGetQuery(con, sql_requete2)
-resultats_collab2
-write.csv(resultats_collab2, '/resultats/resultats.csv', row.names=FALSE)
-
 #Deconnexion du SQL
 dbDisconnect(con)
-
-drop <- "DROP TABLE cours, etudiant, collaboration;"
 
 
 #igraph
@@ -331,10 +329,33 @@ plot(interaction_ig,
      edge.arrow.size = .1,
      edge.width = 1)
 
-#Figure 3
-collab_etudiant <- read.csv2("arbres.csv")
-paires <- table(collab_etudiant[,c(3,5)])
-frequence <- as.numeric(row.names(paires))
-plot(frequence, paires[,1], axes =TRUE,
-     xlab = "Fréquence", ylab = "Nb paires différentes qui ont collaboré ensemble")
-title(main = "Fréquence de collaboration des étudiants en fonction du nombre de paires différentes qui ont collaboré ensemble")
+#Figure 1
+# Charger les données à partir du fichier CSV
+data <- read.csv("resultats2.csv")
+
+# Calcul du nombre de collaborations par paire d'étudiants
+pairs <- data %>%
+  count(etudiant1, etudiant2, name = "freq") %>%
+  arrange(desc(freq))
+
+# Plot des données
+ggplot(pairs, aes(x = freq)) +
+  geom_bar(stat = "count", fill = "steelblue") +
+  scale_x_continuous(breaks = seq(0, max(pairs$freq), by = 2)) +
+  xlab("Nombre de collaborations") +
+  ylab("Nombre de paires d'étudiants") +
+  ggtitle("Fréquence qu'une paire d'étudiant va travailler ensemble")
+
+# Nombre de paires ayant travaillé ensemble deux fois
+n_pairs_2 <- nrow(filter(data, nb_collab == 2))
+cat("Nombre de paires ayant travaillé ensemble deux fois : ", n_pairs_2, "\n")
+
+
+
+
+
+
+
+
+
+

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.4.21)  22 APR 2023 12:36
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.4.21)  22 APR 2023 15:23
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1092,10 +1092,23 @@ LaTeX Font Info:    Font shape `T1/phv/m/n' will be
 (Font)              scaled to size 5.69998pt on input line 158.
 LaTeX Font Info:    Font shape `T1/phv/m/n' will be
 (Font)              scaled to size 4.74998pt on input line 158.
+LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 195.
+(c:/Users/Daphnee/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/lm/t1lmtt.fd
+File: t1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
+)
+Package microtype Info: Loading generic protrusion settings for font family
+(microtype)             `lmtt' (encoding: T1).
+(microtype)             For optimal results, create family-specific settings.
+(microtype)             See the microtype manual for details.
+
+Overfull \hbox (32.6776pt too wide) in paragraph at lines 204--204
+[]\T1/lmtt/m/n/9 ## Les objets suivants sont masqués depuis 'package:stats':[] 
+ []
+
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <7> on input line 201.
+(Font)              <7> on input line 204.
 LaTeX Font Info:    Font shape `T1/phv/b/n' will be
-(Font)              scaled to size 6.64998pt on input line 201.
+(Font)              scaled to size 6.64998pt on input line 204.
 [1{c:/Users/Daphnee/AppData/Roaming/TinyTeX/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{c:/Users/Daphnee/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{c:/Users/Daphnee/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/base/8r.enc}
 
 LaTeX Warning: No \author given.
@@ -1103,30 +1116,41 @@ LaTeX Warning: No \author given.
 
 
 ]
-<frog.png, id=55, 200.75pt x 198.7425pt>
+Overfull \hbox (27.9526pt too wide) in paragraph at lines 210--210
+[]\T1/lmtt/m/n/9 ## Les objets suivants sont masqués depuis 'package:base':[] 
+ []
+
+<Rmarkdown_Reseau_Ecologique_files/figure-latex/unnamed-chunk-2-1.pdf, id=57, 216.81pt x 144.54pt>
+File: Rmarkdown_Reseau_Ecologique_files/figure-latex/unnamed-chunk-2-1.pdf Graphic file (type pdf)
+<use Rmarkdown_Reseau_Ecologique_files/figure-latex/unnamed-chunk-2-1.pdf>
+Package pdftex.def Info: Rmarkdown_Reseau_Ecologique_files/figure-latex/unnamed-chunk-2-1.pdf  used on input line 212.
+(pdftex.def)             Requested size: 216.80946pt x 144.53963pt.
+<frog.png, id=58, 200.75pt x 198.7425pt>
 File: frog.png Graphic file (type png)
 <use frog.png>
-Package pdftex.def Info: frog.png  used on input line 258.
+Package pdftex.def Info: frog.png  used on input line 278.
 (pdftex.def)             Requested size: 200.7495pt x 198.742pt.
-[2 <./frog.png>] 
+[2 <./Rmarkdown_Reseau_Ecologique_files/figure-latex/unnamed-chunk-2-1.pdf> <./frog.png>] [3
+
+] 
 enddocument/afterlastpage: lastpage setting LastPage.
 (./Rmarkdown_Reseau_Ecologique.aux)
 Package rerunfilecheck Info: File `Rmarkdown_Reseau_Ecologique.out' has not changed.
 (rerunfilecheck)             Checksum: 4F8C4794918CA5D84C507DC37D9BE177;782.
  ) 
 Here is how much of TeX's memory you used:
- 29896 strings out of 477961
- 564637 string characters out of 5836758
- 1881068 words of memory out of 5000000
- 49366 multiletter control sequences out of 15000+600000
- 572748 words of font info for 144 fonts, out of 8000000 for 9000
+ 29952 strings out of 477961
+ 565960 string characters out of 5836758
+ 1882068 words of memory out of 5000000
+ 49414 multiletter control sequences out of 15000+600000
+ 573067 words of font info for 145 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  117i,14n,118p,1024b,1113s stack positions out of 10000i,1000n,20000p,200000b,200000s
-<c:/Users/Daphnee/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr9.pfb><c:/Users/Daphnee/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmri9.pfb><c:/Users/Daphnee/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmssbx10.pfb><c:/Users/Daphnee/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb><c:/Users/Daphnee/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb>
-Output written on Rmarkdown_Reseau_Ecologique.pdf (2 pages, 202052 bytes).
+<c:/Users/Daphnee/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr7.pfb><c:/Users/Daphnee/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr9.pfb><c:/Users/Daphnee/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmri9.pfb><c:/Users/Daphnee/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmssbx10.pfb><c:/Users/Daphnee/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmtt9.pfb><c:/Users/Daphnee/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb><c:/Users/Daphnee/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb>
+Output written on Rmarkdown_Reseau_Ecologique.pdf (3 pages, 255675 bytes).
 PDF statistics:
- 107 PDF objects out of 1000 (max. 8388607)
- 90 compressed objects within 1 object stream
- 27 named destinations out of 1000 (max. 500000)
- 44114 words of extra memory for PDF output out of 51595 (max. 10000000)
+ 128 PDF objects out of 1000 (max. 8388607)
+ 103 compressed objects within 2 object streams
+ 28 named destinations out of 1000 (max. 500000)
+ 44631 words of extra memory for PDF output out of 51595 (max. 10000000)
 
