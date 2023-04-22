@@ -45,20 +45,12 @@ FOREIGN KEY (sigle, session)     REFERENCES tbl_cours(sigle, session)
 
 }
 
-inject = function(collab_clean, etudiant_clean, data_cours){
+#inject = function(collab_clean, etudiant_clean, data_cours){
   
-  tbl_cours <-
-  tbl_etudiant <-
-  tbl_collaboration <-
-  cours <-
-  etudiant <-
-  Collab_corr <-
-  
-dbWriteTable(con, append = TRUE, name = "tbl_cours", value = cours, row.names = FALSE)
-dbWriteTable(con, append = TRUE, name = "tbl_etudiant", value = etudiant, row.names = FALSE)
-dbWriteTable(con, append = TRUE, name = "tbl_collaboration", value = Collab_corr, row.names = FALSE)
-
-}
+#dbWriteTable(con, append = TRUE, name = "tbl_cours", value = cours, row.names = FALSE)
+#dbWriteTable(con, append = TRUE, name = "tbl_etudiant", value = etudiant, row.names = FALSE)
+#dbWriteTable(con, append = TRUE, name = "tbl_collaboration", value = Collab_corr, row.names = FALSE)
+#}
 
 
 
