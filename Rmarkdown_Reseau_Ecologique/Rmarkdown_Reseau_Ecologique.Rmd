@@ -11,9 +11,11 @@ body {
 text-align: justify}
 </style>
 ```
-\\section\*{Auteurs}
-
-Yuriko Archambault \\ Marie-Ève Gagné \\ Juliette Larrivée \\ Daphnée Longworth \\
+  \section*{Auteurs}
+Yuriko Archambault \\
+Marie-Ève Gagné \\
+Juliette Larrivée \\
+Daphnée Longworth \\
 
 # Résumé
 

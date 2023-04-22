@@ -13,6 +13,35 @@
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
 
 
+% Pandoc citation processing
+\newlength{\cslhangindent}
+\setlength{\cslhangindent}{1.5em}
+\newlength{\csllabelwidth}
+\setlength{\csllabelwidth}{3em}
+\newlength{\cslentryspacingunit} % times entry-spacing
+\setlength{\cslentryspacingunit}{\parskip}
+% for Pandoc 2.8 to 2.10.1
+\newenvironment{cslreferences}%
+  {}%
+  {\par}
+% For Pandoc 2.11+
+\newenvironment{CSLReferences}[2] % #1 hanging-ident, #2 entry spacing
+ {% don't indent paragraphs
+  \setlength{\parindent}{0pt}
+  % turn on hanging indent if param 1 is 1
+  \ifodd #1
+  \let\oldpar\par
+  \def\par{\hangindent=\cslhangindent\oldpar}
+  \fi
+  % set entry spacing
+  \setlength{\parskip}{#2\cslentryspacingunit}
+ }%
+ {}
+\usepackage{calc}
+\newcommand{\CSLBlock}[1]{#1\hfill\break}
+\newcommand{\CSLLeftMargin}[1]{\parbox[t]{\csllabelwidth}{#1}}
+\newcommand{\CSLRightInline}[1]{\parbox[t]{\linewidth - \csllabelwidth}{#1}\break}
+\newcommand{\CSLIndent}[1]{\hspace{\cslhangindent}#1}
 
 
 \templatetype{pnasresearcharticle}
@@ -61,7 +90,7 @@
 
 \acknow{}
 
-\textbackslash section*\{Auteurs\}
+\section*{Auteurs}
 
 Yuriko Archambault \textbackslash{} Marie-Ève Gagné \textbackslash{}
 Juliette Larrivée \textbackslash{} Daphnée Longworth \textbackslash{}
@@ -231,37 +260,40 @@ plus.
 \end{figure}
 
 \hypertarget{refs}{}
-\leavevmode\hypertarget{ref-Delmas2019}{}%
+\begin{CSLReferences}{1}{0}
+\leavevmode\vadjust pre{\hypertarget{ref-Delmas2019}{}}%
 Delmas, Eva, Mathilde Besson, Marie-Hélène Brice, Laura A Burkle, Giulio
 V Dalla Riva, Marie-Josée Fortin, Dominique Gravel, et al. 2019.
-``Analysing Ecological Networks of Species Interactions.''
+{``Analysing Ecological Networks of Species Interactions.''}
 \emph{Biological Reviews} 94 (1): 16--36.
 
-\leavevmode\hypertarget{ref-Landi2018}{}%
+\leavevmode\vadjust pre{\hypertarget{ref-Landi2018}{}}%
 Landi, Pietro, Henintsoa O Minoarivelo, Åke Brännström, Cang Hui, and
-Ulf Dieckmann. 2018. ``Complexity and Stability of Ecological Networks:
-A Review of the Theory.'' \emph{Population Ecology} 60: 319--45.
+Ulf Dieckmann. 2018. {``Complexity and Stability of Ecological Networks:
+A Review of the Theory.''} \emph{Population Ecology} 60: 319--45.
 
-\leavevmode\hypertarget{ref-Lau2017}{}%
+\leavevmode\vadjust pre{\hypertarget{ref-Lau2017}{}}%
 Lau, Matthew K, Stuart R Borrett, Benjamin Baiser, Nicholas J Gotelli,
-and Aaron M Ellison. 2017. ``Ecological Network Metrics: Opportunities
-for Synthesis.'' \emph{Ecosphere} 8 (8): e01900.
+and Aaron M Ellison. 2017. {``Ecological Network Metrics: Opportunities
+for Synthesis.''} \emph{Ecosphere} 8 (8): e01900.
 
-\leavevmode\hypertarget{ref-Olesen2011}{}%
-Olesen, Jens M, Constantı́ Stefanescu, and Anna Traveset. 2011. ``Strong,
-Long-Term Temporal Dynamics of an Ecological Network.'' \emph{PloS One}
-6 (11): e26455.
+\leavevmode\vadjust pre{\hypertarget{ref-Olesen2011}{}}%
+Olesen, Jens M, Constantí Stefanescu, and Anna Traveset. 2011.
+{``Strong, Long-Term Temporal Dynamics of an Ecological Network.''}
+\emph{PloS One} 6 (11): e26455.
 
-\leavevmode\hypertarget{ref-Poisot2014}{}%
-Poisot, Timothée, and Dominique Gravel. 2014. ``When Is an Ecological
+\leavevmode\vadjust pre{\hypertarget{ref-Poisot2014}{}}%
+Poisot, Timothée, and Dominique Gravel. 2014. {``When Is an Ecological
 Network Complex? Connectance Drives Degree Distribution and Emerging
-Network Properties.'' \emph{PeerJ} 2: e251.
+Network Properties.''} \emph{PeerJ} 2: e251.
 
-\leavevmode\hypertarget{ref-Windsor2023}{}%
+\leavevmode\vadjust pre{\hypertarget{ref-Windsor2023}{}}%
 Windsor, Fredric M, Johan van den Hoogen, Thomas W Crowther, and Darren
-M Evans. 2023. ``Using Ecological Networks to Answer Questions in Global
-Biogeography and Ecology.'' \emph{Journal of Biogeography} 50 (1):
-57--69.
+M Evans. 2023. {``Using Ecological Networks to Answer Questions in
+Global Biogeography and Ecology.''} \emph{Journal of Biogeography} 50
+(1): 57--69.
+
+\end{CSLReferences}
 
 
 
@@ -269,4 +301,3 @@ Biogeography and Ecology.'' \emph{Journal of Biogeography} 50 (1):
 % \bibliography{pnas-sample}
 
 \end{document}
-
