@@ -276,7 +276,7 @@ dbSendQuery(con, tbl_collaboration)
 
 dbWriteTable(con, append = TRUE, name = "tbl_cours", value = cours, row.names = FALSE)
 dbWriteTable(con, append = TRUE, name = "tbl_etudiant", value = etudiant, row.names = FALSE)
-dbWriteTable(con, append = TRUE, name = "tbl_collaboration", value = collaboration, row.names = FALSE)
+dbWriteTable(con, append = TRUE, name = "tbl_collaboration", value = Collab_corr, row.names = FALSE)
 
 #Répondre aux questions pour le cours de BIO500 et enregistrer les reponses dans un csv
 
@@ -313,6 +313,9 @@ head(lien_paire_etudiants)
 
 #Deconnexion du SQL
 dbDisconnect(con)
+
+drop <- "DROP TABLE cours, etudiant, collaboration;"
+
 
 #igraph
 interaction_df <- data.frame(etudiantA = collaboration$etudiant1, etudiantB = collaboration$etudiant2, stringsAsFactors = F)

@@ -1,11 +1,20 @@
 library(targets)
 library(usethis)
 library(purrr)
+library(RSQLite)
+library(stringr)
+library(dplyr)
+library(data.table)
+library(stringdist)
+library(igraph)
+library(RColorBrewer)
+
 
 setwd("C:/Users/Marie-Eve/OneDrive - USherbrooke/Bureau/UdeS/methode_comp/travail_collab/BIO500")
 
 source("R/prep_donnees.R")
 source("R/correction.R")
+source("R/injection.R")
 tar_option_set(packages = c("RSQLite", 'stringr','dplyr','data.table','stringdist','igraph','purrr'))
 
 list(
@@ -19,39 +28,39 @@ list(
      command = list.files(path, full.names = TRUE)
    ),
    tar_target(
-     name = data_collab,
-     command = prep_collab(file_paths),
+     data_collab,
+     prep_collab(file_paths),
    ),
    tar_target(
-     name = data_cours,
-     command = prep_cours(file_paths)
+     data_cours,
+     prep_cours(file_paths)
    ),
    tar_target(
-     name = data_etudiant,
-     command = prep_etudiants(file_paths)
+     data_etudiant,
+     prep_etudiants(file_paths)
    ),
    tar_target(
-     name = etudiant_clean,
-     command = corr_etd(data_etudiant)
+     etudiant_clean,
+     corr_etd(data_etudiant)
    ),
    tar_target(
-     name = collab_clean,
-     command = corr_collab(data_collab)
-   ))
-#   tar_target(
-#     name = SQL,
-#     command = injection()
+     collab_clean,
+     corr_collab(data_collab)
+   ),
+   tar_target(
+     sql,
+     tables_sql(collab_clean)
 #   ),
 #   tar_target(
-#     name = requete,
-#     command = injection(collab_clean)
-#   ),   
+#     injection,
+#     inject(collab_clean)
+   ))   
 #   tar_target(
 #     name = graphique,
 #     command = tbl_fig(SQL)
 #   ),
 # )
-
+#))
 
 
 

@@ -1,6 +1,6 @@
 name|type|data|command|depend|seed|path|time|size|bytes|format|repository|iteration|parent|children|seconds|warnings|error
-collab_clean|stem|023da06799861436|33a193da4e8bf8b5|00d74e8d98f7f092|-391565163||t19469.0165688616s|6b5a1e9f455d66df|20255|rds|local|vector|||8.23||
-corr_collab|function|149f94c50199e3ca|||||||||||||||
+collab_clean|stem|023da06799861436|33a193da4e8bf8b5|6dc987b078f052ae|-391565163||t19469.5557807562s|6b5a1e9f455d66df|20255|rds|local|vector|||7.76||
+corr_collab|function|7acd189bf9b54ba4|||||||||||||||
 corr_etd|function|6433a416412cefa1|||||||||||||||
 correction|function|41bcb0cb1cb5863e|||||||||||||||
 data|stem|c1c3c7b065e2a288|7d37fb4276c75f50|0647ef0418a920af|1588979285||t19467.8874877378s|a1c456b03adbfbf8|44|rds|local|vector|||0.1||
@@ -11,9 +11,14 @@ datas|stem|8fc95e072e07b8c1|7d37fb4276c75f50|5a12f4b02240a731|871969926||t19468.
 donnees_BIO500|stem|0e10854d97534df7|ffef1168f7209f30|e006abcd9fd1e751|-1320529590||t19468.1458635342s|c00122ae53f3dfad|352|rds|local|vector|||0.02||
 etudiant_clean|stem|1b1e45f09a57e5c2|59ba2334a1179a74|a6b388febe42a607|-1308883715||t19469.001080824s|e466a6208b2a58c0|3880|rds|local|vector|||2.47||
 file_paths|stem|0bf690f9cb137472|71948d4e0817f43c|3fa26787f7d1831b|1115504559||t19468.9766584362s|74c6dee26eb45e63|210|rds|local|vector|||0||
+injection|function|f530dc3507a83260|||||||||||||||
 path|stem|7f2b17405d412ffd|decec87a50c1e77e|ef46db3751d8e999|-1383433547|./donnees_BIO500|t19468.2168382657s|c7827d29f759aa2c|8192|file|local|vector|||0.42||
 prep_collab|function|1a8f1718c5675a00|||||||||||||||
 prep_cours|function|4231198cb7bd2d31|||||||||||||||
 prep_donnees|function|d48e82bbd8dd1ea8|||||||||||||||
 prep_etudiant|function|5d448e637ed204a4|||||||||||||||
 prep_etudiants|function|469c34b9a90872c2|||||||||||||||
+requete|stem||86b29f48b84b2750|1b991dca71922f61|1378933197||t19469.5755263802s||0|rds|local|vector|||0||impossible de trouver la fonction injection
+sql|stem|2bc9c7bff62c5c1f|c34cb13533d9fcb0|55ebb22d6ea67b8c|-520247662||t19469.5934767726s||48|rds|local|vector|||0.1||table cours already exists
+SQL|stem|a4765918829e79f8|86b29f48b84b2750|cf60e3d22186c9e5|-901784204||t19469.5597253554s|b7e15d70da794704|235|rds|local|vector|||0.02||
+tables_sql|function|8b8dd550b6447daf|||||||||||||||

@@ -39,6 +39,7 @@
 "cloe_tanguay","cloe","tanguay",NA,NA,NA,NA,NA
 "daphnee_damours","daphnee","damours",NA,NA,NA,NA,NA
 "daphnee_lalonde","daphnee","lalonde","lanaudiere","VRAI","preuniversitaire","A2019",269000
+"daphnee_longworth","daphnee","longworth",NA,NA,NA,NA,269000
 "daphnee_longworth","daphnee","longworth","montreal","TRUE","technique","H2020",269000
 "denya_berard","denya","berard","monteregie","FAUX","technique","A2020",269000
 "dylan_boisvert","dylan","boisvert",NA,NA,NA,NA,NA
@@ -114,6 +115,7 @@
 "mark_halliday","mark","halliday",NA,NA,NA,NA,NA
 "mathieu_lahaie","mathieu","lahaie",NA,NA,NA,NA,NA
 "maude_beliveau","maude","beliveau",NA,NA,NA,NA,NA
+"mia_carriere","mia","carriere","centre-du-quebec","FAUX","universitaire","A2020",269000
 "mia_carriere ","mia","carriere ",NA,NA,NA,NA,NA
 "mirette_hashem","mirette","hashem",NA,NA,NA,NA,NA
 "morgane_clement","morgane","clement",NA,NA,NA,NA,NA
@@ -127,8 +129,8 @@
 "philippe_barrette","philippe","barrette","monteregie","VRAI","preuniversitaire","A2020",269000
 "philippe_bourassa","philippe","bourassa","laurentides","VRAI","preuniversitaire","A2020",269000
 "philippe_leonard-dufour","philippe","leonard-dufour","monteregie","FAUX","preuniversitaire","H2020",267000
-"raphael_charlebois","raphael","charlebois",NA,NA,NA,NA,NA
 "ricardo_lavoie","ricardo","lavoie",NA,NA,NA,NA,NA
+"rosalie_gagnon","rosalie","gagnon","saguenay-lac-saint-jean","VRAI","preuniversitaire","A2020",269000
 "rosalie_gagnon","rosalie","gagnon","saguenay-lac-saint-jean","FAUX","preuniversitaire","A2020",269000
 "roxanne_bernier","roxanne","bernier","estrie","FAUX","universitaire","A2020",269000
 "sabrina_artuza","sabrina","artuza",NA,NA,NA,NA,269000
@@ -153,5 +155,6 @@
 "xavier_quintal","xavier","quintal",NA,NA,NA,NA,NA
 "xavier_samson","xavier","samson",NA,NA,NA,NA,NA
 "yanick_sageau","yanick","sageau","estrie","TRUE","preuniversitaire","A2020",269000
+"yanick_sageau","yanick","sageau",NA,"VRAI","preuniversitaire","A2020",269000
 "yuriko_archambault","yuriko","archambault","monteregie","VRAI","technique","A2020",269000
 "zachary_sinclair","zachary","sinclair",NA,NA,NA,NA,NA
