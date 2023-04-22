@@ -329,7 +329,7 @@ plot(interaction_ig,
 
 #Figure 1
 # Charger les données à partir du fichier CSV
-data <- read.csv("resultats2.csv")
+data <- read.csv("/resultats/resultats2.csv")
 
 # Calcul du nombre de collaborations par paire d'étudiants
 pairs <- data %>%
