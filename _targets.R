@@ -46,7 +46,8 @@ list(
      corr_collab(data_collab)
    ))   
 #   ),  
-#La target sql ne marche pas et bloque le reste   
+#La target sql ne marche pas et bloque le reste
+#Les autres target n'ont pas été testées et ne marchent surement pas
 #   tar_target(
 #     sql,
 #     tables_sql(collab_clean)
@@ -56,8 +57,12 @@ list(
 #     inject(collab_clean)
 #   ),
 #   tar_target(
-#     graphique,
-#     tbl_fig(injection)
+#     figure,
+#     igraph(injection)
+#   ),
+#   tar_target(
+#    plot,
+#    graph(injection)
 #))
 
 
