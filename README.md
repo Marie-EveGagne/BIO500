@@ -5,9 +5,11 @@
 ## Description des fichiers du GIT
 
 - Fichier contenant les données brutes -> donnees_BIO500
+- Fichier contenant le Rmarkdown -> Rmarkdown_Reseau_Ecologique
 - Fichier du projet GIT -> BIO500.Rproj
 - Bases de données relationnelles (SQL) -> collab.db
 - Script R complet -> script_BIO500.R
+- Données créé et utilisé pour nos figures -> resultats
 
 ## Étapes (targets) du pipeline
 
