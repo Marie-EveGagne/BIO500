@@ -7,6 +7,47 @@
 
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
+% Pandoc syntax highlighting
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
 
 % tightlist command for lists without linebreak
 \providecommand{\tightlist}{%
@@ -172,23 +213,31 @@ rapport a été rédigé à l'aide de R Markdown. Le répertoire de travail a
 \hypertarget{ruxe9sultats}{%
 \section{Résultats}\label{ruxe9sultats}}
 
-Illustration 1 (Yuriko): Réseau des étudiants
+Illustration 1: Réseau des étudiants
 
-Les résultats obtenus montrent qu'une proportion des étudiants en
-biologie de l'université de Sherbrooke préfèrent collaborer avec les
-mêmes personnes. En effet, certains individus sont plutôt en retrait du
-réseau et semblent collaborer avec un nombre restreint de personnes qui
-sont toujours les mêmes. Il est également intéressant de noter que
-certains étudiants sont liés au reste du réseau uniquement par un autre
-étudiant qui a collaboré avec le reste du réseau. Aussi, les étudiants
-qui se retrouvent au centre du réseau sont ceux qui ont collaboré avec
-le plus grand nombre d'étudiants. Il semble y avoir une majorité
-d'étudiants qui collaborent avec plusieurs personnes différentes et
-quelques groupes plus en retrait.
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{knitr}\SpecialCharTok{::}\FunctionTok{include\_graphics}\NormalTok{(}\StringTok{"igraph\_plot.png"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
 
-Illustration 2 (Yuriko) : Réseau selon la cohorte
+\includegraphics[width=0.5\linewidth]{igraph_plot}
 
-Illustration 3 (Yuriko) : Réseau selon le programme
+L'illustration 1 illustre le réseau d'interractions entre les étudiants
+de sherbrooke.
+
+Tableau 1 : Moyennes d'interractions
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{knitr}\SpecialCharTok{::}\FunctionTok{include\_graphics}\NormalTok{(}\StringTok{"moyenne.png"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics[width=1\linewidth]{moyenne}
+
+Le tableau 1 montre la moyenne d'interractions pour les étudiants et le
+nombre de collaborations entre paires d'étudiants.
 
 Figure 1 : Nombre de fois qu'une paire d'étudiant va travailler ensemble
 
@@ -209,13 +258,34 @@ Figure 1 : Nombre de fois qu'une paire d'étudiant va travailler ensemble
 ##     intersect, setdiff, setequal, union
 \end{verbatim}
 
-\includegraphics{Rmarkdown_Reseau_Ecologique_files/figure-latex/unnamed-chunk-2-1.pdf}
+\includegraphics{Rmarkdown_Reseau_Ecologique_files/figure-latex/unnamed-chunk-4-1.pdf}
+Figure 2
 
-Préférence de collègue pour les étudiants. Comme illustré dans le
-graphique X, la pente positive nous indique que les étudiants de
-biologie semblent préférer travailler avec les mêmes étudiants. On peut
-également constater que\ldots. Si on a une courbe qui va vers le haut,
-oui les étudiants préfèrent travailler avec les mêmes étudiants.
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{knitr}\SpecialCharTok{::}\FunctionTok{include\_graphics}\NormalTok{(}\StringTok{"microsoftTeams{-}image.png"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics[width=0.8\linewidth]{microsoftTeams-image}
+
+Les résultats obtenus montrent qu'une proportion des étudiants en
+biologie de l'université de Sherbrooke préfèrent collaborer avec les
+mêmes personnes. En effet, certains individus sont plutôt en retrait du
+réseau et semblent collaborer avec un nombre restreint de personnes qui
+sont toujours les mêmes. Il est également intéressant de noter que
+certains étudiants sont liés au reste du réseau uniquement par un autre
+étudiant qui a collaboré avec le reste du réseau. Aussi, les étudiants
+qui se retrouvent au centre du réseau sont ceux qui ont collaboré avec
+le plus grand nombre d'étudiants. Il semble y avoir une majorité
+d'étudiants qui collaborent avec plusieurs personnes différentes et
+quelques groupes plus en retrait.
+
+Préférence de collègue pour les étudiants. Comme illustré dans la figure
+1, la pente négative nous indique que les étudiants de biologie semblent
+ne pas préférer travailler avec les mêmes étudiants. Si on a une courbe
+qui va vers le bas, oui les étudiants préfèrent travailler avec d'autres
+étudiants.
 
 \hypertarget{discussion}{%
 \section{Discussion}\label{discussion}}
@@ -268,16 +338,8 @@ tendance à rechercher la collaboration de ceux qui les ressemblent le
 plus.
 
 \hypertarget{bibliographie}{%
-\section{Bibliographie}\label{bibliographie}}
-
-\hypertarget{figure-et-tableau}{%
-\section{Figure et tableau}\label{figure-et-tableau}}
-
-\begin{figure}
-\centering
-\includegraphics{frog.png}
-\caption{Nom de la figure.}
-\end{figure}
+\section*{Bibliographie}\label{bibliographie}}
+\addcontentsline{toc}{section}{Bibliographie}
 
 \hypertarget{refs}{}
 \begin{CSLReferences}{1}{0}
