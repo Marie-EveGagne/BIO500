@@ -214,13 +214,16 @@ Collab_corr <- collaboration
 for (i in 1:nrow(etudiant)) {
   differences1 <- agrep(etudiant[i,1], Collab_corr$etudiant1, max.distance = 5, value = FALSE)
   differences2 <- agrep(etudiant[i,1], Collab_corr$etudiant2, max.distance = 5, value = FALSE)
-  for (j in 1:length(differences1)) {
-    Collab_corr[differences1[j],1] <- paste0(etudiant[i,1])
-  }
-  for (k in 1:length(differences2)) {
-    Collab_corr[differences2[k],2] <- paste0(etudiant[i,1])
-  }
+  
+  # filtrer les valeurs manquantes
+  differences1 <- differences1[complete.cases(differences1)]
+  differences2 <- differences2[complete.cases(differences2)]
+  
+  # affecter les valeurs
+  Collab_corr[differences1,1] <- paste0(etudiant[i,1])
+  Collab_corr[differences2,2] <- paste0(etudiant[i,1])
 }
+
 
 Collab_corr <- Collab_corr[!duplicated(Collab_corr), ]
 
@@ -280,38 +283,16 @@ sql_requete1 <- "SELECT etudiant1, count(etudiant2)
                 FROM tbl_collaboration
                 GROUP BY etudiant1;"
 resultats_collab1 <- dbGetQuery(con, sql_requete1)
-resultats_collab1
 write.csv(resultats_collab1, 'resultats.csv', row.names=FALSE)
 
-rm(sql_requete2)
+sql_requete2 <-"SELECT etudiant1, etudiant2, sigle, COUNT(*) AS nb_collab
+FROM tbl_collaboration
+GROUP BY etudiant1, etudiant2, sigle"   
 
-#sql_requete2 <- "SELECT sigle, session, count(tbl_cours.sigle)
-#                 AS nb_collab
- #                FROM tbl_collaboration
-  #               GROUP BY tbl_collaboration.etudiant1, tbl_collaboration.etudiant2;"
-sql_requete2 <-"SELECT etudiant1, etudiant2, sigle, count(tbl_collaboration.sigle)
-                 AS nb_collab
-                 FROM tbl_collaboration
-                 GROUP BY tbl_collaboration.sigle;"                
 #LEFT JOIN tbl_cours ON tbl_collaboration.sigle=tbl_cours.sigle;"
 resultats_collab2 <- dbGetQuery(con, sql_requete2)
 resultats_collab2
-write.csv(resultats_collab2, 'C:/Users/Daphnee/Documents/BIO500/resultats.csv', row.names=FALSE)
-
-##selection requete2_test3
-sql_requete2 <- "
-SELECT etudiant1, etudiant2, COUNT(sigle)
-FROM collaboration
-GROUP BY etudiant1, etudiant2;"
-lien_paire_etudiants <- dbGetQuery(con, sql_requete2)
-head(lien_paire_etudiants)
-
-
-dbListTables(con)
-
-resultats_collab2 <- dbGetQuery(con, sql_requete2)
-resultats_collab2
-write.csv(resultats_collab2, 'resultats.csv', row.names=FALSE)
+write.csv(resultats_collab2, 'resultats2.csv', row.names=FALSE)
 
 #Deconnexion du SQL
 dbDisconnect(con)
